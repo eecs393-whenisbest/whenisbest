@@ -92,11 +92,11 @@ Response:    System queries for list of preferred days and times.
 #### List of Functions
 |Function |Action|
 |---|---|
-|Event.Create | Event is created with Name, Duration, and a flag for one-time or recurring events.|
-|Event.Create.OneTime| Event data is handed to the one-time event page, where Scheduler chooses all available dates and times.|
-|Event.Create.Recurring | Event data is handed to the recurring event page, where Scheduler chooses repetition frequency and available days and times.|
+|Event.Create |Event is created with Name, Duration, and a flag for one-time or recurring events.|
+|Event.Create.OneTime|Event data is handed to the one-time event page, where Scheduler chooses all available dates and times.|
+|Event.Create.Recurring |Event data is handed to the recurring event page, where Scheduler chooses repetition frequency and available days and times.|
 |Event.Create.Submit |Event data is stored in the When is Best database after all information is collected on the website and generates a primary key composed of 8 alphanumeric characters.|
-|Event.Create.Share | The When is Best website creates a URL from the primary key of the event and prompts the Scheduler to invite attendees via link or email.|
+|Event.Create.Share |The When is Best website creates a URL from the primary key of the event and prompts the Scheduler to invite attendees via link or email.|
 
 ### Submit Availability to Events
 #### Description and Priority
@@ -113,10 +113,10 @@ Response:    System finds Attendee’s previous response and prompts Attendee to
 #### List of Functions
 |Function |Action|
 |---|---|
-|Event.Attendee.Accept | When an Attendee clicks on a link from When is Best, the site prompts them for their name and email address.|
-|Event.Attendee.Availability | System prompts Attendee to provide their available times for the current event.|
-|Event.Attendee.Submit | When is Best website transmits Attendee answers back to the When is Best database for storage. A confirmation message is sent to the Attendee.|
-|Event.Attendee.Edit | When is Best website retrieves Attendee’s previous answers from When is Best database and prompts Attendee to change them through the Availability and Submit steps.|
+|Event.Attendee.Accept |When an Attendee clicks on a link from When is Best, the site prompts them for their name and email address.|
+|Event.Attendee.Availability |System prompts Attendee to provide their available times for the current event.|
+|Event.Attendee.Submit |When is Best website transmits Attendee answers back to the When is Best database for storage. A confirmation message is sent to the Attendee.|
+|Event.Attendee.Edit |When is Best website retrieves Attendee’s previous answers from When is Best database and prompts Attendee to change them through the Availability and Submit steps.|
 
 
 ### View Responses
@@ -131,7 +131,7 @@ Response:    System provides summary view of all attendees’ responses
 #### List of Functions
 |Function |Action|
 |---|---|
-|Event.Scheduler.ViewResponses | When is Best displays all Attendees’ responses with names and includes a note of any attendees who received an invite and have not responded.|
+|Event.Scheduler.ViewResponses |When is Best displays all Attendees’ responses with names and includes a note of any attendees who received an invite and have not responded.|
 
 ### Send Scheduling Email
 #### Description and Priority
@@ -146,7 +146,7 @@ Response: When is Best sends an email containing a calendar appointment to all r
 #### List of Functions
 |Function |Action|
 |---|---|
-|Event.Scheduler.SendEmail| When is Best receives a confirmation message, creates a calendar appointment, and sends it to all Attendees and Scheduler. The site also provides a confirmation message when the process is complete.|
+|Event.Scheduler.SendEmail |When is Best receives a confirmation message, creates a calendar appointment, and sends it to all Attendees and Scheduler. The site also provides a confirmation message when the process is complete.|
 
 
 ### Google Calendar Integration
