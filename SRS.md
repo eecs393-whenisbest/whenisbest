@@ -90,6 +90,8 @@ Stimulus:    Scheduler creates recurring event
 Response:    System queries for list of preferred days and times.
 
 #### List of Functions
+|Function |Action|
+|---|---|
 |Event.Create | Event is created with Name, Duration, and a flag for one-time or recurring events.|
 |Event.Create.OneTime| Event data is handed to the one-time event page, where Scheduler chooses all available dates and times.|
 |Event.Create.Recurring | Event data is handed to the recurring event page, where Scheduler chooses repetition frequency and available days and times.|
@@ -109,6 +111,8 @@ Stimulus:    Attendee accesses event for the second (or more) time.
 Response:    System finds Attendee’s previous response and prompts Attendee to change their answers.
 
 #### List of Functions
+|Function |Action|
+|---|---|
 |Event.Attendee.Accept | When an Attendee clicks on a link from When is Best, the site prompts them for their name and email address.|
 |Event.Attendee.Availability | System prompts Attendee to provide their available times for the current event.|
 |Event.Attendee.Submit | When is Best website transmits Attendee answers back to the When is Best database for storage. A confirmation message is sent to the Attendee.|
@@ -125,6 +129,8 @@ Stimulus:    Scheduler accesses event with key
 Response:    System provides summary view of all attendees’ responses
 
 #### List of Functions
+|Function |Action|
+|---|---|
 |Event.Scheduler.ViewResponses | When is Best displays all Attendees’ responses with names and includes a note of any attendees who received an invite and have not responded.|
 
 ### Send Scheduling Email
@@ -138,8 +144,9 @@ Stimulus: Event Scheduler confirms a time for the event.
 Response: When is Best sends an email containing a calendar appointment to all responding Attendees and Scheduler.
 
 #### List of Functions
-Event.Scheduler.SendEmail
- When is Best receives a confirmation message, creates a calendar appointment, and sends it to all Attendees and Scheduler. The site also provides a confirmation message when the process is complete.
+|Function |Action|
+|---|---|
+|Event.Scheduler.SendEmail| When is Best receives a confirmation message, creates a calendar appointment, and sends it to all Attendees and Scheduler. The site also provides a confirmation message when the process is complete.|
 
 
 ### Google Calendar Integration
