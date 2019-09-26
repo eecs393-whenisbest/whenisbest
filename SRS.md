@@ -8,17 +8,17 @@ Brian Pang, Zubair Mukhi, and Patrick Hogrell
 
 ## Introduction
 
-### Purpose
+###   Purpose
 
 This SRS details the software functional and nonfunctional requirements for the upcoming release of When is Best. This document is intended to be used by the members of the project team that will implement and verify the correct functioning of the system. Unless otherwise noted, all stated requirements are high priority and slated for release with version 1.0 with versions 0.3 and 0.7 scheduled as functional demo variants of the project.
 
-###Project Scope and Project Features
+### Project Scope and Project Features
 
 When-Is-Best consists of a few major components - available-time setup, time entry, and final scheduling pages. The available-times setup page allows someone to create a named event with an approximate duration, block out available times, and send the survey out to attendees. The time-entry page is sent as a survey to attendees, who can see the number of people available and the percent of people who’ve responded to the event. Final scheduling is sent back to the event organizer to decide on the time during which the event occurs. Lastly, the final time is sent back to all attendees as a calendar appointment so that a final confirmation can occur. For this, we would like to include the Google Calendar API to allow for native addition of events to calendars.
 
 
-##Overall Description
-###Product Perspective
+## Overall Description
+### Product Perspective
 When is Best is a scheduling website designed to replace existing solutions for group task scheduling. Figure 1 illustrates the interaction between When is Best, Event Schedulers, and Event Attendees. This system is expected to iterate through two functional demo states (Versions 0.3 and 0.7) before a final implementation as a functional website (Version 1.0) and might be expanded with additional functionality, time permitting.
 
 ##User Classes and Characteristics
