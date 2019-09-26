@@ -1,14 +1,14 @@
-#Software Requirements Specification for: When is Best
+# Software Requirements Specification for: When is Best
 
-##(Version 1.0, Revision 0)
+## (Version 1.0, Revision 0)
 
 Prepared by:
 Brian Pang, Zubair Mukhi, and Patrick Hogrell
 9 / 23 / 2019
 
-##Introduction
+## Introduction
 
-###Purpose
+### Purpose
 
 This SRS details the software functional and nonfunctional requirements for the upcoming release of When is Best. This document is intended to be used by the members of the project team that will implement and verify the correct functioning of the system. Unless otherwise noted, all stated requirements are high priority and slated for release with version 1.0 with versions 0.3 and 0.7 scheduled as functional demo variants of the project.
 
