@@ -151,7 +151,7 @@ __Priority: Medium__
 No user-supplied stimulus/response action.
 
 #### List of Functions
-|Event.Scheduler.GCalAppt | When is Best will attempt to use the Google Calendar API to create a Google Calendar event that is directly shared with Attendees if so authorized. In the case that an Attendee has not authorized this function, When is Best will default to an emailed calendar appointment for that Attendee and attempt the calendar appointment for all Attendees that authorized Google Calendar.|
+|Event.Scheduler.GCalAppt |When is Best will attempt to use the Google Calendar API to create a Google Calendar event that is directly shared with Attendees if so authorized. In the case that an Attendee has not authorized this function, When is Best will default to an emailed calendar appointment for that Attendee and attempt the calendar appointment for all Attendees that authorized Google Calendar.|
 
 ### Stretch Goals
 #### Preferred Time Designation
