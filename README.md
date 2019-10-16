@@ -5,5 +5,5 @@ We plan to integrate Google Calendar API into the sharing process to allow more 
 
 Release versions will be 0.3, 0.7, and 1.0. Stay tuned for more!
 ## Python Installation
-The backend runs on Python 3.7.4
+The web application runs on Python 3.7.4 and the Flask package
 Navigate to the Backend folder and use the command `pip install -r requirements.txt`
