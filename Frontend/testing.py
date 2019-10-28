@@ -1,9 +1,10 @@
 import unittest
 
 class TestEventMethods(unittest.TestCase):
+    test = Event.Create('test', 8.0, 0)
+    test2 = Event.Create('test2', 8.0, 1)
     def test_create(self):
-        test = Event.Create('test', 8.0, 0)
-        test2 = Event.Create('test2', 8.0, 1)
+        
         self.assertEqual(test.getName(), 'test')
         self.assertEqual(test.getDuration(), 8.0)
         self.assertEqual(test.getRecurring(), 0)
@@ -15,20 +16,20 @@ class TestEventMethods(unittest.TestCase):
         
         self.assertEqual(test.submit(),<eventID>)
         
-        self.assertEqual(test.share(), "whenisbest.com/event/<eventID>/share")
+        self.assertEqual(test.share(), 'whenisbest.com/event/<eventID>/share')
                          
-    def test_attendee(self):
+    def test_attendee(self):                
                          
-                         
-        self.assertTrue('FOO'.isupper())
-        self.assertFalse('Foo'.isupper())
+        self.assertEqual(test.attendeeAccept('Zubair Mukhi','zxm132@case.edu'),(test.getAttendeeName(),test.getAttendeeEmail()))
+        self.assertEqual('Zubair Mukhi', test.getAttendeeName())
+        self.assertEqual('zxm132@case.edu', test.getAttendeeEmail())
+        self.assertEqual(test.attendeeAvalibility(),<times in file from database>)
+        self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/confirmation')
+        self.assertEqual(test.attendeeEdit(),<New times in file from database>)
+                        
 
-    def test_split(self):
-        s = 'hello world'
-        self.assertEqual(s.split(), ['hello', 'world'])
-        # check that s.split fails when the separator is not a string
-        with self.assertRaises(TypeError):
-            s.split(2)
+    def test_scheduler(self):
+        self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/results')
 
 if __name__ == '__main__':
     unittest.main()
