@@ -1,10 +1,10 @@
 import unittest
 
 class TestEventMethods(unittest.TestCase):
-    test = Event.Create('test', 8.0, 0)
-    test2 = Event.Create('test2', 8.0, 1)
+
     def test_create(self):
-        
+        test = Event.Create('test', 8.0, 0)
+        test2 = Event.Create('test2', 8.0, 1)
         self.assertEqual(test.getName(), 'test')
         self.assertEqual(test.getDuration(), 8.0)
         self.assertEqual(test.getRecurring(), 0)
@@ -18,7 +18,9 @@ class TestEventMethods(unittest.TestCase):
         
         self.assertEqual(test.share(), 'whenisbest.com/event/<eventID>/share')
         return
-                         
+    
+    test = Event.Create('test', 8.0, 0)
+    test2 = Event.Create('test2', 8.0, 1)                     
     def test_attendee(self):                
                          
         self.assertEqual(test.attendeeAccept('Zubair Mukhi','zxm132@case.edu'),(test.getAttendeeName(),test.getAttendeeEmail()))
