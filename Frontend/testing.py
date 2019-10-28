@@ -17,6 +17,7 @@ class TestEventMethods(unittest.TestCase):
         self.assertEqual(test.submit(),<eventID>)
         
         self.assertEqual(test.share(), 'whenisbest.com/event/<eventID>/share')
+        return
                          
     def test_attendee(self):                
                          
@@ -26,10 +27,11 @@ class TestEventMethods(unittest.TestCase):
         self.assertEqual(test.attendeeAvalibility(),<times in file from database>)
         self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/confirmation')
         self.assertEqual(test.attendeeEdit(),<New times in file from database>)
-                        
+        return                
 
     def test_scheduler(self):
         self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/results')
-
+        return
+                         
 if __name__ == '__main__':
     unittest.main()
