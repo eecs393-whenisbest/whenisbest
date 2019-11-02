@@ -7,13 +7,11 @@ from app import userCreator
 SchedName = "name"
 dur = 1.0
 recurFlag = 0
+eventID = ""
 
 def createEvent (name, duration, isRecurring):
-    eventCreator.createEvent(name, duration, isRecurring)
-
-   query = "INSERT INTO "
-
-
+    eventID = eventCreator.createEvent(name, duration, isRecurring)
+    return eventID
 
 def getName():
   return SchedName
