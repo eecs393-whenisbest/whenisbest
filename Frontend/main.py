@@ -1,18 +1,27 @@
 #!/usr/bin/python
 from app import app
 
+Schedname = "name"
+dur = 1.0
+recurFlag = 0
+
+def Event.create(name,duration,recuranceFlag)
+   Schedname = name
+   dur = duration
+   recuranceFlag = recurFlag
+
 
 def getName():
-  
-  return
+
+  return Schedname
 
 def getDuration():
   
-  return 
+  return dur
 
 def getRecurring():
   
-  return     
+  return recurFlag    
 
 def getCreator():
   
