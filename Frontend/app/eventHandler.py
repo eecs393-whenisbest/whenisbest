@@ -1,7 +1,8 @@
-from app import userCreator
+from app import userHandler
 from app import sql
 import hashlib
 from datetime import datetime
+from datetime import date
 
 schedName = ""
 dur = 1.0
@@ -23,12 +24,12 @@ def createEvent(eName, duration, isRecurring):
     query = "insert into event(eventID, eventName, eventDuration, eventRecurs, eventShared, eventFrequency) values (%s, %s, %s, %s, %s, %s)"
     values = (eventID, schedName, dur, recurFlag, shared, frequency)
     sql.createQuery(query, values)
-    if (recurs == 0):
-        query = "insert into onetime (eventID) values (%s)"
-        values = eventID
+    if (recurFlag == 1):
+        query = "insert into recurring (eventID, day, timeSlot) values (%s, %s, %s)"
+        values = (eventID, 1, 0.25)
         sql.createQuery(query, values)
     else:
-        query = "insert into recurring (eventID) values (%s)"
-        values = eventID
+        query = "insert into onetime (eventID, date, timeSlot) values (%s, %s, %s)"
+        values = (eventID, date.today(), 0.25)
         sql.createQuery(query, values)
     return eventID
