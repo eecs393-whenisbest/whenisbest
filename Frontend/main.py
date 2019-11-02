@@ -1,18 +1,22 @@
 #!/usr/bin/python
 from app import app
+from app import sql
+from app import eventCreator
+from app import userCreator
 
 SchedName = "name"
 dur = 1.0
 recurFlag = 0
 
-def Event.create(name,duration,recuranceFlag)
+def createEvent (name, duration, isRecurring):
    SchedName = name
    dur = duration
-   recuranceFlag = recurFlag
+   recurFlag = isRecurring
+   query = "INSERT INTO "
+
 
 
 def getName():
-
   return SchedName
 
 def getDuration():
@@ -27,6 +31,6 @@ def getCreator():
 
   return
 
-def getEventID(getName(), getDuration(), getRecurring(), getCreator()):
+def getEventID():
 
   return
