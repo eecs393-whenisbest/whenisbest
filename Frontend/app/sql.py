@@ -8,3 +8,8 @@ db = mysql.connect(
 )
 
 cursor = db.cursor()
+
+def createQuery(query, values):
+    cursor.execute(query,values)
+    db.commit()
+    print(cursor.rowcount, "recort inserted")

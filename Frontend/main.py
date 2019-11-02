@@ -9,9 +9,8 @@ dur = 1.0
 recurFlag = 0
 
 def createEvent (name, duration, isRecurring):
-   SchedName = name
-   dur = duration
-   recurFlag = isRecurring
+    eventCreator.createEvent(name, duration, isRecurring)
+
    query = "INSERT INTO "
 
 
