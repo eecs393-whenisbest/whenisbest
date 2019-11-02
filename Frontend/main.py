@@ -30,4 +30,4 @@ def getCreator():
 
 def getEventID():
 
-  return
+  return eventID
