@@ -26,4 +26,4 @@ def getCreator():
   return "pjh96" #currently hardcoded, waiting for user creation testing
 
 def getEventID():
-  return eventID
+  return eventHandler.getEventID(eventCreator, eventName)

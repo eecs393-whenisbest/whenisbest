@@ -11,12 +11,12 @@ class TestEventMethods(unittest.TestCase):
         self.assertEqual(test.getCreator(),'pjh96')
         self.assertEqual(test.getEventID(test.getName(),test.getCreator,test.getDuration(),test.getRecurring()), <eventID>)
 
-        self.assertEqual(test.isRecurring(test.getEventID(test.getName(),test.getCreator,test.getDuration(),test.getRecurring(),test.getRecurring()), "whenisbest.com/event/<eventID>/onetime")
-        self.assertEqual(test.isRecurring(test2.getEventID(test2.getName(),test2.getCreator,test2.getDuration(),test2.getRecurring()),test2.getRecurring()), "whenisbest.com/event/<eventID>/recurring")
+        #self.assertEqual(test.isRecurring(test.getEventID(test.getName(),test.getCreator,test.getDuration(),test.getRecurring(),test.getRecurring()), "whenisbest.com/event/<eventID>/onetime")
+        #self.assertEqual(test.isRecurring(test2.getEventID(test2.getName(),test2.getCreator,test2.getDuration(),test2.getRecurring()),test2.getRecurring()), "whenisbest.com/event/<eventID>/recurring")
 
         self.assertEqual(test.submit(),<eventID>)
 
-        self.assertEqual(test.share(), 'whenisbest.com/event/<eventID>/share')
+        #self.assertEqual(test.share(), 'whenisbest.com/event/<eventID>/share')
         return
 
     test = createEvent('test', 8.0, 0)

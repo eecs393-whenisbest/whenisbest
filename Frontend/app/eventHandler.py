@@ -57,3 +57,9 @@ def getOwner(eventID):
     values = (eventID,)
     records = sql.getQueryResults(query, values)
     return records
+
+def getEventID(eventCreator, eventName):
+    query = "select eventID from event where eventName=%s and eventCreator=%s"
+    values = (eventName, eventCreator)
+    records = sql.getQueryResults(query, values)
+    return records
