@@ -20,13 +20,10 @@ def getDuration():
   return eventHandler.getDuration(eventID)
 
 def getRecurring():
-
-  return recurFlag
+  return eventHandler.getRecurring(eventID)
 
 def getCreator():
-
-  return "pjh96" #currently hardcoded, waiting for 
+  return "pjh96" #currently hardcoded, waiting for user creation testing
 
 def getEventID():
-
   return eventID
