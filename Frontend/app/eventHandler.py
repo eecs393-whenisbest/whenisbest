@@ -65,7 +65,12 @@ def getEventID(eventCreator, eventName): #TODO: formatting for datetime
     records = sql.getQueryResults(query, values)
     return records
 
-def deleteEvent(eventID):
+def deleteEventByID(eventID):
     query = "delete from event where eventID=%s"
     values = (eventID,)
+    sql.createQuery(query, values)
+
+def deleteEventByCreator(eventCreator):
+    query = "delete from event where eventCreator=%s"
+    values = (eventCreator, )
     sql.createQuery(query, values)
