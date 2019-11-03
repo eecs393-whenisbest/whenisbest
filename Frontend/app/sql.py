@@ -13,3 +13,4 @@ def createQuery(query, values):
     cursor.execute(query,values)
     db.commit()
     print(cursor.rowcount, "record inserted")
+    return cursor.fetchAll()

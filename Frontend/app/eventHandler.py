@@ -33,3 +33,15 @@ def createEvent(eName, duration, isRecurring):
         values = (eventID, date.today(), 0.25)
         sql.createQuery(query, values)
     return eventID
+
+def getName(eventID):
+    query = "select eventName from event where eventID=%s"
+    values = (eventID)
+    records = sql.createQuery(query, values)
+    return records
+
+def getDuration(eventID):
+    query = "select eventDuration from event where eventID=%s"
+    values = (eventID)
+    records = sql.createQuery(query, values)
+    return records

@@ -13,12 +13,11 @@ def createEvent (name, duration, isRecurring):
     eventID = eventHandler.createEvent(name, duration, isRecurring)
     return eventID
 
-def getName():
-  return SchedName
+def getName(eventID):
+  return eventHandler.getName(eventID)
 
 def getDuration():
-
-  return dur
+  return eventHandler.getDuration(eventID)
 
 def getRecurring():
 
@@ -26,7 +25,7 @@ def getRecurring():
 
 def getCreator():
 
-  return
+  return "pjh96" #currently hardcoded, waiting for 
 
 def getEventID():
 
