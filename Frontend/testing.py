@@ -9,10 +9,10 @@ class TestEventMethods(unittest.TestCase):
         self.assertEqual(test.getDuration(), 8.0)
         self.assertEqual(test.getRecurring(), 0)
         self.assertEqual(test.getCreator(),'pjh96@case.edu')
-        self.assertEqual(test.getEventID(test.getName(),test.getCreator,test.getDuration(),test.getRecurring()), <eventID>)
+        self.assertEqual(test.getEventID), <eventID>)
 
-        #self.assertEqual(test.isRecurring(test.getEventID(test.getName(),test.getCreator,test.getDuration(),test.getRecurring(),test.getRecurring()), "whenisbest.com/event/<eventID>/onetime")
-        #self.assertEqual(test.isRecurring(test2.getEventID(test2.getName(),test2.getCreator,test2.getDuration(),test2.getRecurring()),test2.getRecurring()), "whenisbest.com/event/<eventID>/recurring")
+        #self.assertEqual(test.isRecurring(test.getEventID(), "whenisbest.com/event/<eventID>/onetime")
+        #self.assertEqual(test.isRecurring(test2.getEventID(), "whenisbest.com/event/<eventID>/recurring")
 
         self.assertEqual(test.submit(),<eventID>)
 
@@ -27,13 +27,13 @@ class TestEventMethods(unittest.TestCase):
         self.assertEqual('Zubair Mukhi', test.getAttendeeName())
         self.assertEqual('zxm132@case.edu', test.getAttendeeEmail())
         self.assertEqual(test.attendeeAvailability(),<times in file from database>)
-        self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/confirmation')
+#        self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/confirmation')
         self.assertEqual(test.attendeeEdit(),<New times in file from database>)
         return
 
-    def test_scheduler(self):
-        self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/results')
-        return
+    #def test_scheduler(self):
+     #   self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/results')
+      #  return
 
 if __name__ == '__main__':
     unittest.main()
