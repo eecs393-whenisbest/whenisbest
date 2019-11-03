@@ -12,7 +12,7 @@ cursor = db.cursor()
 def createQuery(query, values):
     cursor.execute(query,values)
     db.commit()
-    print(cursor.rowcount, "record inserted")
+    print(cursor.rowcount, "record handled")
 
 def getQueryResults(query, values):
     cursor.execute(query, values)

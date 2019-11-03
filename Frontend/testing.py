@@ -8,7 +8,7 @@ class TestEventMethods(unittest.TestCase):
         self.assertEqual(test.getName(), 'test')
         self.assertEqual(test.getDuration(), 8.0)
         self.assertEqual(test.getRecurring(), 0)
-        self.assertEqual(test.getCreator(),'pjh96')
+        self.assertEqual(test.getCreator(),'pjh96@case.edu')
         self.assertEqual(test.getEventID(test.getName(),test.getCreator,test.getDuration(),test.getRecurring()), <eventID>)
 
         #self.assertEqual(test.isRecurring(test.getEventID(test.getName(),test.getCreator,test.getDuration(),test.getRecurring(),test.getRecurring()), "whenisbest.com/event/<eventID>/onetime")

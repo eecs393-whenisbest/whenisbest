@@ -23,7 +23,7 @@ def getRecurring():
   return eventHandler.getRecurring(eventID)
 
 def getCreator():
-  return "pjh96" #currently hardcoded, waiting for user creation testing
+  return "pjh96@case.edu" #currently hardcoded, waiting for user creation testing
 
 def getEventID():
   return eventHandler.getEventID(eventCreator, eventName)

@@ -15,14 +15,15 @@ now = datetime.now() #to add randomness to hash
 
 
 def createEvent(eName, duration, isRecurring):
+    now = datetime.now()
     schedName = eName
     dur = duration
     recurFlag = isRecurring
     toHash = eName + str(dur) + str(recurFlag) + str(now)
     hashed = hashlib.md5(str.encode(toHash))
     eventID = hashed.hexdigest()
-    query = "insert into event(eventID, eventName, eventDuration, eventRecurs, eventShared, eventFrequency) values (%s, %s, %s, %s, %s, %s)"
-    values = (eventID, schedName, dur, recurFlag, shared, frequency)
+    query = "insert into event(eventID, eventName, eventDuration, eventRecurs, eventShared, eventFrequency, eventCreator, eventCreationTime) values (%s, %s, %s, %s, %s, %s, %s, %s)"
+    values = (eventID, schedName, dur, recurFlag, shared, frequency, "pjh96@case.edu", now)
     sql.createQuery(query, values)
     if (recurFlag == 1):
         query = "insert into recurring (eventID, day, timeSlot) values (%s, %s, %s)"
@@ -58,8 +59,13 @@ def getOwner(eventID):
     records = sql.getQueryResults(query, values)
     return records
 
-def getEventID(eventCreator, eventName):
-    query = "select eventID from event where eventName=%s and eventCreator=%s"
+def getEventID(eventCreator, eventName): #TODO: formatting for datetime
+    query = "select eventID, eventCreationTime from event where eventName=%s and eventCreator=%s"
     values = (eventName, eventCreator)
     records = sql.getQueryResults(query, values)
     return records
+
+def deleteEvent(eventID):
+    query = "delete from event where eventID=%s"
+    values = (eventID,)
+    sql.createQuery(query, values)
