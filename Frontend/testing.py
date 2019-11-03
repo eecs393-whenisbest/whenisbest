@@ -27,13 +27,13 @@ class TestEventMethods(unittest.TestCase):
         self.assertEqual('Zubair Mukhi', test.getAttendeeName())
         self.assertEqual('zxm132@case.edu', test.getAttendeeEmail())
         self.assertEqual(test.attendeeAvalibility(),<times in file from database>)
-        self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/confirmation')
+        #self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/confirmation')
         self.assertEqual(test.attendeeEdit(),<New times in file from database>)
         return
 
-    def test_scheduler(self):
-        self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/results')
-        return
+    #def test_scheduler(self):
+     #   self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/results')
+      #  return
 
 if __name__ == '__main__':
     unittest.main()
