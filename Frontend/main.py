@@ -14,16 +14,16 @@ def createEvent (name, duration, isRecurring):
     return eventID
 
 def getName(eventID):
-  return eventHandler.getName(eventID)
+    return eventHandler.getName(eventID)
 
 def getDuration():
-  return eventHandler.getDuration(eventID)
+    return eventHandler.getDuration(eventID)
 
 def getRecurring():
-  return eventHandler.getRecurring(eventID)
+    return eventHandler.getRecurring(eventID)
 
 def getCreator():
-  return "pjh96@case.edu" #currently hardcoded, waiting for user creation testing
+    return eventHandler.getOwner(eventID)
 
 def getEventID():
-  return eventHandler.getEventID(eventCreator, eventName)
+    return eventHandler.getEventID(eventCreator, eventName)
