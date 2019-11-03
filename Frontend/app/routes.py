@@ -9,4 +9,4 @@ def index():
 
 @app.route('/main')
 def main():
-    return "aaah!"
+    return "Testing Frontpage"

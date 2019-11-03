@@ -1,4 +1,3 @@
-from app import userHandler
 from app import sql
 import hashlib
 from datetime import datetime

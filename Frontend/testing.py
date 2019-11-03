@@ -26,7 +26,7 @@ class TestEventMethods(unittest.TestCase):
         self.assertEqual(test.attendeeAccept('Zubair Mukhi','zxm132@case.edu'),(test.getAttendeeName(),test.getAttendeeEmail()))
         self.assertEqual('Zubair Mukhi', test.getAttendeeName())
         self.assertEqual('zxm132@case.edu', test.getAttendeeEmail())
-        self.assertEqual(test.attendeeAvalibility(),<times in file from database>)
+        self.assertEqual(test.attendeeAvailability(),<times in file from database>)
         self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/confirmation')
         self.assertEqual(test.attendeeEdit(),<New times in file from database>)
         return
