@@ -78,3 +78,8 @@ def getAllDetails(eventID):
     query = "select * from event where eventID = %s"
     values = (eventID,)
     return sql.getQueryResults(query,values)
+
+# Added stub of shareEvent functionality.
+# def shareEvent(eventID, emailList):
+#     for address in emailList:
+#         email(address, eventID)

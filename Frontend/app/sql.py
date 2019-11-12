@@ -12,8 +12,9 @@ cursor = db.cursor()
 def createQuery(query, values):
     cursor.execute(query,values)
     db.commit()
-    print(cursor.rowcount, "record(s) handled")
+    print(cursor.rowcount, "record(s) modified.")
 
 def getQueryResults(query, values):
     cursor.execute(query, values)
+    print(cursor.rowcount, "records fetched.")
     return cursor.fetchall()
