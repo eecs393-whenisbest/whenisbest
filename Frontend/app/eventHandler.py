@@ -73,3 +73,8 @@ def deleteEventByCreator(eventCreator):
     query = "delete from event where eventCreator=%s"
     values = (eventCreator, )
     sql.createQuery(query, values)
+
+def getAllDetails(eventID):
+    query = "select * from event where eventID = %s"
+    values = (eventID,)
+    return sql.getQueryResults(query,values)
