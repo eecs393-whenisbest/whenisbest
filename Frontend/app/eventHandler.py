@@ -2,6 +2,7 @@ from app import sql
 import hashlib
 from datetime import datetime
 from datetime import date
+from app import emailer
 
 schedName = ""
 dur = 1.0
@@ -79,7 +80,6 @@ def getAllDetails(eventID):
     values = (eventID,)
     return sql.getQueryResults(query,values)
 
-# Added stub of shareEvent functionality.
-# def shareEvent(eventID, emailList):
-#     for address in emailList:
-#         email(address, eventID)
+def shareEvent(eventID, emailList):
+    for address in emailList:
+        emailer.email(address, eventID)
