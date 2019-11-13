@@ -5,38 +5,24 @@ from app import eventHandler
 from app import userHandler
 from app import attendeeHandler
 
-SchedName = "name"
-dur = 1.0
-recurFlag = 0
-eventID = ""
-creator = ""
-
 def createEvent (name, duration, isRecurring):
-    SchedName = name
-    dur = getDuration
-    recurFlag = isRecurring
-    eventID = eventHandler.createEvent(SchedName, dur, recurFlag)
+    eventID = eventHandler.createEvent(name, duration, isRecurring)
     return eventID
 
-def getName():
-    SchedName = eventHandler.getName(eventID)
-    return SchedName
+def getName(eventID):
+    return eventHandler.getName(eventID)
 
-def getDuration():
-    dur = eventHandler.getDuration(eventID)
-    return dur
+def getDuration(eventID):
+    return eventHandler.getDuration(eventID)
 
-def getRecurring():
-    recurFlag = eventHandler.getRecurring(eventID)
-    return recurFlag
+def getRecurring(eventID):
+    return eventHandler.getRecurring(eventID)
 
-def getCreator():
-    creator = eventHandler.getOwner(eventID)
-    return creator
+def getCreator(eventID):
+    return eventHandler.getOwner(eventID)
 
-def getEventID():
-    eventID = eventHandler.getEventID(creator, SchedName)
-    return eventID
+def getEventID(creator, schedName):
+    return eventHandler.getEventID(creator, SchedName)
 
 def attendeeAccept(attName, attEmail, eventID):
     return attendeeHandler.attendeeAccept(eventID, attName, attEmail)
