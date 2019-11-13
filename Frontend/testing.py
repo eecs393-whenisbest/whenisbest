@@ -11,10 +11,11 @@ class TestEventMethods(unittest.TestCase):
         self.assertEqual(test.getCreator(),'pjh96@case.edu')
         self.assertEqual(test.getEventID(), eventID)
 
-        #self.assertEqual(test.isRecurring(test.getEventID(), "whenisbest.com/event/<eventID>/onetime")
+        #self.assertEqual(test.getRecurring(test.getEventID(), "whenisbest.com/event/<eventID>/onetime")
         #self.assertEqual(test.isRecurring(test2.getEventID(), "whenisbest.com/event/<eventID>/recurring")
 
-        self.assertEqual(test.submit(),eventID)
+        # functionality absorbed by createEvent - Frontend collates data before handing it to backend for processing
+        # self.assertEqual(test.submit(),eventID)
 
         #self.assertEqual(test.share(), 'whenisbest.com/event/<eventID>/share')
         return
@@ -23,12 +24,12 @@ class TestEventMethods(unittest.TestCase):
     test2 = createEvent('test2', 8.0, 1)
     def test_attendee(self):
 
-        test.attendeeAccept('Zubair Mukhi','zxm132@case.edu')
-        self.assertEqual('Zubair Mukhi', test.getAttendeeName())
-        self.assertEqual('zxm132@case.edu', test.getAttendeeEmail())
-        self.assertEqual(test.attendeeAvailability(),<times in file from database>)
-        self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/confirmation')
-        self.assertEqual(test.attendeeEdit(),<New times in file from database>)
+        test.attendeeAccept('Zubair Mukhi','zxm132@case.edu', test)
+        self.assertEqual('Zubair Mukhi', test.getAttendeeName("zxm132@case.edu",test))
+        self.assertEqual('zxm132@case.edu', test.getAttendeeEmail("Zubair Mukhi",test))
+        # self.assertEqual(test.attendeeAvailability(),<times in file from database>)
+        # self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/confirmation')
+        # self.assertEqual(test.attendeeEdit(),<New times in file from database>)
         return
 
     #def test_scheduler(self):
