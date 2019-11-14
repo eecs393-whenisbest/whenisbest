@@ -5,11 +5,17 @@ class TestEventMethods(unittest.TestCase):
     def test_create(self):
         test = createEvent('test', 8.0, 0)
         test2 = createEvent('test2', 8.0, 1)
+        test3 = createEVent('test3', 8.0, 0)
         self.assertEqual(test.getName(), 'test')
         self.assertEqual(test.getDuration(), 8.0)
         self.assertEqual(test.getRecurring(), 0)
         self.assertEqual(test.getCreator(),'pjh96@case.edu')
         self.assertEqual(test.getEventID(), eventID)
+        test.deleteEventByID(eventID)
+        self.assertFalse(test)
+        test2.deleteEventByCreator('pjh96@case.edu')
+        self.assertFalse(test2)
+        self.assertFalse(test3)
 
         #self.assertEqual(test.getRecurring(test.getEventID(), "whenisbest.com/event/<eventID>/onetime")
         #self.assertEqual(test.isRecurring(test2.getEventID(), "whenisbest.com/event/<eventID>/recurring")
