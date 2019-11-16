@@ -1,3 +1,7 @@
 Frontend/__pycache__
 Frontend/app/__pycache__
 .idea/
+Frontend/*.json
+virtualenv
+
+*.swp

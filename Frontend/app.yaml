@@ -1,1 +1,7 @@
 runtime: python37
+
+env_variables:
+   CLOUD_SQL_CONNECTION_NAME: whenisbest:us-central1:wib
+   DB_USER: root
+   DB_PASS: Shannara
+   DB_NAME: whenisbest
