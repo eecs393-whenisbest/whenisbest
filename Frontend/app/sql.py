@@ -4,7 +4,7 @@ db_user = "root"
 db_password = "Shannara"
 db_name = "whenisbest"
 db_host = "127.0.0.1"
-db = pymysql.connect(user = db_user,password=db_password,host=db_host,db=db_name)
+db = mysql.connect(user = db_user,password=db_password,host=db_host,db=db_name)
 
 
 cursor = db.cursor()
