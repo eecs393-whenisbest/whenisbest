@@ -42,8 +42,8 @@ CREATE TABLE IF NOT EXISTS `whenisbest`.`Event` (
   `eventCreator` VARCHAR(320) NULL,
   `eventFrequency` INT NULL DEFAULT 0,
   PRIMARY KEY (`eventID`),
-  UNIQUE INDEX `EventID_UNIQUE` (`eventID` ASC) VISIBLE,
-  INDEX `creator_idx` (`eventCreator` ASC) VISIBLE,
+  UNIQUE INDEX `EventID_UNIQUE` (`eventID` ASC),
+  INDEX `creator_idx` (`eventCreator` ASC),
   CONSTRAINT `creator`
     FOREIGN KEY (`eventCreator`)
     REFERENCES `whenisbest`.`Users` (`userID`)
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `whenisbest`.`UserEvent` (
   `userID` VARCHAR(320) NOT NULL,
   `eventID` CHAR(32) NOT NULL,
   PRIMARY KEY (`userID`, `eventID`),
-  INDEX `eventLinkage_idx` (`eventID` ASC) VISIBLE,
+  INDEX `eventLinkage_idx` (`eventID` ASC),
   CONSTRAINT `userLinkage`
     FOREIGN KEY (`userID`)
     REFERENCES `whenisbest`.`Users` (`userID`)
