@@ -26,9 +26,7 @@ def updateEmail(email,newEmail,pwd):
 
 def updatePassword(email,oldPass, newPass):
     if(passHandler.confirmPass(email,oldPass)):
-        pwd = passHandler.getHash(newPass)      
+        pwd = passHandler.getHash(newPass)
         query = "update Users set Pass = %s where userID = %s"
         values = (email,pwd)
         sql.createQuery(query,values)
-
-# def checkPassword(email,pwd):
