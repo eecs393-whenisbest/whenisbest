@@ -51,6 +51,13 @@ def updatePassword(email,oldPass, newPass):
         query = "update Users set Pass = %s where userID = %s"
         values = (email,pwd)
         sql.createQuery(query,values)
+        
+def resetPassword(email, newPass):
+    emailer.emailRecovery(address)
+    pwd = passHandler.getHash(newPass)
+    query = "update Users set Pass = %s where userID = %s"
+    values = (email,pwd)
+    sql.createQuery(query,values)
 
 def deleteUser(userID):
     eventHandler.deleteEventByCreator(userID)
