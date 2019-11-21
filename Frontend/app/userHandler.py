@@ -34,7 +34,7 @@ def editLastName(lName,email):
     values = (lName, email)
     sql.createQuery(query,values)
 
-def getFirstName(userID):
+def getLastName(userID):
     query = "select LName from Users where userID = %s"
     values = (userID)
     return sql.getQueryResults(query,values)
