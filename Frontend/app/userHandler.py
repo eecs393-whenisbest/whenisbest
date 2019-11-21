@@ -39,6 +39,9 @@ def getLastName(userID):
     values = (userID)
     return sql.getQueryResults(query,values)
 
+def getName(userID):
+    return self.getFirstName(userID) + ' ' + self.getLastName(userID)
+
 def editName(fName,lName,email):
     query = "update Users set FName = %s, LName = %s where userID = %s"
     values = (FName, lName, email)
