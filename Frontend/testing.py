@@ -37,6 +37,17 @@ class TestEventMethods(unittest.TestCase):
         # self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/confirmation')
         # self.assertEqual(test.attendeeEdit(),<New times in file from database>)
         return
+    
+    def test_user(self):
+        user1 = createUser('zxm132@case.edu','Zubair', 'Mukhi', 'password')
+        self.assertEqual(User1.getUser('zxm132@case.edu'),'zxm132@case.edu')
+        User1.editFirstName('Zubar','zxm132@case.edu')
+        self.assertEqual(User1.getFirstName('zxm132@case.edu'),'Zubar')
+        User1.editLastName('Mukh','zxm132@case.edu')
+        self.assertEqual(User1.getLastName('zxm132@case.edu'), 'Mukh')
+        User1.editName('Zubair','Mukhi','zxm132@case.edu')
+        self.assertEqual(User1.getName('zxm132@case.edu'),'Zubair Mukhi')    
+        return
 
     #def test_scheduler(self):
      #   self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/results')
