@@ -1,22 +1,43 @@
 from app import sql
 from app import emailer
 from app import passHandler
+from app import eventHandler
 
 def createUser(email, fName, lName, rawPass):
-    hashedPass = passHandler.getHash(rawPass)
-    query = "insert into Users(userID,FName,LName,Pass) values (%s,%s,%s,%s)"
-    values = (email,fName,lName,hashedPass)
-    sql.createQuery(query,values)
+    exists = getUser(email)
+    if exists.rowcount == 0:
+        hashedPass = passHandler.getHash(rawPass)
+        query = "insert into Users(userID,FName,LName,Pass) values (%s,%s,%s,%s)"
+        values = (email,fName,lName,hashedPass)
+        sql.createQuery(query,values)
+    else:
+        # only return string if DOES NOT work
+        return "user exists"
+
+def getUser(userID):
+    query = "select FName, LName, userID from Users where userID = %s"
+    values = (userID)
+    return sql.getQueryResults(query,values)
 
 def editFirstName(fName,email):
     query = "update Users set FName = %s where userID = %s"
     values = (fName, email)
     sql.createQuery(query,values)
 
+def getFirstName(userID):
+    query = "select FName from Users where userID = %s"
+    values = (userID)
+    return sql.getQueryResults(query,values)
+
 def editLastName(lName,email):
     query = "update Users set LName = %s where userID = %s"
     values = (lName, email)
     sql.createQuery(query,values)
+
+def getFirstName(userID):
+    query = "select LName from Users where userID = %s"
+    values = (userID)
+    return sql.getQueryResults(query,values)
 
 def updateEmail(email,newEmail,pwd):
     if(passHandler.confirmPass(email,pwd)):
@@ -31,8 +52,8 @@ def updatePassword(email,oldPass, newPass):
         values = (email,pwd)
         sql.createQuery(query,values)
 
-        
 def deleteUser(userID):
-    query = "delete from User where userCreator=%s"
+    eventHandler.deleteEventByCreator(userID)
+    query = "delete from User where userID=%s"
     values = (userID, )
     sql.createQuery(query, values)

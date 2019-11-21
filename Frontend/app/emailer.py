@@ -1,2 +1,2 @@
-def email(address, eventID):
+def emailEvent(address, eventID):
     print("Sending event " + eventID + " to " + address + ".")

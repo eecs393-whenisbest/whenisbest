@@ -82,4 +82,4 @@ def getAllDetails(eventID):
 
 def shareEvent(eventID, emailList):
     for address in emailList:
-        emailer.email(address, eventID)
+        emailer.emailEvent(address, eventID)
