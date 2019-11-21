@@ -4,3 +4,4 @@ def emailEvent(address, eventID):
 
 def emailRecovery(address):
     print("Sending password link to " + address + ".")
+    return
