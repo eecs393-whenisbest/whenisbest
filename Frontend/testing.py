@@ -40,13 +40,21 @@ class TestEventMethods(unittest.TestCase):
     
     def test_user(self):
         user1 = createUser('zxm132@case.edu','Zubair', 'Mukhi', 'password')
+        self.assertEqual(createUser('zxm132@case.edu','Zubair', 'Mukhi', 'password'),"user exists")
         self.assertEqual(User1.getUser('zxm132@case.edu'),'zxm132@case.edu')
         User1.editFirstName('Zubar','zxm132@case.edu')
         self.assertEqual(User1.getFirstName('zxm132@case.edu'),'Zubar')
         User1.editLastName('Mukh','zxm132@case.edu')
         self.assertEqual(User1.getLastName('zxm132@case.edu'), 'Mukh')
         User1.editName('Zubair','Mukhi','zxm132@case.edu')
-        self.assertEqual(User1.getName('zxm132@case.edu'),'Zubair Mukhi')    
+        self.assertEqual(User1.getName('zxm132@case.edu'),'Zubair Mukhi')
+        User1.updatePassword('zxm132@case.edu','password','1s3mK0')
+        deleteUser('blp27.edu')
+        User1.updateEmail('zxm132@case.edu','blp27.edu','1s3mK0')
+        self.assertEqual(User1.getUser('blp27@case.edu'),'blp27@case.edu')
+        deleteUser('blp27.edu')
+        self.assertFalse(User1.getUser('blp27.edu'))
+        
         return
 
     #def test_scheduler(self):
