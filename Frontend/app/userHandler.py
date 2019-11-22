@@ -39,6 +39,14 @@ def getLastName(userID):
     values = (userID)
     return sql.getQueryResults(query,values)
 
+def getName(userID):
+    return self.getFirstName(userID) + ' ' + self.getLastName(userID)
+
+def editName(fName,lName,email):
+    query = "update Users set FName = %s, LName = %s where userID = %s"
+    values = (FName, lName, email)
+    sql.createQuery(query,values)
+
 def updateEmail(email,newEmail,pwd):
     if(passHandler.confirmPass(email,pwd)):
         query = "update Users set userID = %s where userID = %s"
