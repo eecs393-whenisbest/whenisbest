@@ -4,15 +4,17 @@ db_user = "root"
 db_password = "Shannara"
 db_name = "whenisbest"
 db_host = "127.0.0.1"
-db = mysql.connect(user = db_user,password=db_password,host=db_host,db=db_name)
+db = mysql.connect(user=db_user, password=db_password, host=db_host, db=db_name)
 
 
 cursor = db.cursor()
 
+
 def createQuery(query, values):
-    cursor.execute(query,values)
+    cursor.execute(query, values)
     db.commit()
     print(cursor.rowcount, "record(s) modified.")
+
 
 def getQueryResults(query, values):
     cursor.execute(query, values)
