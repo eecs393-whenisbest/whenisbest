@@ -28,13 +28,13 @@ def attendeeEdit(userEmail, timeList, eventID):
     sql.createQuery(query, values)
     # step 3: add new entries from array of times
     # TODO: Implement for each loop
-    return attendeeSubmit(userEmail, eventID, timeSlot)
+    return attendeeSubmit(userEmail, eventID, uName, timeList)
 
 
-def attendeeSubmit(userEmail, eventID, timeList):
+def attendeeSubmit(userEmail, eventID, userName, timeList):
     # Is attendee name needed?
-    query = "insert into Responses(userEmail,eventID, timeSlot) values (%s, %s, %s)"
+    query = "insert into Responses(userEmail, eventID, userName, timeSlot) values (%s, %s, %s, %s)"
     for timeSlot in timeList:
-        values = (userEmail, eventID, timeSlot)
+        values = (userEmail, eventID, userName, timeSlot)
         sql.createQuery(query, values)
     return attendeeAvailability(userEmail)
