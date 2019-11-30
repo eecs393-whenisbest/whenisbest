@@ -1,76 +1,73 @@
 <!DOCTYPE html>
-<html>
-<head>
-<link href='https://fonts.googleapis.com/css?family=Titillium Web' rel='stylesheet'>
-<style>
-	body {
-	font-family: 'Titillium Web';
-	text-align: center;
-	color: #0a304e;
-	}
+<html lang = "en">
+	<head>
+		<link href='https://fonts.googleapis.com/css?family=Titillium Web' rel='stylesheet'>
+		<style>
+			body {
+				font-family: 'Titillium Web';
+				text-align: center;
+				color: #0a304e;
+			}
+			.element{
+				width: 500px
+				margin 0 auto;
+			}
+		</style>
+	</head>
+	<title>WhenIsBest: Create Account</title>
+	<body>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<a href="Home.html" title="WhenIsBest Home">
+			<img src="D:\Documents\PSDs\web_logo.png" alt="WhenIsBest Logo" height = "105" width = "592">
+		</a>
+		<br>
+		<br>
+		<a href="Login_Page.html" title="WhenIsBest: Login Page">Login</a> | 
+		<a href="Schedule_Login_Page.html" title="WhenIsBest: Scheduler Login Page">Schedule an Event</a> | 
+		Create an Account
+		<br>
+		<br>
+		First time to WhenIsBest? Hello there!
+		<br>
+		<br>
+		<div class = "element">
+			<form>
+				<label>Are you registering as a:</label>
+				<select id = "myList">
+					<option value = "1">Event Scheduler</option>
+					<option value = "2">User</option>
+				</select>
+				<br>
+				<br>
+				First Name:
+				<br>
+				<input type="text" name="FirstName">
+				<br>
 
-	.element{
-	width: 500px
-	margin 0 auto;
-	}
-</style>
-<title>
-	WhenIsBest: Create Account
-</title>
+				Last Name:	
+				<br>
+				<input type="text" name="LastName">
+				<br>
+				
+				Email:
+				<br>
+				<input type="email" name="Username" maxlength = "320">
+				<br>
 
-<body>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<a href="Home.html" title="WhenIsBest Home">
-		<img src="D:\Documents\PSDs\web_logo.png" alt="WhenIsBest Logo" height = "105" width = "592">
-	</a>
-	<br>
-	<br>
-	<a href="Login_Page.html" title="WhenIsBest: Login Page">Login</a> | 
-	<a href="Schedule_Login_Page.html" title="WhenIsBest: Scheduler Login Page">Schedule an Event</a> | 
-	Create an Account
-	<br>
-	<br>
-	First time to WhenIsBest? Hello there!
-	<br>
-	<br>
-	<div class = "element">
-		<form>
-			<label>Are you registering as a:</label>
-			<select id = "myList">
-				<option value = "1">Event Scheduler</option>
-				<option value = "2">User</option>
-			</select>
-			<br>
-			<br>
-			First Name:
-			<br>
-			<input type="text" name="FirstName">
-			<br>
-
-			Last Name:	
-			<br>
-			<input type="text" name="LastName">
-			<br>
-			
-			Email:
-			<br>
-			<input type="email" name="Username" maxlength = "320">
-			<br>
-
-			Password:	
-			<br>
-			<input type="password" name="Password">
-			<br>
-			<br>
-			<input type="submit" value="Let's schedule some events!">
-		</form>
-	</div>
-</body>
+				Password:	
+				<br>
+				<input type="password" name="Password">
+				<br>
+				<br>
+				<input type="submit" value="Let's schedule some events!">
+			</form>
+		</div>
+	</body>
 </html>
