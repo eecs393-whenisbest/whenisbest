@@ -1,10 +1,11 @@
 from app import app
+from app import main as wibrunner
+from flask import Flask, render_template
 
 
 @app.route('/')
-@app.route('/index')
-def index():
-    return "Hello, World!"
+def home():
+    return render_template('Home.html')
 
 
 @app.route('/main')
