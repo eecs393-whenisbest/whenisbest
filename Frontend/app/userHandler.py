@@ -2,6 +2,7 @@ from app import sql
 from app import emailer
 from app import passHandler
 from app import eventHandler
+import datetime
 
 
 def createUser(email, fName, lName, rawPass):
@@ -76,18 +77,25 @@ def requestReset(email):
 
 
 def resetPassword(key, email, newPass):
-    query = "select validator from passReset where userID = %s"
+    query = "select validator, date from passReset where userID = %s"
     values = (email,)
-    validator = sql.getQueryResults(query, values)[0]
-    if(key == validator):
-        query = "delete from passReset where validator = %s"
-        values = (validator,)
+    result = sql.getQueryResults(query, values)
+    validator = result[0]
+    date = result[1]
+    if (((date - datetime.datetime.now()).getseconds() < 3600):
+        if(key == validator):
+            query = "delete from passReset where validator = %s"
+            values = (validator,)
+            sql.createQuery(query, values)
+            pwd = passHandler.getHash(newPass)
+            query = "update Users set Pass = %s where userID = %s"
+            values = (email, pwd)
+            sql.createQuery(query, values)
+    else:
+        query = "delete from passReset where userID = %s"
+        values = (email,)
         sql.createQuery(query, values)
-        pwd = passHandler.getHash(newPass)
-        query = "update Users set Pass = %s where userID = %s"
-        values = (email, pwd)
-        sql.createQuery(query, values)
-
+        return False
 
 def deleteUser(userID):
     eventHandler.deleteEventByCreator(userID)
