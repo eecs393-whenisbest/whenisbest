@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template
+from flask import render_template, request, redirect
 from app import userHandler
 
 
