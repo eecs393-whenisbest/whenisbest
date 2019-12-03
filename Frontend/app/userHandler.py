@@ -76,7 +76,7 @@ def requestReset(email):
     emailer.emailRecovery(email)
 
 
-def resetPassword(key, email, newPass):
+def checkForReset(key, email):
     query = "select validator, date from passReset where userID = %s"
     values = (email,)
     result = sql.getQueryResults(query, values)
@@ -87,17 +87,21 @@ def resetPassword(key, email, newPass):
             query = "delete from passReset where validator = %s"
             values = (validator,)
             sql.createQuery(query, values)
-            pwd = passHandler.getHash(newPass)
-            query = "update Users set Pass = %s where userID = %s"
-            values = (email, pwd)
-            sql.createQuery(query, values)
-        else:
-            return False
+            return True
     else:
-        query = "delete from passReset where userID = %s"
-        values = (email,)
-        sql.createQuery(query, values)
+        query = "delete from passReset where validator = %s"
+        values = (validator, )
         return False
+
+
+def resetPassword(key, email, newPass):
+    if(checkForReset):
+        pwd = passHandler.getHash(newPass)
+        query = "update Users set Pass = %s where userID = %s"
+        values = (email, pwd)
+        sql.createQuery(query, values)
+        return True
+    return False
 
 
 def deleteUser(userID):

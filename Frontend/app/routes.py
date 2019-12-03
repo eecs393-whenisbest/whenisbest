@@ -12,6 +12,20 @@ def loginPage():
     return render_template('Login_Page.html')
 
 
-@app.route('/main')
-def main():
-    return "Testing Frontpage"
+@app.route('/scheduler-login')
+def schedLogin():
+    return render_template('Schedule_Login_Page.html')
+
+
+@app.route('/create-acct')
+def acctCreate():
+    return render_template('Create_Account.html')
+
+
+@app.route('/forgot-password')
+def forgotPass():
+    return render_template('Forgot_Password.html')
+
+@app.route('/pwreset/<resetID>')
+def resetPass():
+    if()
