@@ -48,7 +48,7 @@
             }
 		</style>
 	</head>
-    <title>henIsBest: Schedule an Event!</title>
+    <title>WhenIsBest: Schedule an Event!</title>
     
     <body>
         <form>
@@ -77,15 +77,19 @@
                 Duration of Event:
                 <input type="range" min="0" max="24" step="0.5" value="1" class="slider" id="myRange">
                 <br/> 
-                Value: <span id="demo"></span> Hour(s)
+                Value: <span id="demo"></span>
                 <script>
                     var slider = document.getElementById("myRange");
                     var output = document.getElementById("demo");
-                    output.innerHTML = slider.value; // Display the default slider value
+                    output.innerHTML = slider.value + " hour(s) and 0 minute(s)."; // Display the default slider value
 
                     // Update the current slider value (each time you drag the slider handle)
                     slider.oninput = function() {
-                        output.innerHTML = this.value;
+                        var hours = this.value;
+                        var rhours = Math.floor(hours);
+                        var minutes = (hours - rhours) * 60;
+                        var rminutes = Math.round(minutes);
+                        output.innerHTML = rhours + " hour(s) and " + rminutes + " minute(s).";
                     }
                 </script>
 
