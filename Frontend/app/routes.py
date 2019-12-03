@@ -1,5 +1,6 @@
 from app import app
 from flask import render_template
+from app import userHandler
 
 
 @app.route('/')
@@ -26,6 +27,7 @@ def acctCreate():
 def forgotPass():
     return render_template('Forgot_Password.html')
 
-@app.route('/pwreset/<resetID>')
+
+@app.route('/pwreset/<email>/<resetID>')
 def resetPass():
-    if()
+    return render_template('Reset_Password.html')

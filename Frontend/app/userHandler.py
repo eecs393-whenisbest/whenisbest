@@ -82,20 +82,20 @@ def checkForReset(key, email):
     result = sql.getQueryResults(query, values)
     validator = result[0]
     date = result[1]
-    if (((date - datetime.datetime.now()).getseconds() < 3600)):
-        if(key == validator):
-            query = "delete from passReset where validator = %s"
-            values = (validator,)
-            sql.createQuery(query, values)
-            return True
-    else:
+    if(key == validator):
         query = "delete from passReset where validator = %s"
-        values = (validator, )
+        values = (validator,)
+        sql.createQuery(query, values)
+        if ((date - datetime.datetime.now()).getseconds() < 3600):
+            return True
+        else:
+            return False
+    else:
         return False
 
 
 def resetPassword(key, email, newPass):
-    if(checkForReset):
+    if(checkForReset(key, email)):
         pwd = passHandler.getHash(newPass)
         query = "update Users set Pass = %s where userID = %s"
         values = (email, pwd)
