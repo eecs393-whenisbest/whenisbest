@@ -5,3 +5,4 @@ Frontend/*.json
 virtualenv
 
 *.swp
+Frontend/app/mailjet.py

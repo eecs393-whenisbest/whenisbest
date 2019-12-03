@@ -1,8 +1,17 @@
+from app import passHandler
+from app import sql
+from app import mailjet
+
+
 def emailEvent(address, eventID):
-    print("Sending event " + eventID + " to " + address + ".")
+    mailjet.mail(address, eventID)
     return
 
 
 def emailRecovery(address):
-    print("Sending password link to " + address + ".")
+    key = passHandler.getHash(address)
+    query = "insert into passReset(userID, validator) values (%s, %s)"
+    values = (address, key)
+    sql.createQuery(query, values)
+    mailjet.mailReset(address, key)
     return
