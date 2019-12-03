@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<link href='https://fonts.googleapis.com/css?family=Titillium Web' rel='stylesheet'>
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+		<style>
+			body {
+				font-family: 'Titillium Web';
+				text-align: left;
+				color: #0a304e;
+			}
+			.element{
+				width: 500px
+				margin 0 auto;
+			}
+            .slider {
+                -webkit-appearance: none;
+                width: 100%;
+                height: 15px;
+                border-radius: 5px;  
+                background: #626262;
+                outline: none;
+                opacity: 0.7;
+                -webkit-transition: .2s;
+                transition: opacity .2s;
+            }
+
+            .slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%; 
+                background: #0a304e;
+                cursor: pointer;
+            }
+
+            .slider::-moz-range-thumb {
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                background: #0a304e;
+                cursor: pointer;
+            }
+
+            .nameBox {
+                width: 100%;
+            }
+		</style>
+	</head>
+    <title>henIsBest: Schedule an Event!</title>
+    
+    <body>
+        <form>
+            <fieldset>
+                <legend><h1>Let's schedule an event!</h1></legend>
+                Name of Event:
+                <br/> 
+                <input name="name" type="text" value="" class = "nameBox"/> 
+
+                <br/>
+                <br/>
+                Type of Event:
+                <br/> 
+                <input checked="checked" name="event-type" type="radio" value="one-time" /> One-Time <br/> 
+                <input name="event-type" type="radio" value="recurring" /> Recurring <br/>  
+                <br/>
+                Time Increments:
+                <select name = "increments" id = "Choose" onclick="myFunction()">
+                    <option value="0.25">Every 15 Minutes</option>
+                    <option selected="selected" value="0.5">Every 30 Minutes</option>
+                    <option value="1">Every Hour</option>
+                </select>
+                <br/>
+                <br/>
+
+                Duration of Event:
+                <input type="range" min="0" max="24" step="0.5" value="1" class="slider" id="myRange">
+                <br/> 
+                Value: <span id="demo"></span> Hour(s)
+                <script>
+                    var slider = document.getElementById("myRange");
+                    var output = document.getElementById("demo");
+                    output.innerHTML = slider.value; // Display the default slider value
+
+                    // Update the current slider value (each time you drag the slider handle)
+                    slider.oninput = function() {
+                        output.innerHTML = this.value;
+                    }
+                </script>
+
+                <script>
+                    function myFunction() {
+                    var select = document.getElementById("Choose");
+                    var chosen = select.options[select.selectedIndex].value;
+                    if (chosen == "0.25"){
+                        var x = document.getElementById("myRange").step = "0.25";
+                    }
+                    else if(chosen == "0.5"){
+                        var x = document.getElementById("myRange").step = "0.5";
+                    }
+                    else {
+                        var x = document.getElementById("myRange").step = "1";
+                    }
+                    }
+                </script>
+            </fieldset>
+        </form>
+    </body>
+</html>
