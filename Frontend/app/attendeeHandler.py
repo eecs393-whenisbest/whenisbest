@@ -14,7 +14,7 @@ def getAttendeeName(userEmail, eventID):
 
 
 def attendeeAvailability(userEmail, eventID):
-    query = "select userEmail, timeSlot from Responses where userName = %s and eventID = %s"
+    query = "select userEmail, timeSlot from Responses where userEmail = %s and eventID = %s"
     values = (userEmail, eventID)
     return sql.getQueryResults(query, values)
 
@@ -37,4 +37,22 @@ def attendeeSubmit(userEmail, eventID, userName, timeList):
     for timeSlot in timeList:
         values = (userEmail, eventID, userName, timeSlot)
         sql.createQuery(query, values)
-    return attendeeAvailability(userEmail)
+    return attendeeAvailability(userEmail, eventID)
+
+
+def getAllMatching(eventID):
+    query = "select userName, timeSlot from Responses where eventID = %s"
+    values = (eventID, )
+    res = sql.getQueryResults(query, values)
+    temp1 = []
+    for r in res:
+        temp1.append(r[1])
+    temp1 = list(dict.fromkeys(temp1))
+    final = []
+    for t in temp1:
+        count = 0
+        for result in res:
+            if result[1] == t:
+                count += 1
+        final.append((t, count))
+    return final
