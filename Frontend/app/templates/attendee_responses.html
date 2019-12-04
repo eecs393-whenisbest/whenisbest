@@ -47,7 +47,7 @@
       </tr>
       {% for response in result%}
       <tr>
-        <td>Time: {{ response[0] }}, People Available: {{response[1]}}
+        <td><a href='/sendTimes/{{ response[0]}}' > Time: {{ response[0].strftime("%a, %b %d, %H:%M %p") }}, People Available: {{response[1]}} </a>
         </td>
       </tr>
       {%endfor%}

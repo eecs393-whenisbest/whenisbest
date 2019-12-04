@@ -1,4 +1,5 @@
 from app import sql
+from app import emailer
 
 
 def attendeeAccept(eventID, userName, userEmail):
@@ -56,3 +57,11 @@ def getAllMatching(eventID):
                 count += 1
         final.append((t, count))
     return final
+
+
+def finalizeEvent(eventID, timeSlot):
+    query = "select userEmail from Responses where eventID = %s and timeSlot = %s"
+    values = (eventID, timeSlot)
+    results = sql.getQueryResults(query, values)
+    for res in results:
+        emailer.eventConfirm(res[0], timeSlot)

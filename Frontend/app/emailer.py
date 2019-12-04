@@ -15,3 +15,8 @@ def emailRecovery(address):
     sql.createQuery(query, values)
     mailjet.mailReset(address, key)
     return
+
+
+def eventConfirm(address, timeSlot):
+    mailjet.eventMail(address, timeSlot)
+    return
