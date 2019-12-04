@@ -51,7 +51,7 @@
     <title>WhenIsBest: Schedule an Event!</title>
     
     <body>
-        <form>
+        <form action="/logmein">
             <fieldset>
                 <legend><h1>Let's schedule an event!</h1></legend>
                 Name of Event:
@@ -95,17 +95,17 @@
 
                 <script>
                     function myFunction() {
-                    var select = document.getElementById("Choose");
-                    var chosen = select.options[select.selectedIndex].value;
-                    if (chosen == "0.25"){
-                        var x = document.getElementById("myRange").step = "0.25";
-                    }
-                    else if(chosen == "0.5"){
-                        var x = document.getElementById("myRange").step = "0.5";
-                    }
-                    else {
-                        var x = document.getElementById("myRange").step = "1";
-                    }
+                        var select = document.getElementById("Choose");
+                        var chosen = select.options[select.selectedIndex].value;
+                        if (chosen == "0.25"){
+                            var x = document.getElementById("myRange").step = "0.25";
+                        }
+                        else if(chosen == "0.5"){
+                            var x = document.getElementById("myRange").step = "0.5";
+                        }
+                        else {
+                            var x = document.getElementById("myRange").step = "1";
+                        }
                     }
                 </script>
             </fieldset>
