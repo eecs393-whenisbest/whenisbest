@@ -75,7 +75,8 @@ def favicon():
 @app.route('/list-events/<userID>')
 def getMyEvents(userID):
     if session['userID'] == userID:
-        return jsonify(eventHandler.getAllEvents(userID))
+        result = eventHandler.getAllEvents(userID)
+        return render_template('events_list.html', result=result)
     else:
         return redirect(url_for('home'))
 
@@ -115,7 +116,8 @@ def forgottenPassword():
 def landing(eventID):
     if 'userID' in session:
         if eventHandler.getOwner(eventID)[0][0] == session['userID']:
-            return jsonify(attendeeHandler.getAllMatching(eventID))
+            result = attendeeHandler.getAllMatching(eventID)
+            return render_template('attendee_responses.html', result=result)
         else:
             return redirect(url_for('home'))
     else:

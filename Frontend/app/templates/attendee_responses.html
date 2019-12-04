@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<link href='https://fonts.googleapis.com/css?family=Titillium Web' rel='stylesheet'>
+		<style>
+			body {
+				font-family: 'Titillium Web';
+				text-align: center;
+				color: #0a304e;
+			}
+			.element{
+				width: 500px
+				margin 0 auto;
+			}
+			.center {
+				margin: 0;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				-ms-transform: translate(-50%, -50%);
+				transform: translate(-50%, -50%);
+			}
+            /* unvisited link */
+            a:link {
+            	color: #0a304e;
+            }
+
+            /* visited link */
+            a:visited {
+            	color: #626262;
+            }
+
+            /* mouse over link */
+            a:hover {
+           		color: black;
+            }
+		</style>
+	</head>
+	<title>WhenIsBest: Responses for Your Event!</title>
+	<body>
+    <table>
+      <tr>
+        <td></td>
+      </tr>
+      {% for response in result%}
+      <tr>
+        <td>Time: {{ response[0] }}, People Available: {{response[1]}}
+        </td>
+      </tr>
+      {%endfor%}
+      </table>
+
+</html>
