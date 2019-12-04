@@ -42,8 +42,11 @@ def resetWithEmail():
 
 # and THIS
 @app.route('/pwreset/<string:email>/<string:resetID>')
-def resetPass():
-    return render_template('Reset_Password.html')
+def resetPass(email, resetID):
+    if(userHandler.checkForReset(email, resetID)):
+        return render_template('Reset_Password.html')
+    else:
+        return redirect(url_for('home'))
 
 
 @app.route('/logmein', methods=['POST'])
