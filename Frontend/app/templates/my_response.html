@@ -37,13 +37,20 @@
             }
 		</style>
 	</head>
-	<title>WhenIsBest: Your Events</title>
+	<title>WhenIsBest: Responses for Your Event!</title>
 	<body>
     <a href="/" title="WhenIsBest Home">
       <img src="/static/web_logo.png" alt="WhenIsBest Logo" height = "105" width = "592"></a>
-      <h1> Event: </h1>
-      {% for event in result%}
-        <a href='/index/{{ event[0] }}'> <h3>{{ event[1] }}</h3></a>
-        <br>
+    <table>
+      <tr>
+        <td></td>
+      </tr>
+      {% for response in result%}
+      <tr>
+        <td>Time: {{ response[1].strftime("%a, %b %d, %H:%M") }}
+        </td>
+      </tr>
       {%endfor%}
+      </table>
+
 </html>

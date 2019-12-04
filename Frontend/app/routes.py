@@ -144,8 +144,11 @@ def attendeeAvailable(eventID):
 
 @app.route('/respond/<eventID>/<attEmail>')
 def attendeeResponses(eventID, attEmail):
-    print(attendeeHandler.attendeeAvailability(eventID, attEmail))
-    return jsonify(attendeeHandler.attendeeAvailability(eventID, attEmail))
+    session['eventID'] = eventID
+    if eventID == session['eventID']:
+        return render_template('my_response.html', result=attendeeHandler.attendeeAvailability(attEmail, eventID))
+    else:
+        return redirect(url_for('home'))
 
 
 def jsonifySingle(e):
