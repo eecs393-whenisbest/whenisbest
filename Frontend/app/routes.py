@@ -28,6 +28,6 @@ def forgotPass():
     return render_template('Forgot_Password.html')
 
 
-@app.route('/pwreset/<email>/<resetID>')
+@app.route('/pwreset/<string:email>/<string:resetID>')
 def resetPass():
     return render_template('Reset_Password.html')
