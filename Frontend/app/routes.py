@@ -31,3 +31,13 @@ def forgotPass():
 @app.route('/pwreset/<string:email>/<string:resetID>')
 def resetPass():
     return render_template('Reset_Password.html')
+
+
+@app.route('/logmein', methods=['POST'])
+def lmi():
+    return "Hello World!"
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return '../static/favicon.ico'
