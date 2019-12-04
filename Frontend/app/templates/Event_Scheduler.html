@@ -51,31 +51,21 @@
     <title>WhenIsBest: Schedule an Event!</title>
 
     <body>
-<<<<<<< HEAD
         <fieldset>
             <legend><h1>Let's schedule an event!</h1></legend>
-            <form action="/logmein"></form>
-                Name of Event:
+            <form action="/schedule-event" method = "post"></form>
+                <b>Name of Event:</b>
                 <br/> 
                 <input name="name" type="text" value="" class = "nameBox" id = "eventName"/> 
                 <div id="space"></div>
-=======
-        <form action="/schedule-event" method='post'>
-            <fieldset>
-                <legend><h1>Let's schedule an event!</h1></legend>
-                Name of Event:
                 <br/>
-                <input name="name" type="text" value="" class = "nameBox"/>
-
+                <b>Type of Event:</b>
                 <br/>
->>>>>>> 6af92aa02e59dccc4ddf0ccab3e502695c613520
+                <input name="event-type" type="radio" value="one-time" id = "eventType"/> One-Time <br/>
+                <input name="event-type" type="radio" value="recurring" id = "eventType"/> Recurring <br/>
+                <div id="result"></div>
                 <br/>
-                Type of Event:
-                <br/>
-                <input checked="checked" name="event-type" type="radio" value="one-time" /> One-Time <br/>
-                <input name="event-type" type="radio" value="recurring" /> Recurring <br/>
-                <br/>
-                Time Increments:
+                <b>Time Increments:</b>
                 <select name = "increments" id = "Choose" onclick="myFunction()">
                     <option value="0.25">Every 15 Minutes</option>
                     <option selected="selected" value="0.5">Every 30 Minutes</option>
@@ -84,7 +74,7 @@
                 <br/>
                 <br/>
 
-                Duration of Event:
+                <b>Duration of Event:</b>
                 <input type="range" min="0" max="24" step="0.5" value="1" class="slider" id="myRange">
                 <br/>
                 Value: <span id="demo"></span>
@@ -118,7 +108,6 @@
                         }
                     }
                 </script>
-<<<<<<< HEAD
             </form>
             <br>
             <br>
@@ -127,21 +116,31 @@
 				var space = document.getElementById('space');
 				var eventName = document.getElementById('eventName');
 				var launch = document.getElementById('launch');
+                var radios = document.getElementsByName('event-type');
+
 				launch.addEventListener('click', function() {
 					if (eventName.value == null || eventName.value == '') {
-						space.innerHTML = "Please specify the name of the event.";
+						space.innerHTML = "<b>*Please specify the name of the event.</b>";
 					} 
                     else{
                         space.innerHTML = "";
                     }
+                
+                    for (var i = 0, length = radios.length; i < length; i++) {
+                        if (radios[i].checked) {
+                            // do whatever you want with the checked radio
+                            result.innerHTML = "";
+                            alert(radios[i].value);
+
+                            // only one radio can be logically checked, don't check the rest
+                            break;
+                        }
+                        else{
+                            result.innerHTML = "<b>*Please select the type of event.</b>";
+                        }
+                    }
                 });
-			</script>
+            </script>
         </fieldset>
-=======
-								<br>
-								<input type="submit" value="Submit">
-            </fieldset>
-        </form>
->>>>>>> 6af92aa02e59dccc4ddf0ccab3e502695c613520
     </body>
 </html>
