@@ -6,6 +6,7 @@ import hashlib
 import os
 import binascii
 from app import sql
+from app import cookieHandler
 
 
 def getHash(rawPass):
@@ -22,11 +23,9 @@ def confirmPass(email, guess):
     salt = binascii.unhexlify(target[:64])
     currentHash = genHash(guess, salt)
     currentTry = binascii.hexlify(salt).decode() + binascii.hexlify(currentHash).decode()
-    if(currentTry == target)
-        makeCookie(email)
+    if(currentTry == target):
+        cookieHandler.makeCookie(email)
     return currentTry == target
-    
-        
 
 
 def genHash(input, salt):

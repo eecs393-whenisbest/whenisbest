@@ -1,5 +1,5 @@
 import requests
-import cookielib
+import http.cookiejar as cookielib
 from app import routes
 from datetime import datetime
 
@@ -22,5 +22,5 @@ def loadCookie():
     # Load existing cookies (file might not yet exist)
     try:
         user.load()
-    except e:
+    except exception as e:
         return print('Please log in'), routes.loginPage()

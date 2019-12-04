@@ -35,6 +35,8 @@ def resetPass():
 
 @app.route('/logmein', methods=['POST'])
 def lmi():
+    userID = request.form['username']
+    passwd = request.form['password']
     return "Hello World!"
 
 
