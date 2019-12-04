@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, request, redirect, url_for, jsonify, session
-from app import passHandler, userHandler, eventHandler
+from app import passHandler, userHandler, eventHandler, attendeeHandler
 
 app.secret_key = 'sliuufjsdpigfhjawjgouridfjnsdiulidf'
 
@@ -31,6 +31,13 @@ def forgotPass():
 # create route for form data, extract from the request, passHandler.email
 
 
+# diff between THIS
+@app.route('/pwreset')
+def resetWithEmail():
+    return render_template('Reset_Password.html')
+
+
+# and THIS
 @app.route('/pwreset/<string:email>/<string:resetID>')
 def resetPass():
     return render_template('Reset_Password.html')
@@ -89,6 +96,35 @@ def forgottenPassword():
     email = request.form['username']
     userHandler.requestReset(email)
     return redirect(url_for('home'))
+
+
+@app.route('/<eventID>')
+def landing(eventID):
+    if 'username' in session:
+        if eventHandler.getOwner[0][0] == session['username']:
+            return jsonify(attendeeHandler.getAllMatching(eventID))
+        else:
+            return redirect(url_for('home'))
+    else:
+        session['eventID'] = eventID
+        render_template('Attendee_')
+        attendeeHandler.attendeeAccept()  # args
+
+
+@app.route('/respond/<eventID>', methods=['POST'])
+def attendeeAvailable(eventID):
+    email = request.forms['email']
+    eventID = session['eventID']
+    name = request.forms['name']
+    timeList = request.forms['timeList']
+    session['attEmail'] = email
+    attendeeHandler.attendeeSubmit(email, eventID, name, timeList)
+    return redirect(url_for('attendeeResponses'))
+
+
+@app.route('/respond/<eventID>/<attEmail>')
+def attendeeResponses(eventID, attEmail):
+    return jsonify(attendeeHandler.attendeeAvailability(eventID, attEmail))
 
 
 def jsonifySingle(e):
