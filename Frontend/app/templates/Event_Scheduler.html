@@ -51,14 +51,13 @@
     <title>WhenIsBest: Schedule an Event!</title>
     
     <body>
-        <form action="/logmein">
-            <fieldset>
-                <legend><h1>Let's schedule an event!</h1></legend>
+        <fieldset>
+            <legend><h1>Let's schedule an event!</h1></legend>
+            <form action="/logmein"></form>
                 Name of Event:
                 <br/> 
-                <input name="name" type="text" value="" class = "nameBox"/> 
-
-                <br/>
+                <input name="name" type="text" value="" class = "nameBox" id = "eventName"/> 
+                <div id="space"></div>
                 <br/>
                 Type of Event:
                 <br/> 
@@ -108,7 +107,23 @@
                         }
                     }
                 </script>
-            </fieldset>
-        </form>
+            </form>
+            <br>
+            <br>
+            <button id="launch">Create Event!</button>
+			<script>
+				var space = document.getElementById('space');
+				var eventName = document.getElementById('eventName');
+				var launch = document.getElementById('launch');
+				launch.addEventListener('click', function() {
+					if (eventName.value == null || eventName.value == '') {
+						space.innerHTML = "Please specify the name of the event.";
+					} 
+                    else{
+                        space.innerHTML = "";
+                    }
+                });
+			</script>
+        </fieldset>
     </body>
 </html>
