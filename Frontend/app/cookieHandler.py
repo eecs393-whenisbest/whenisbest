@@ -11,7 +11,7 @@ def makeCookie(userID):
 
   s.get('Login_Page.html/cookies/set/sessioncookie/%s' )
   r = s.get('Login_Page.html/cookies')
-  
+  s.cookies.expires(datetime.now + 3600)
 
   # Save cookies to disk, even session cookies
   user.save(ignore_discard=True)
