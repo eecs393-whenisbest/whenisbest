@@ -41,7 +41,7 @@ def lmi():
     userID = request.form['username']
     passwd = request.form['password']
     passHandler.confirmPass(userID, passwd)
-    if 'userID' in session:
+    if session['userID'] == userID:
         return redirect(url_for('getMyEvents', userID=userID))
     else:
         return redirect(url_for('login'))
@@ -54,10 +54,10 @@ def favicon():
 
 @app.route('/list-events/<userID>')
 def getMyEvents(userID):
-    if 'userID' in session:
+    if session['userID'] == userID:
         return jsonify(eventHandler.getAllEvents(userID))
     else:
-        redirect(url_for('login'))
+        return redirect(url_for('home'))
 
 
 @app.route('/<userID>/schedule')
@@ -82,6 +82,13 @@ def createUser():
         return redirect(url_for('loginPage'))
     else:
         return "User Already Exists"
+
+
+@app.route('/whoops')
+def forgottenPassword():
+    email = request.form['username']
+    userHandler.requestReset(email)
+    return redirect(url_for('home'))
 
 
 def jsonifySingle(e):
