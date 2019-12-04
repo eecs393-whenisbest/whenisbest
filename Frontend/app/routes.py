@@ -21,6 +21,7 @@ def logout():
         session.pop('userID', None)
     return redirect(url_for('loginPage'))
 
+
 @app.route('/login')
 @app.route('/see-events')
 def loginPage():
