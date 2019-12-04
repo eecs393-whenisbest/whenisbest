@@ -23,8 +23,6 @@ def confirmPass(email, guess):
     salt = binascii.unhexlify(target[:64])
     currentHash = genHash(guess, salt)
     currentTry = binascii.hexlify(salt).decode() + binascii.hexlify(currentHash).decode()
-    if(currentTry == target):
-        cookieHandler.makeCookie(email)
     return currentTry == target
 
 
