@@ -26,6 +26,7 @@ def acctCreate():
 @app.route('/forgot-password')
 def forgotPass():
     return render_template('Forgot_Password.html')
+# create route for form data, extract from the request, passHandler.email
 
 
 @app.route('/pwreset/<string:email>/<string:resetID>')
@@ -37,6 +38,7 @@ def resetPass():
 def lmi():
     userID = request.args.get('username')
     passwd = request.args.get('password')
+    print(userID, passwd)
     passHandler.confirmPass(userID, passwd)
     if cookieHandler.loadCookie is not None:
         redirect(url_for('getMyEvents'))
