@@ -39,20 +39,20 @@
 		Welcome back, Event Scheduler!
 		<br>
 		<br>
-		<div class = "element">
-			<form>
+		<div class = "element" method ="post">
+			<form action="/logmein">
 				Email:
 				<br>
-				<input type="email" name="Username" maxlength = "320"><br>
+				<input type="email" name="username" maxlength = "320"><br>
 
 				Password:
 				<br>
-				<input type="password" name="Password">
+				<input type="password" name="password">
 				<br>
 				<br>
 				<input type="submit" value="Submit">
-				<button onclick="location.href='/forgot-password'" type="button">Forgot Password?</button>
 			</form>
+			<button onclick="location.href='/forgot-password'" type="button">Forgot Password?</button>
 		</div>
 	</div>
 </body>
