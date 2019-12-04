@@ -26,6 +26,7 @@ def acctCreate():
 @app.route('/forgot-password')
 def forgotPass():
     return render_template('Forgot_Password.html')
+# create route for form data, extract from the request, passHandler.email
 
 
 @app.route('/pwreset/<string:email>/<string:resetID>')
@@ -35,13 +36,14 @@ def resetPass():
 
 @app.route('/logmein', methods=['POST'])
 def lmi():
-    userID = request.args.get('username')
-    passwd = request.args.get('password')
+    userID = request.form['username']
+    passwd = request.form['password']
     passHandler.confirmPass(userID, passwd)
-    if cookieHandler.loadCookie is not None:
-        redirect(url_for('getMyEvents'))
-    else:
-        redirect(url_for('login'))
+    cookieHandler.loadCookie
+    # if cookieHandler.loadCookie is not None:
+    #     redirect(url_for('getMyEvents'))
+    # else:
+    #     redirect(url_for('login'))
 
 
 @app.route('/favicon.ico')
