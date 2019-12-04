@@ -15,9 +15,12 @@ def loginPage():
     return render_template('Login_Page.html')
 
 
-@app.route('/scheduler-login')
+@app.route('/scheduler')
 def schedLogin():
-    return render_template('Schedule_Login_Page.html')
+    if 'userID' in session:
+        return render_template('/schedule-event')
+    else:
+        return render_template('Schedule_Login_Page.html')
 
 
 @app.route('/create-acct')
@@ -98,10 +101,10 @@ def forgottenPassword():
     return redirect(url_for('home'))
 
 
-@app.route('/<eventID>')
+@app.route('/index/<eventID>')
 def landing(eventID):
-    if 'username' in session:
-        if eventHandler.getOwner[0][0] == session['username']:
+    if 'userID' in session:
+        if eventHandler.getOwner(eventID)[0][0] == session['userID']:
             return jsonify(attendeeHandler.getAllMatching(eventID))
         else:
             return redirect(url_for('home'))
