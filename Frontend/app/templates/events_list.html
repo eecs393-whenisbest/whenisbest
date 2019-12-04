@@ -38,16 +38,11 @@
 	</head>
 	<title>WhenIsBest: Your Events</title>
 	<body>
-    <table>
-      <tr>
-        <td>Event Name</td>
-      </tr>
+    <a href="/" title="WhenIsBest Home">
+      <img src="../static/web_logo.png" alt="WhenIsBest Logo" height = "105" width = "592"></a>
+      <h1> Event: </h1>
       {% for event in result%}
-      <tr>
-        <td><a href='/index/{{ event[0] }}'> {{ event[1] }}</a>
-        </td>
-      </tr>
+        <a href='/index/{{ event[0] }}'> <h3>{{ event[1] }}</h3></a>
+        <br>
       {%endfor%}
-      </table>
-
 </html>
