@@ -7,14 +7,16 @@ import datetime
 
 def createUser(email, fName, lName, rawPass):
     exists = getUser(email)
-    if exists.rowcount == 0:
+    print(exists == ())
+    if exists == ():
         hashedPass = passHandler.getHash(rawPass)
         query = "insert into Users(userID,FName,LName,Pass) values (%s,%s,%s,%s)"
         values = (email, fName, lName, hashedPass)
         sql.createQuery(query, values)
+        return True
     else:
         # only return string if DOES NOT work
-        return "user exists"
+        return False
 
 
 def getUser(userID):
