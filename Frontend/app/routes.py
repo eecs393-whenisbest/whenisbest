@@ -15,6 +15,13 @@ def home():
     return render_template('Home.html')
 
 
+@app.route('/logout')
+def logout():
+    if 'userID' in session:
+        session.pop('userID', None)
+    return redirect(url_for('loginPage'))
+
+
 @app.route('/login')
 def loginPage():
     if 'userID' in session:
