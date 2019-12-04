@@ -22,5 +22,5 @@ def loadCookie():
   try:
     user.load()
   except:
-    return loginPage()
+    return print('Please log in'), loginPage()
 
