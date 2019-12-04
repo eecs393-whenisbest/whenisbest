@@ -5,6 +5,11 @@ from app import passHandler, userHandler, eventHandler, attendeeHandler
 app.secret_key = 'sliuufjsdpigfhjawjgouridfjnsdiulidf'
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('fnfe.html'), 404
+
+
 @app.route('/')
 def home():
     return render_template('Home.html')
@@ -12,6 +17,8 @@ def home():
 
 @app.route('/login')
 def loginPage():
+    if 'userID' in session:
+        return redirect(url_for('getMyEvents', userID=session['userID']))
     return render_template('Login_Page.html')
 
 
@@ -113,8 +120,7 @@ def landing(eventID):
             return redirect(url_for('home'))
     else:
         session['eventID'] = eventID
-        render_template('Attendee_')
-        attendeeHandler.attendeeAccept()  # args
+        return render_template('Attendee_Responses.html')
 
 
 @app.route('/respond/<eventID>', methods=['POST'])
