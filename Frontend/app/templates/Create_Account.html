@@ -12,62 +12,64 @@
 				width: 500px
 				margin 0 auto;
 			}
+			.center {
+				margin: 0;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				-ms-transform: translate(-50%, -50%);
+				transform: translate(-50%, -50%);
+			}
 		</style>
 	</head>
 	<title>WhenIsBest: Welcome!</title>
 	<body>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<a href="/" title="WhenIsBest Home">
-			<img src="../static/web_logo.png" alt="WhenIsBest Logo" height = "105" width = "592">
-		</a>
-		<br>
-		<br>
-		<a href="/login" title="WhenIsBest: Login Page">Login</a> |
-		<a href="/scheduler-login" title="WhenIsBest: Scheduler Login Page">Schedule an Event</a> |
-		Create an Account
-		<br>
-		<br>
-		First time to WhenIsBest? Hello there!
-		<br>
-		<br>
-		<div class = "element">
-			<form>
-				<label>Are you registering as a:</label>
-				<select id = "myList">
-					<option value = "1">Event Scheduler</option>
-					<option value = "2">User</option>
-				</select>
-				<br>
-				<br>
-				First Name:
-				<br>
-				<input type="text" name="FirstName">
-				<br>
+		<div class = "center">
+			<a href="/" title="WhenIsBest Home">
+				<img src="../static/web_logo.png" alt="WhenIsBest Logo" height = "105" width = "592">
+			</a>
+			<br>
+			<br>
+			<a href="/login" title="WhenIsBest: Login Page">Login</a> |
+			<a href="/scheduler-login" title="WhenIsBest: Scheduler Login Page">Schedule an Event</a> |
+			Create an Account
+			<br>
+			<br>
+			First time to WhenIsBest? Hello there!
+			<br>
+			<br>
+			<div class = "element">
+				<form>
+					<label>Are you registering as a:</label>
+					<select id = "myList">
+						<option value = "1">Event Scheduler</option>
+						<option value = "2">User</option>
+					</select>
+					<br>
+					<br>
+					First Name:
+					<br>
+					<input type="text" name="FirstName">
+					<br>
 
-				Last Name:
-				<br>
-				<input type="text" name="LastName">
-				<br>
+					Last Name:
+					<br>
+					<input type="text" name="LastName">
+					<br>
 
-				Email:
-				<br>
-				<input type="email" name="Username" maxlength = "320">
-				<br>
+					Email:
+					<br>
+					<input type="email" name="Username" maxlength = "320">
+					<br>
 
-				Password:
-				<br>
-				<input type="password" name="Password">
-				<br>
-				<br>
-				<input type="submit" value="Let's schedule some events!">
-			</form>
+					Password:
+					<br>
+					<input type="password" name="Password">
+					<br>
+					<br>
+					<input type="submit" value="Let's schedule some events!">
+				</form>
+			</div>
 		</div>
 	</body>
 </html>
