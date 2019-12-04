@@ -3,7 +3,8 @@
 	<head>
 		<link href='https://fonts.googleapis.com/css?family=Titillium Web' rel='stylesheet'>
 		<script src='https://www.google.com/recaptcha/api.js'></script>
-		<style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <style>
 			body {
 				font-family: 'Titillium Web';
 				text-align: left;
@@ -60,6 +61,10 @@
             /* mouse over link */
             a:hover {
            		color: black;
+            }
+
+            #form1, #form2 {
+                display: none;
             }
 		</style>
 	</head>
@@ -125,13 +130,60 @@
                 </script>
             </form>
             <br>
-            <br>
-            <button id="launch">Create Event!</button>
-			<script>
+            <br> 
+            <button type = "button" id="launch">Create Event!</button>
+        </fieldset>
+        <br>
+        <form id="form1">
+            <fieldset>
+                <b>Preferred Date Range</b>
+                <br>
+                <b>Start Date: </b><input type="date" name="Start-Date">
+                <b>End Date:</b><input type="date" name="End-Date">
+                <br>
+                <br>
+                <b>Preferred Time Range</b>
+                <br>
+                <b>Start Time:</b><input type="time" name="Start-Time">
+                <b>End Time:</b><input type="time" name="End-Time">
+                <br>
+                <br>
+                <button type="button" id="submit">Submit</button>
+            </fieldset>
+        </form>
+
+        <form id="form2">
+                <fieldset>
+                    <b>Recurrence Frequency</b>
+                    <br>
+                    <select name = "increments" id = "Choose" onclick="myFunction()">
+                        <option value="1">Meeting Daily</option>
+                        <option selected="selected" value="7">Meeting Weekly</option>
+                     </select>
+                    <br>
+                    <br>
+                    <b>Preferred Time Range</b>
+                    <br>
+                    <b>Start Time:</b><input type="time" name="Start-Time">
+                     <b>End Time:</b><input type="time" name="End-Time">
+                     <br>
+                     <br>
+                     <b>Preferred Date Range</b>
+                    <br>
+                    <b>Start Date: </b><input type="date" name="Start-Date">
+                    <b>End Date:</b><input type="date" name="End-Date">
+                    <br>
+                    <br>
+                    <button type="button" id="submit">Submit</button>
+                </fieldset>
+            </form>
+
+        <script>
 				var space = document.getElementById('space');
 				var eventName = document.getElementById('eventName');
 				var launch = document.getElementById('launch');
                 var radios = document.getElementsByName('event-type');
+                var more = document.getElementById('more');
 
 				launch.addEventListener('click', function() {
 					if (eventName.value == null || eventName.value == '') {
@@ -139,23 +191,29 @@
 					}
                     else{
                         space.innerHTML = "";
-                    }
+                        for (var i = 0, length = radios.length; i < length; i++) {
+                            if (radios[i].checked) {
+                                // do whatever you want with the checked radio
+                                result.innerHTML = "";
+                                if(radios[i].value == "one-time"){
+                                    $("#form1").show();
+                                    $("#form2").hide();
 
-                    for (var i = 0, length = radios.length; i < length; i++) {
-                        if (radios[i].checked) {
-                            // do whatever you want with the checked radio
-                            result.innerHTML = "";
-                            alert(radios[i].value);
-
-                            // only one radio can be logically checked, don't check the rest
-                            break;
-                        }
-                        else{
-                            result.innerHTML = "<b>*Please select the type of event.</b>";
+                                }
+                                else{
+                                    $("#form1").hide();
+                                    $("#form2").show();
+                                }
+                            
+                                // only one radio can be logically checked, don't check the rest
+                                break;
+                            }
+                            else{
+                                result.innerHTML = "<b>*Please select the type of event.</b>";
+                            }
                         }
                     }
                 });
             </script>
-        </fieldset>
     </body>
 </html>
