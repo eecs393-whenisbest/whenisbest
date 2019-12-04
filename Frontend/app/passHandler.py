@@ -7,7 +7,6 @@ import os
 import binascii
 from app import sql
 from app import cookieHandler
-from app import routes
 
 
 def getHash(rawPass):

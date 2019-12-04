@@ -59,7 +59,7 @@ def getMyEvents(userID):
 @app.route('/<userID>/schedule')
 def scheduleEvent(userID):
     print(userID)
-    return render_template("Event_Scheduler.html", userID=userID)
+    return render_template("Event_Scheduler.html")
 
 
 @app.route('/schedule-event', methods=['POST'])
