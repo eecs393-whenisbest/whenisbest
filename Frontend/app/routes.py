@@ -17,6 +17,11 @@ def loginPage():
 def schedLogin():
     return render_template('Schedule_Login_Page.html')
 
+@app.route('/cookie/')
+def cookie():
+    res = make_response("Setting a cookie")
+    res.set_cookie('user', ' ', max_age=60*60)
+    return res
 
 @app.route('/create-acct')
 def acctCreate():
@@ -59,7 +64,7 @@ def getMyEvents(userID):
 @app.route('/<userID>/schedule')
 def scheduleEvent(userID):
     print(userID)
-    return render_template("Event_Scheduler.html")
+    return render_template("Event_Scheduler.html", userID=userID)
 
 
 @app.route('/schedule-event', methods=['POST'])
