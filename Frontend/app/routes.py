@@ -131,6 +131,11 @@ def sendTimes(time):
         return redirect(url_for('home'))
 
 
+@app.route('/event-page')
+def eventButtons():
+    return render_template('Event_Page.html')
+
+
 @app.route('/respond/<eventID>', methods=['POST'])
 def attendeeAvailable(eventID):
     email = request.forms['email']
