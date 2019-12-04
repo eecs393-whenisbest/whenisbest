@@ -38,36 +38,38 @@
 </style>
 <title>WhenIsBest: Login</title>
 
-<body>
-	<div class = "center">
-		<a href="/" title="WhenIsBest Home">
-			<img src="../static/web_logo.png" alt="WhenIsBest Logo" height = "105" width = "592">
-		</a>
-		<br>
-		<br>
-		Login |
-		<a href="/scheduler-login" title="WhenIsBest: Scheduler Login Page">Schedule an Event</a> |
-		<a href="/create-acct" title="WhenIsBest: Create Account">Create an Account</a>
-		<br>
-		<br>
-		Welcome back, User!
-		<br>
-		<br>
-		<div class = "element">
-			<form action="/logmein" method ="post">
-				Email:
-				<br>
-				<input type="email" name="username" maxlength = "320"><br>
+<b>
+	<body>
+		<div class = "center">
+			<a href="/" title="WhenIsBest Home">
+				<img src="../static/web_logo.png" alt="WhenIsBest Logo" height = "105" width = "592">
+			</a>
+			<br>
+			<br>
+			Login |
+			<a href="/scheduler-login" title="WhenIsBest: Scheduler Login Page">Schedule an Event</a> |
+			<a href="/create-acct" title="WhenIsBest: Create Account">Create an Account</a>
+			<br>
+			<br>
+			Welcome back, User!
+			<br>
+			<br>
+			<div class = "element">
+				<form action="/logmein" method ="post">
+					Email:
+					<br>
+					<input type="email" name="username" maxlength = "320"><br>
 
-				Password:
-				<br>
-				<input type="password" name="password">
-				<br>
-				<br>
-				<input type="submit" value = "Submit">
-				<button onclick="location.href='/forgot-password'" type="button">Forgot Password?</button>
-			</form>
+					Password:
+					<br>
+					<input type="password" name="password">
+					<br>
+					<br>
+					<input type="submit" value = "Submit">
+					<button onclick="location.href='/forgot-password'" type="button">Forgot Password?</button>
+				</form>
+			</div>
 		</div>
-	</div>
-</body>
+	</body>
+</b>
 </html>
