@@ -21,8 +21,8 @@ def logout():
         session.pop('userID', None)
     return redirect(url_for('loginPage'))
 
-
 @app.route('/login')
+@app.route('/see-events')
 def loginPage():
     if 'userID' in session:
         return redirect(url_for('getMyEvents', userID=session['userID']))
@@ -69,9 +69,9 @@ def lmi():
     passwd = request.form['password']
     passHandler.confirmPass(userID, passwd)
     if session['userID'] == userID:
-        return redirect(url_for('getMyEvents', userID=userID))
+        return redirect(url_for('home', userID=userID))
     else:
-        return redirect(url_for('login'))
+        return redirect(url_for('loginPage'))
 
 
 @app.route('/list-events/<userID>')
