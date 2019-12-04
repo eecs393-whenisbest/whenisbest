@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en">
 	<head>
+		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 		<link href='https://fonts.googleapis.com/css?family=Titillium Web' rel='stylesheet'>
 		<script src='https://www.google.com/recaptcha/api.js'></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -130,7 +131,7 @@
                 </script>
             </form>
             <br>
-            <br> 
+            <br>
             <button type = "button" id="launch">Create Event!</button>
         </fieldset>
         <br>
@@ -204,7 +205,7 @@
                                     $("#form1").hide();
                                     $("#form2").show();
                                 }
-                            
+
                                 // only one radio can be logically checked, don't check the rest
                                 break;
                             }

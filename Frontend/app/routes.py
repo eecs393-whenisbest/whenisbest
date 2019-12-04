@@ -67,11 +67,6 @@ def lmi():
         return redirect(url_for('login'))
 
 
-@app.route('/favicon.ico')
-def favicon():
-    return '../static/favicon.ico'
-
-
 @app.route('/list-events/<userID>')
 def getMyEvents(userID):
     if session['userID'] == userID:
@@ -122,7 +117,7 @@ def landing(eventID):
             return redirect(url_for('home'))
     else:
         session['eventID'] = eventID
-        return render_template('Attendee_Responses.html')
+        return render_template('Responder.html')
 
 
 @app.route('/respond/<eventID>', methods=['POST'])
