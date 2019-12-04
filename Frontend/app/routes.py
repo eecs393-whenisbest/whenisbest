@@ -49,7 +49,21 @@ def favicon():
     return '../static/favicon.ico'
 
 
-@app.route('/list-events/<UserID>')
+@app.route('/list-events/<userID>')
 def getMyEvents(userID):
     if cookieHandler.loadCookie is not None:
         jsonify(eventHandler.getAllEvents(userID))
+
+
+@app.route('/test/user/<userID>')
+def getToyEvents(userID):
+    return jsonify(eventHandler.getAllEvents(userID))
+
+
+@app.route('/test/event/<eventid>')
+def getToyEventInfo(eventid):
+    return jsonifySingle(eventHandler.getAllDetails(eventid)[0])
+
+
+def jsonifySingle(e):
+    return jsonify(eventID=e[0], eventName=e[1], eventDuration=e[2], eventRecurs=e[3], eventShared=e[4], eventCreator=e[5], eventFrequency=e[6], eventCreationTime=e[7], eventGranularity=e[8])
