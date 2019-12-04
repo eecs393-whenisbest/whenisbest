@@ -139,81 +139,81 @@
                 <b>Preferred Date Range</b>
                 <br>
                 <b>Start Date: </b><input type="date" name="Start-Date">
-                <b>End Date:</b><input type="date" name="End-Date">
+                <b>End Date: </b><input type="date" name="End-Date">
                 <br>
                 <br>
                 <b>Preferred Time Range</b>
                 <br>
-                <b>Start Time:</b><input type="time" name="Start-Time">
-                <b>End Time:</b><input type="time" name="End-Time">
+                <b>Start Time: </b><input type="time" name="Start-Time">
+                <b>End Time: </b><input type="time" name="End-Time">
                 <br>
                 <br>
-                <button type="button" id="submit">Submit</button>
+                <button type="button" id="table-1">Submit</button>
             </fieldset>
         </form>
 
         <form id="form2">
-                <fieldset>
-                    <b>Recurrence Frequency</b>
-                    <br>
-                    <select name = "increments" id = "Choose" onclick="myFunction()">
-                        <option value="1">Meeting Daily</option>
-                        <option selected="selected" value="7">Meeting Weekly</option>
-                     </select>
-                    <br>
-                    <br>
-                    <b>Preferred Time Range</b>
-                    <br>
-                    <b>Start Time:</b><input type="time" name="Start-Time">
-                     <b>End Time:</b><input type="time" name="End-Time">
-                     <br>
-                     <br>
-                     <b>Preferred Date Range</b>
-                    <br>
-                    <b>Start Date: </b><input type="date" name="Start-Date">
-                    <b>End Date:</b><input type="date" name="End-Date">
+            <fieldset>
+                <b>Recurrence Frequency</b>
+                <br>
+                <select name = "increments" id = "Choose" onclick="myFunction()">
+                    <option value="1">Meeting Daily</option>
+                    <option selected="selected" value="7">Meeting Weekly</option>
+                    </select>
+                <br>
+                <br>
+                <b>Preferred Time Range</b>
+                <br>
+                <b>Start Time: </b><input type="time" name="Start-Time">
+                    <b>End Time: </b><input type="time" name="End-Time">
                     <br>
                     <br>
-                    <button type="button" id="submit">Submit</button>
-                </fieldset>
-            </form>
+                    <b>Preferred Date Range</b>
+                <br>
+                <b>Start Date: </b><input type="date" name="Start-Date">
+                <b>End Date: </b><input type="date" name="End-Date">
+                <br>
+                <br>
+                <button type="button" id="table-2">Submit</button>
+            </fieldset>
+        </form>
 
         <script>
-				var space = document.getElementById('space');
-				var eventName = document.getElementById('eventName');
-				var launch = document.getElementById('launch');
-                var radios = document.getElementsByName('event-type');
-                var more = document.getElementById('more');
+            var space = document.getElementById('space');
+            var eventName = document.getElementById('eventName');
+            var launch = document.getElementById('launch');
+            var radios = document.getElementsByName('event-type');
+            var more = document.getElementById('more');
 
-				launch.addEventListener('click', function() {
-					if (eventName.value == null || eventName.value == '') {
-						space.innerHTML = "<b>*Please specify the name of the event.</b>";
-					}
-                    else{
-                        space.innerHTML = "";
-                        for (var i = 0, length = radios.length; i < length; i++) {
-                            if (radios[i].checked) {
-                                // do whatever you want with the checked radio
-                                result.innerHTML = "";
-                                if(radios[i].value == "one-time"){
-                                    $("#form1").show();
-                                    $("#form2").hide();
+            launch.addEventListener('click', function() {
+                if (eventName.value == null || eventName.value == '') {
+                    space.innerHTML = "<b>*Please specify the name of the event.</b>";
+                }
+                else{
+                    space.innerHTML = "";
+                    for (var i = 0, length = radios.length; i < length; i++) {
+                        if (radios[i].checked) {
+                            // do whatever you want with the checked radio
+                            result.innerHTML = "";
+                            if(radios[i].value == "one-time"){
+                                $("#form1").show();
+                                $("#form2").hide();
 
-                                }
-                                else{
-                                    $("#form1").hide();
-                                    $("#form2").show();
-                                }
-                            
-                                // only one radio can be logically checked, don't check the rest
-                                break;
                             }
                             else{
-                                result.innerHTML = "<b>*Please select the type of event.</b>";
+                                $("#form1").hide();
+                                $("#form2").show();
                             }
+                        
+                            // only one radio can be logically checked, don't check the rest
+                            break;
+                        }
+                        else{
+                            result.innerHTML = "<b>*Please select the type of event.</b>";
                         }
                     }
-                });
-            </script>
+                }
+            });
+        </script>
     </body>
 </html>
