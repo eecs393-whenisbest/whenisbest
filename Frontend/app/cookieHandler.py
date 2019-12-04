@@ -23,4 +23,4 @@ def loadCookie():
     try:
         user.load()
     except exception as e:
-        return print('Please log in'), routes.loginPage()
+        return None

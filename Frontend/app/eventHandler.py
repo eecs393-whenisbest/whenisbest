@@ -92,3 +92,9 @@ def getAllDetails(eventID):
 def shareEvent(eventID, emailList):
     for address in emailList:
         emailer.emailEvent(address, eventID)
+
+
+def getAllEvents(userID):
+    query = "select * from Event where eventCreator = %s"
+    values = (userID, )
+    return sql.getQueryResults(query, values)

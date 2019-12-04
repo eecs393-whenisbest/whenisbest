@@ -1,6 +1,6 @@
 from app import app
-from flask import render_template, request, redirect
-from app import userHandler
+from flask import render_template, request, redirect, url_for, jsonify
+from app import passHandler, userHandler, cookieHandler, eventHandler
 
 
 @app.route('/')
@@ -35,11 +35,21 @@ def resetPass():
 
 @app.route('/logmein', methods=['POST'])
 def lmi():
-    userID = request.form['username']
-    passwd = request.form['password']
-    return "Hello World!"
+    userID = request.args.get('username')
+    passwd = request.args.get('password')
+    passHandler.confirmPass(userID, passwd)
+    if cookieHandler.loadCookie is not None:
+        redirect(url_for('getMyEvents'))
+    else:
+        redirect(url_for('login'))
 
 
 @app.route('/favicon.ico')
 def favicon():
     return '../static/favicon.ico'
+
+
+@app.route('/list-events/<UserID>')
+def getMyEvents(userID):
+    if cookieHandler.loadCookie is not None:
+        jsonify(eventHandler.getAllEvents(userID))
