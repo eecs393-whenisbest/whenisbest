@@ -43,7 +43,7 @@
       <img src="/static/web_logo.png" alt="WhenIsBest Logo" height = "105" width = "592"></a>
       <h1> Event: </h1>
       {% for event in result%}
-        <a href='/index/{{ event[0] }}'> <h3>{{ event[1] }}</h3></a>
+        <a href='/index/{{ event[0] }}'> <h3>{{ event[1] }}</a> <a href='/delete/{{ event[0] }}'> Delete {{ event[1] }}</h3>
         <br>
       {%endfor%}
 </html>
