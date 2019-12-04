@@ -125,6 +125,7 @@ def landing(eventID):
 def sendTimes(time):
     if 'eventID' in session:
         attendeeHandler.finalizeEvent(session['eventID'], time)
+        session.pop('eventID', None)
         return redirect(url_for('home'))
     else:
         return redirect(url_for('home'))
@@ -143,6 +144,7 @@ def attendeeAvailable(eventID):
 
 @app.route('/respond/<eventID>/<attEmail>')
 def attendeeResponses(eventID, attEmail):
+    print(attendeeHandler.attendeeAvailability(eventID, attEmail))
     return jsonify(attendeeHandler.attendeeAvailability(eventID, attEmail))
 
 
