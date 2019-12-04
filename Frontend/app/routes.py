@@ -5,6 +5,11 @@ from app import passHandler, userHandler, eventHandler, attendeeHandler
 app.secret_key = 'sliuufjsdpigfhjawjgouridfjnsdiulidf'
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('fnfe.html'), 404
+
+
 @app.route('/')
 def home():
     return render_template('Home.html')
@@ -12,6 +17,8 @@ def home():
 
 @app.route('/login')
 def loginPage():
+    if 'userID' in session:
+        return redirect(url_for('getMyEvents', userID=session['userID']))
     return render_template('Login_Page.html')
 
 
@@ -68,7 +75,8 @@ def favicon():
 @app.route('/list-events/<userID>')
 def getMyEvents(userID):
     if session['userID'] == userID:
-        return jsonify(eventHandler.getAllEvents(userID))
+        result = eventHandler.getAllEvents(userID)
+        return render_template('events_list.html', result=result)
     else:
         return redirect(url_for('home'))
 
@@ -108,13 +116,13 @@ def forgottenPassword():
 def landing(eventID):
     if 'userID' in session:
         if eventHandler.getOwner(eventID)[0][0] == session['userID']:
-            return jsonify(attendeeHandler.getAllMatching(eventID))
+            result = attendeeHandler.getAllMatching(eventID)
+            return render_template('attendee_responses.html', result=result)
         else:
             return redirect(url_for('home'))
     else:
         session['eventID'] = eventID
-        render_template('Attendee_')
-        attendeeHandler.attendeeAccept()  # args
+        return render_template('Attendee_Responses.html')
 
 
 @app.route('/respond/<eventID>', methods=['POST'])
