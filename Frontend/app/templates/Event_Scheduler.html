@@ -17,7 +17,7 @@
                 -webkit-appearance: none;
                 width: 100%;
                 height: 15px;
-                border-radius: 5px;  
+                border-radius: 5px;
                 background: #626262;
                 outline: none;
                 opacity: 0.7;
@@ -30,7 +30,7 @@
                 appearance: none;
                 width: 25px;
                 height: 25px;
-                border-radius: 50%; 
+                border-radius: 50%;
                 background: #0a304e;
                 cursor: pointer;
             }
@@ -49,21 +49,21 @@
 		</style>
 	</head>
     <title>WhenIsBest: Schedule an Event!</title>
-    
+
     <body>
-        <form action="/logmein">
+        <form action="/schedule-event" method='post'>
             <fieldset>
                 <legend><h1>Let's schedule an event!</h1></legend>
                 Name of Event:
-                <br/> 
-                <input name="name" type="text" value="" class = "nameBox"/> 
+                <br/>
+                <input name="name" type="text" value="" class = "nameBox"/>
 
                 <br/>
                 <br/>
                 Type of Event:
-                <br/> 
-                <input checked="checked" name="event-type" type="radio" value="one-time" /> One-Time <br/> 
-                <input name="event-type" type="radio" value="recurring" /> Recurring <br/>  
+                <br/>
+                <input checked="checked" name="event-type" type="radio" value="one-time" /> One-Time <br/>
+                <input name="event-type" type="radio" value="recurring" /> Recurring <br/>
                 <br/>
                 Time Increments:
                 <select name = "increments" id = "Choose" onclick="myFunction()">
@@ -76,7 +76,7 @@
 
                 Duration of Event:
                 <input type="range" min="0" max="24" step="0.5" value="1" class="slider" id="myRange">
-                <br/> 
+                <br/>
                 Value: <span id="demo"></span>
                 <script>
                     var slider = document.getElementById("myRange");
@@ -108,6 +108,8 @@
                         }
                     }
                 </script>
+								<br>
+								<input type="submit" value="Submit">
             </fieldset>
         </form>
     </body>

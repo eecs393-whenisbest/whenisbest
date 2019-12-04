@@ -39,11 +39,10 @@ def lmi():
     userID = request.form['username']
     passwd = request.form['password']
     passHandler.confirmPass(userID, passwd)
-    cookieHandler.loadCookie
-    # if cookieHandler.loadCookie is not None:
-    #     redirect(url_for('getMyEvents'))
-    # else:
-    #     redirect(url_for('login'))
+    if cookieHandler.loadCookie() is not None:
+        redirect(url_for('getMyEvents'))
+    else:
+        redirect(url_for('login'))
 
 
 @app.route('/favicon.ico')
@@ -53,18 +52,19 @@ def favicon():
 
 @app.route('/list-events/<userID>')
 def getMyEvents(userID):
-    if cookieHandler.loadCookie is not None:
+    if cookieHandler.loadCookie() is not None:
         jsonify(eventHandler.getAllEvents(userID))
 
 
-@app.route('/test/user/<userID>')
-def getToyEvents(userID):
-    return jsonify(eventHandler.getAllEvents(userID))
+@app.route('/<userID>/schedule')
+def scheduleEvent(userID):
+    print(userID)
+    return render_template("Event_Scheduler.html", userID=userID)
 
 
-@app.route('/test/event/<eventid>')
-def getToyEventInfo(eventid):
-    return jsonifySingle(eventHandler.getAllDetails(eventid)[0])
+@app.route('/schedule-event', methods=['POST'])
+def makeMyEvent():
+    s = cookieHandler.loadCookie()
 
 
 def jsonifySingle(e):
