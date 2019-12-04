@@ -18,7 +18,7 @@ def loginPage():
 @app.route('/scheduler')
 def schedLogin():
     if 'userID' in session:
-        return render_template('/schedule-event')
+        return redirect(url_for('scheduleEvent', userID=session['userID']))
     else:
         return render_template('Schedule_Login_Page.html')
 
