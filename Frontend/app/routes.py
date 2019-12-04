@@ -1,6 +1,8 @@
 from app import app
-from flask import render_template, request, redirect, url_for, jsonify
-from app import passHandler, userHandler, cookieHandler, eventHandler
+from flask import render_template, request, redirect, url_for, jsonify, session
+from app import passHandler, userHandler, eventHandler
+
+app.secret_key = 'sliuufjsdpigfhjawjgouridfjnsdiulidf'
 
 
 @app.route('/')
@@ -17,11 +19,6 @@ def loginPage():
 def schedLogin():
     return render_template('Schedule_Login_Page.html')
 
-@app.route('/cookie/')
-def cookie():
-    res = make_response("Setting a cookie")
-    res.set_cookie('user', ' ', max_age=60*60)
-    return res
 
 @app.route('/create-acct')
 def acctCreate():
@@ -44,10 +41,10 @@ def lmi():
     userID = request.form['username']
     passwd = request.form['password']
     passHandler.confirmPass(userID, passwd)
-    if cookieHandler.loadCookie() is not None:
-        redirect(url_for('getMyEvents'))
+    if 'userID' in session:
+        return redirect(url_for('getMyEvents', userID=userID))
     else:
-        redirect(url_for('login'))
+        return redirect(url_for('login'))
 
 
 @app.route('/favicon.ico')
@@ -57,8 +54,10 @@ def favicon():
 
 @app.route('/list-events/<userID>')
 def getMyEvents(userID):
-    if cookieHandler.loadCookie() is not None:
-        jsonify(eventHandler.getAllEvents(userID))
+    if 'userID' in session:
+        return jsonify(eventHandler.getAllEvents(userID))
+    else:
+        redirect(url_for('login'))
 
 
 @app.route('/<userID>/schedule')
@@ -69,7 +68,20 @@ def scheduleEvent(userID):
 
 @app.route('/schedule-event', methods=['POST'])
 def makeMyEvent():
-    s = cookieHandler.loadCookie()
+    return
+
+
+@app.route('/create-user', methods=['POST'])
+def createUser():
+    fName = request.form['FirstName']
+    lName = request.form['LastName']
+    uName = request.form['username']
+    passwd = request.form['password']
+    result = userHandler.createUser(uName, fName, lName, passwd)
+    if(result):
+        return redirect(url_for('loginPage'))
+    else:
+        return "User Already Exists"
 
 
 def jsonifySingle(e):
