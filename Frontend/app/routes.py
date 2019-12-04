@@ -36,14 +36,14 @@ def resetPass():
 
 @app.route('/logmein', methods=['POST'])
 def lmi():
-    userID = request.args.get('username')
-    passwd = request.args.get('password')
-    print(userID, passwd)
+    userID = request.form['username']
+    passwd = request.form['password']
     passHandler.confirmPass(userID, passwd)
-    if cookieHandler.loadCookie is not None:
-        redirect(url_for('getMyEvents'))
-    else:
-        redirect(url_for('login'))
+    cookieHandler.loadCookie
+    # if cookieHandler.loadCookie is not None:
+    #     redirect(url_for('getMyEvents'))
+    # else:
+    #     redirect(url_for('login'))
 
 
 @app.route('/favicon.ico')
