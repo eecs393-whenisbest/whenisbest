@@ -24,9 +24,12 @@ def logout():
 
 @app.route('/delete/<eventID>')
 def delEvent(eventID):
-    if(session['userID'] == eventHandler.getOwner(eventID)[0]):
+    print(eventHandler.getOwner(eventID))
+    if(session['userID'] == eventHandler.getOwner(eventID)[0][0]):
         eventHandler.deleteEventByID(eventID)
-    return redirect(url_for('getMyEvents', userID=session['userID']))
+        return redirect(url_for('getMyEvents', userID=session['userID']))
+    else:
+        return(redirect('/oh-no'))
 
 
 @app.route('/login')
