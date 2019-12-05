@@ -104,7 +104,7 @@ def scheduleEvent(userID):
 def landing(eventID):
     if 'userID' in session:
         if eventHandler.getOwner(eventID)[0][0] == session['userID']:
-            result = attendeeHandler.getAllMatching(eventID)
+            result = eventHandler.getAllMatching(eventID)
             session['eventID'] = eventID
             return render_template('attendee_responses.html', result=result)
         else:
@@ -117,7 +117,7 @@ def landing(eventID):
 @app.route('/sendTimes/<time>')
 def sendTimes(time):
     if 'eventID' in session:
-        attendeeHandler.finalizeEvent(session['eventID'], time)
+        eventHandler.finalizeEvent(session['eventID'], time)
         session.pop('eventID', None)
         return redirect(url_for('home'))
     else:
