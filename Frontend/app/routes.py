@@ -9,27 +9,10 @@ app.secret_key = 'sliuufjsdpigfhjawjgouridfjnsdiulidf'
 def page_not_found(e):
     return render_template('fnfe.html'), 404
 
-
+# STATIC URLs #
 @app.route('/')
 def home():
     return render_template('Home.html')
-
-
-@app.route('/logout')
-def logout():
-    if 'userID' in session:
-        session.pop('userID', None)
-    return redirect(url_for('loginPage'))
-
-
-@app.route('/delete/<eventID>')
-def delEvent(eventID):
-    print(eventHandler.getOwner(eventID))
-    if(session['userID'] == eventHandler.getOwner(eventID)[0][0]):
-        eventHandler.deleteEventByID(eventID)
-        return redirect(url_for('getMyEvents', userID=session['userID']))
-    else:
-        return(redirect('/oh-no'))
 
 
 @app.route('/login')
@@ -53,19 +36,37 @@ def acctCreate():
     return render_template('Create_Account.html')
 
 
+@app.route('/event-page')
+def eventButtons():
+    return render_template('Event_Page.html')
+
+
+@app.route('/logout')
+def logout():
+    if 'userID' in session:
+        session.pop('userID', None)
+    return redirect(url_for('loginPage'))
+
+
+@app.route('/whoops')
+def forgottenPassword():
+    email = request.form['username']
+    userHandler.requestReset(email)
+    return redirect(url_for('home'))
+
+
 @app.route('/forgot-password')
 def forgotPass():
     return render_template('Forgot_Password.html')
-# create route for form data, extract from the request, passHandler.email
+    # on forgot_pass, post to reset(email)
 
 
-# diff between THIS
 @app.route('/pwreset')
 def resetWithEmail():
     return render_template('Reset_Password.html')
 
 
-# and THIS
+# PARAMETRIC URLs #
 @app.route('/pwreset/<string:email>/<string:resetID>')
 def resetPass(email, resetID):
     if(userHandler.checkForReset(email, resetID)):
@@ -74,15 +75,14 @@ def resetPass(email, resetID):
         return redirect(url_for('home'))
 
 
-@app.route('/logmein', methods=['POST'])
-def lmi():
-    userID = request.form['username']
-    passwd = request.form['password']
-    passHandler.confirmPass(userID, passwd)
-    if session['userID'] == userID:
-        return redirect(url_for('home', userID=userID))
+@app.route('/delete/<eventID>')
+def delEvent(eventID):
+    print(eventHandler.getOwner(eventID))
+    if(session['userID'] == eventHandler.getOwner(eventID)[0][0]):
+        eventHandler.deleteEventByID(eventID)
+        return redirect(url_for('getMyEvents', userID=session['userID']))
     else:
-        return redirect(url_for('loginPage'))
+        return(redirect('/oh-no'))
 
 
 @app.route('/list-events/<userID>')
@@ -98,31 +98,6 @@ def getMyEvents(userID):
 def scheduleEvent(userID):
     print(userID)
     return render_template("Event_Scheduler.html", userID=userID)
-
-
-@app.route('/schedule-event', methods=['POST'])
-def makeMyEvent():
-    return
-
-
-@app.route('/create-user', methods=['POST'])
-def createUser():
-    fName = request.form['FirstName']
-    lName = request.form['LastName']
-    uName = request.form['username']
-    passwd = request.form['password']
-    result = userHandler.createUser(uName, fName, lName, passwd)
-    if(result):
-        return redirect(url_for('loginPage'))
-    else:
-        return "User Already Exists"
-
-
-@app.route('/whoops')
-def forgottenPassword():
-    email = request.form['username']
-    userHandler.requestReset(email)
-    return redirect(url_for('home'))
 
 
 @app.route('/index/<eventID>')
@@ -149,11 +124,46 @@ def sendTimes(time):
         return redirect(url_for('home'))
 
 
-@app.route('/event-page')
-def eventButtons():
-    return render_template('Event_Page.html')
+@app.route('/respond/<eventID>/<attEmail>')
+def attendeeResponses(eventID, attEmail):
+    session['eventID'] = eventID
+    if eventID == session['eventID']:
+        return render_template('my_response.html', result=attendeeHandler.attendeeAvailability(attEmail, eventID))
+    else:
+        return redirect(url_for('home'))
 
 
+# POST REQUESTS #
+@app.route('/logmein', methods=['POST'])
+def lmi():
+    userID = request.form['username']
+    passwd = request.form['password']
+    passHandler.confirmPass(userID, passwd)
+    if session['userID'] == userID:
+        return redirect(url_for('home', userID=userID))
+    else:
+        return redirect(url_for('loginPage'))
+
+
+@app.route('/schedule-event', methods=['POST'])
+def makeMyEvent():
+    return
+
+
+@app.route('/create-user', methods=['POST'])
+def createUser():
+    fName = request.form['FirstName']
+    lName = request.form['LastName']
+    uName = request.form['username']
+    passwd = request.form['password']
+    result = userHandler.createUser(uName, fName, lName, passwd)
+    if(result):
+        return redirect(url_for('loginPage'))
+    else:
+        return "User Already Exists"
+
+
+# PARAMETRIC POST #
 @app.route('/respond/<eventID>', methods=['POST'])
 def attendeeAvailable(eventID):
     email = request.forms['email']
@@ -163,15 +173,6 @@ def attendeeAvailable(eventID):
     session['attEmail'] = email
     attendeeHandler.attendeeSubmit(email, eventID, name, timeList)
     return redirect(url_for('attendeeResponses'))
-
-
-@app.route('/respond/<eventID>/<attEmail>')
-def attendeeResponses(eventID, attEmail):
-    session['eventID'] = eventID
-    if eventID == session['eventID']:
-        return render_template('my_response.html', result=attendeeHandler.attendeeAvailability(attEmail, eventID))
-    else:
-        return redirect(url_for('home'))
 
 
 def jsonifySingle(e):
