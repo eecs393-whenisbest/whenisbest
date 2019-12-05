@@ -65,3 +65,6 @@ def finalizeEvent(eventID, timeSlot):
     results = sql.getQueryResults(query, values)
     for res in results:
         emailer.eventConfirm(res[0], timeSlot)
+    query = "delete from Responses where eventID = %s and timeSlot !=%s"
+    values = (eventID, timeSlot)
+    sql.createQuery(query, values)

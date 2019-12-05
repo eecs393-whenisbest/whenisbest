@@ -167,7 +167,7 @@ def createUser():
 @app.route('/respond/<eventID>', methods=['POST'])
 def attendeeAvailable(eventID):
     email = request.forms['email']
-    eventID = session['eventID']
+    session['eventID'] = eventID
     name = request.forms['name']
     timeList = request.forms['timeList']
     session['attEmail'] = email
