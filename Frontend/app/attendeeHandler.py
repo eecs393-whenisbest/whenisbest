@@ -1,5 +1,4 @@
 from app import sql
-from app import emailer
 
 
 def attendeeAccept(eventID, userName, userEmail):
@@ -39,32 +38,3 @@ def attendeeSubmit(userEmail, eventID, userName, timeList):
         values = (userEmail, eventID, userName, timeSlot)
         sql.createQuery(query, values)
     return attendeeAvailability(userEmail, eventID)
-
-
-def getAllMatching(eventID):
-    query = "select userName, timeSlot from Responses where eventID = %s"
-    values = (eventID, )
-    res = sql.getQueryResults(query, values)
-    temp1 = []
-    for r in res:
-        temp1.append(r[1])
-    temp1 = list(dict.fromkeys(temp1))
-    final = []
-    for t in temp1:
-        count = 0
-        for result in res:
-            if result[1] == t:
-                count += 1
-        final.append((t, count))
-    return final
-
-
-def finalizeEvent(eventID, timeSlot):
-    query = "select userEmail from Responses where eventID = %s and timeSlot = %s"
-    values = (eventID, timeSlot)
-    results = sql.getQueryResults(query, values)
-    for res in results:
-        emailer.eventConfirm(res[0], timeSlot)
-    query = "delete from Responses where eventID = %s and timeSlot !=%s"
-    values = (eventID, timeSlot)
-    sql.createQuery(query, values)
