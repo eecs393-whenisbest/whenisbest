@@ -3,7 +3,7 @@ from app import app
 from app import eventHandler
 from app import userHandler
 from app import attendeeHandler
-
+from app import passHandler
 
 def createEvent(name, duration, isRecurring):
     eventID = eventHandler.createEvent(name, duration, isRecurring, "pjh96@case.edu", 0.5)
