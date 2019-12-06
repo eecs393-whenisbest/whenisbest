@@ -47,7 +47,7 @@ class TestEventMethods(unittest.TestCase):
 
     def test_user(self):
         # Note: the update password functionality only works to test when we comment out the line updating session vars in PassHandler. I may go back and disconnect this. Z.
-        user1 = userHandler.createUser('zxm132@case.edu', 'Zubair', 'Mukhi', 'password')
+        userHandler.createUser('zxm132@case.edu', 'Zubair', 'Mukhi', 'password')
         self.assertEqual(userHandler.createUser('zxm132@case.edu', 'Zubair', 'Mukhi', 'password'), False)
         self.assertEqual(userHandler.getUser('zxm132@case.edu')[0], ('Zubair', 'Mukhi', 'zxm132@case.edu'))
         userHandler.editFirstName('Zubar', 'zxm132@case.edu')
