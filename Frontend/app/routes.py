@@ -149,10 +149,10 @@ def lmi():
 @app.route('/schedule-event', methods=['POST'])
 def makeMyEvent():
     eventName = request.form.get('event-name')
-    startDate = request.form.getlist('Start-Date')
-    endDate = request.form.getlist('End-Date')
-    startTime = request.form.getlist('Start-Time')
-    endTime = request.form.getlist('End-Time')
+    # startDate = request.form.getlist('Start-Date')
+    # endDate = request.form.getlist('End-Date')
+    # startTime = request.form.getlist('Start-Time')
+    # endTime = request.form.getlist('End-Time')
     eventType = request.form.get('event-type')
     increment = float(request.form.getlist('increments')[0])
     runtime = float(request.form.get('myRange'))
@@ -169,8 +169,7 @@ def makeMyEvent():
         for t in times:
             temp = int(t) / 1000
             timeList.append(datetime.fromtimestamp(temp))
-    print(timeList, eventName, startDate[offset], endDate[offset], startTime[offset], endTime[offset], eventType, runtime)
-    # eventHandler.createEvent(eName, , session['userID'], increment, timeList)
+        eventHandler.createEvent(eventName, runtime, offset, session['userID'], increment, timeList)
     return redirect(url_for('getMyEvents', userID=session['userID']))
 
 
