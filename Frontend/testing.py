@@ -22,18 +22,11 @@ class TestEventMethods(unittest.TestCase):
         eventHandler.deleteEventByCreator('pjh96@case.edu')
         self.assertEqual(eventHandler.getName(test2), ())
         self.assertEqual(eventHandler.getName(test3), ())
-
-        # self.assertEqual(test.getRecurring(test.getEventID(), "whenisbest.com/event/<eventID>/onetime")
-        # self.assertEqual(test.isRecurring(test2.getEventID(), "whenisbest.com/event/<eventID>/recurring")
-
-        # functionality absorbed by createEvent - Frontend collates data before handing it to backend for processing
-        # self.assertEqual(test.submit(),eventID)
-
-        # self.assertEqual(test.share(), 'whenisbest.com/event/<eventID>/share')
         return
 
     def test_attendee(self):
         test = main.createEvent('attTest', 8.0, 0)
+        # because python time is SO ACCURATE that it causes testing errors
         now = datetime.now().replace(microsecond=0)
         timeArr = ()
         for i in range(0, 5):
@@ -53,7 +46,7 @@ class TestEventMethods(unittest.TestCase):
         return
 
     def test_user(self):
-        # Note: the update password functionality only works to test when we comment out the line updating session in 
+        # Note: the update password functionality only works to test when we comment out the line updating session vars in PassHandler. I may go back and disconnect this. Z.
         user1 = userHandler.createUser('zxm132@case.edu', 'Zubair', 'Mukhi', 'password')
         self.assertEqual(userHandler.createUser('zxm132@case.edu', 'Zubair', 'Mukhi', 'password'), False)
         self.assertEqual(userHandler.getUser('zxm132@case.edu')[0], ('Zubair', 'Mukhi', 'zxm132@case.edu'))
@@ -67,10 +60,6 @@ class TestEventMethods(unittest.TestCase):
         userHandler.deleteUser('zxm132@case.edu')
         self.assertFalse(userHandler.getUser('zxm132@case.edu'))
         return
-
-    # def test_scheduler(self):
-        # self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/results')
-        # return
 
 
 if __name__ == '__main__':
