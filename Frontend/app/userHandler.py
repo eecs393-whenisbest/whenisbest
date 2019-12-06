@@ -15,13 +15,12 @@ def createUser(email, fName, lName, rawPass):
         sql.createQuery(query, values)
         return True
     else:
-        # only return string if DOES NOT work
         return False
 
 
 def getUser(userID):
     query = "select FName, LName, userID from Users where userID = %s"
-    values = (userID)
+    values = (userID,)
     return sql.getQueryResults(query, values)
 
 
@@ -33,7 +32,7 @@ def editFirstName(fName, email):
 
 def getFirstName(userID):
     query = "select FName from Users where userID = %s"
-    values = (userID)
+    values = (userID,)
     return sql.getQueryResults(query, values)
 
 
@@ -45,25 +44,18 @@ def editLastName(lName, email):
 
 def getLastName(userID):
     query = "select LName from Users where userID = %s"
-    values = (userID)
+    values = (userID,)
     return sql.getQueryResults(query, values)
 
 
 def getName(userID):
-    return getFirstName(userID) + ' ' + getLastName(userID)
+    return getFirstName(userID)[0][0] + ' ' + getLastName(userID)[0][0]
 
 
 def editName(fName, lName, email):
     query = "update Users set FName = %s, LName = %s where userID = %s"
     values = (fName, lName, email)
     sql.createQuery(query, values)
-
-
-def updateEmail(email, newEmail, pwd):
-    if(passHandler.confirmPass(email, pwd)):
-        query = "update Users set userID = %s where userID = %s"
-        values = (newEmail, email)
-        sql.createQuery(query, values)
 
 
 def updatePassword(email, oldPass, newPass):
@@ -108,6 +100,6 @@ def resetPassword(key, email, newPass):
 
 def deleteUser(userID):
     eventHandler.deleteEventByCreator(userID)
-    query = "delete from User where userID=%s"
+    query = "delete from Users where userID=%s"
     values = (userID, )
     sql.createQuery(query, values)
