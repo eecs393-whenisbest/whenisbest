@@ -93,28 +93,28 @@
             <legend> <a href="/" title="WhenIsBest Home"><img src="{{ url_for('static', filename='web_logo.png') }}" alt="WhenIsBest Logo" height = "52.5" width = "296"></a></legend>
             <h2>Let's schedule an event!</h2>
             <b>Name of Event:</b>
-            <br/>
-            <input type="text" name = "eventName" class = "nameBox" id = "eventName">
+            <br>
+            <input type="text" name = "event-name" class = "nameBox" id = "eventName">
             <div id="space"></div>
-            <br/>
+            <br>
             <b>Type of Event:</b>
-            <br/>
-            <input name="event-type" type="radio" value="one-time" id = "eventType1"> One-Time <br/>
-            <input name="event-type" type="radio" value="recurring" id = "eventType2"> Recurring <br/>
+            <br>
+            <input name="event-type" type="radio" value="one-time" id = "eventType1"> One-Time <br>
+            <input name="event-type" type="radio" value="recurring" id = "eventType2"> Recurring <br>
             <div id="result"></div>
-            <br/>
+            <br>
             <b>Time Increments:</b>
             <select name = "increments" id = "Choose" onclick="myFunction()">
                 <option value="0.25">Every 15 Minutes</option>
                 <option selected="selected" value="0.5">Every 30 Minutes</option>
                 <option value="1">Every Hour</option>
             </select>
-            <br/>
-            <br/>
+            <br>
+            <br>
 
             <b>Duration of Event:</b>
             <input type="range" min="0" max="24" step="0.5" value="1" class="slider" id="myRange">
-            <br/>
+            <br>
             Value: <span id="demo"></span>
             <script>
                 var slider = document.getElementById("myRange");
