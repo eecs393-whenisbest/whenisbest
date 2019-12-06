@@ -147,7 +147,9 @@ def lmi():
 
 @app.route('/schedule-event', methods=['POST'])
 def makeMyEvent():
-    return
+    for thing in request.form:
+        print(thing)
+    return redirect(url_for('home'))
 
 
 @app.route('/create-user', methods=['POST'])
