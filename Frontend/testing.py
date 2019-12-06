@@ -1,4 +1,7 @@
 import unittest
+from app import userHandler
+from app import eventHandler
+
 
 class TestEventMethods(unittest.TestCase):
 
@@ -10,8 +13,8 @@ class TestEventMethods(unittest.TestCase):
         self.assertEqual(test.getDuration(), 15.0)
         self.assertEqual(test.getRecurring(), 0)
         self.assertEqual(test.getCreator(),'pjh96@case.edu')
-        self.assertEqual(test.getEventID(), eventID)
-        test.deleteEventByID(eventID)
+        self.assertEqual(test.getEventID(), test)
+        test.deleteEventByID(test)
         self.assertFalse(test)
         test2.deleteEventByCreator('pjh96@case.edu')
         self.assertFalse(test2)
@@ -24,18 +27,34 @@ class TestEventMethods(unittest.TestCase):
         # self.assertEqual(test.submit(),eventID)
 
         #self.assertEqual(test.share(), 'whenisbest.com/event/<eventID>/share')
+        
+        
         return
 
     test = createEvent('test', 8.0, 0)
     test2 = createEvent('test2', 8.0, 1)
     def test_attendee(self):
-
         test.attendeeAccept('Zubair Mukhi','zxm132@case.edu', test)
+        test.attendeeAccept('Patrick Hogrell','pjh96@case.edu', test)
         self.assertEqual('Zubair Mukhi', test.getAttendeeName("zxm132@case.edu",test))
         self.assertEqual('zxm132@case.edu', test.getAttendeeEmail("Zubair Mukhi",test))
-        # self.assertEqual(test.attendeeAvailability(),<times in file from database>)
-        # self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/confirmation')
-        # self.assertEqual(test.attendeeEdit(),<New times in file from database>)
+        
+        from datetime import datetime, timedelta
+        now = datetime.now()
+        timeArr = []
+        for i in range(0, 5):
+            timeArr.append(now + timedelta(seconds=3600))
+
+        attendeeSubmit("zxm132@case.edu", test, "Zubair", timeArr)
+        attendeeSubmit("pjh96@case.edu", test, "Patrick", timeArr)
+        
+        self.assertEqual(test.attendeeAvailability(),{"Zubair", timeArr})
+        self.assertEqual(test.attendeeEdit("pjh96@case.edu", test, timeArr[1:4]), {"Patrick", timeArr[1:4]})
+        
+        self.assertEqual(eventHandler.getAllMatching(test),2)
+        responses = eventHandler.getAllResponses(test)
+        self.asserEqual(responses, {{"Zubair", timeArr}, {"Patrick", timeArr[1:4]}})
+        
         return
     
     def test_user(self):
