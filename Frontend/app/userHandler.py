@@ -7,7 +7,6 @@ import datetime
 
 def createUser(email, fName, lName, rawPass):
     exists = getUser(email)
-    print(exists == ())
     if exists == ():
         hashedPass = passHandler.getHash(rawPass)
         query = "insert into Users(userID,FName,LName,Pass) values (%s,%s,%s,%s)"
