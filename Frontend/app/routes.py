@@ -48,7 +48,7 @@ def logout():
     return redirect(url_for('loginPage'))
 
 
-@app.route('/whoops')
+@app.route('/whoops', methods=['POST'])
 def forgottenPassword():
     email = request.form['username']
     userHandler.requestReset(email)
