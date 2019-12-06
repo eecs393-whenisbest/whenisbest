@@ -187,16 +187,23 @@
                 var timeStart = new Date("01/01/2019 " + startTime).getHours();
                 var timeEnd = new Date("01/01/2019 " + endTime).getHours();
                 var totalHours = timeEnd-timeStart;
-                console.log(totalHours)
                 var rowCount;
+                var offset = 0;
+                var buffer = 0;
                 if(inc == 0.25){
                   rowCount = totalHours*4;
+                  offset = 49;
+                  buffer = 4; //corrections for time subunits
                 }
                 else if(inc == 0.5){
                   rowCount = totalHours*2;
+                  offset = 25;
+                  buffer = 2; // corrections for subunits of time
                 }
                 else{
                   rowCount = totalHours;
+                  offset = 13;
+                  buffer = 1;
                 }
                 if(totalHours < 0.25){
                   alert("Please select a valid time range!");
@@ -212,20 +219,23 @@
                   $("#table-1").hide();
                   $("#createTable").show();
                   tr = document.createElement('tr');
-                  for (row = 0; row < rowCount; row++) {
+                  for (row = 0; row < rowCount + buffer; row++) {
                       tr = document.createElement('tr');
                       for (cell = 0; cell < days + 1; cell++) {
                           td = document.createElement('td');
                           tr.appendChild(td);
+                          var myDate = new Date(startDate.getTime() + (cell+1)*1000*60*60*24);
                           if(row == 0){
-                            var myDate = new Date(startDate.getTime() + (cell+1)*1000*60*60*24);
                             var text = day[(startDate.getDay() + cell) % 7];
                             var finalText = `<b> ${text}<br>${myDate.getMonth() + 1}.${myDate.getDate()}</b>`;
                             td.innerHTML = finalText;
                           }
                           else{
-                            var sum = startTime+(row*inc);
-                            td.innerHTML = "<input type='checkbox'>"+ sum +" I have a bike<br>"
+                            var minutesOffset = ((row-offset)*inc)*1000*60*60 ; // minutes adjusted for DST
+                            var dayOffset = (cell+1)*1000*60*60*24;
+                            var shiftedDate = new Date(startDate.getTime() + minutesOffset + dayOffset);
+                            inHT = `<input type='checkbox' id = ${row-1}, ${cell}><br>${shiftedDate.getHours()}:${('0' + shiftedDate.getMinutes()).slice(-2)}`;
+                            td.innerHTML = inHT;
                           }
                       }
                       table.appendChild(tr);
