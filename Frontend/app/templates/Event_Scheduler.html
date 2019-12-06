@@ -92,63 +92,63 @@
         <fieldset>
             <legend> <a href="/" title="WhenIsBest Home"><img src="{{ url_for('static', filename='web_logo.png') }}" alt="WhenIsBest Logo" height = "52.5" width = "296"></a></legend>
             <h2>Let's schedule an event!</h2>
-                <b>Name of Event:</b>
-                <br/>
-                <input type="text" name = "eventName" class = "nameBox" id = "eventName"/>
-                <div id="space"></div>
-                <br/>
-                <b>Type of Event:</b>
-                <br/>
-                <input name="event-type" type="radio" value="one-time" id = "eventType1"/> One-Time <br/>
-                <input name="event-type" type="radio" value="recurring" id = "eventType2"/> Recurring <br/>
-                <div id="result"></div>
-                <br/>
-                <b>Time Increments:</b>
-                <select name = "increments" id = "Choose" onclick="myFunction()">
-                    <option value="0.25">Every 15 Minutes</option>
-                    <option selected="selected" value="0.5">Every 30 Minutes</option>
-                    <option value="1">Every Hour</option>
-                </select>
-                <br/>
-                <br/>
+            <b>Name of Event:</b>
+            <br/>
+            <input type="text" name = "eventName" class = "nameBox" id = "eventName">
+            <div id="space"></div>
+            <br/>
+            <b>Type of Event:</b>
+            <br/>
+            <input name="event-type" type="radio" value="one-time" id = "eventType1"> One-Time <br/>
+            <input name="event-type" type="radio" value="recurring" id = "eventType2"> Recurring <br/>
+            <div id="result"></div>
+            <br/>
+            <b>Time Increments:</b>
+            <select name = "increments" id = "Choose" onclick="myFunction()">
+                <option value="0.25">Every 15 Minutes</option>
+                <option selected="selected" value="0.5">Every 30 Minutes</option>
+                <option value="1">Every Hour</option>
+            </select>
+            <br/>
+            <br/>
 
-                <b>Duration of Event:</b>
-                <input type="range" min="0" max="24" step="0.5" value="1" class="slider" id="myRange">
-                <br/>
-                Value: <span id="demo"></span>
-                <script>
-                    var slider = document.getElementById("myRange");
-                    var output = document.getElementById("demo");
-                    output.innerHTML = slider.value + " hour(s) and 0 minute(s)."; // Display the default slider value
+            <b>Duration of Event:</b>
+            <input type="range" min="0" max="24" step="0.5" value="1" class="slider" id="myRange">
+            <br/>
+            Value: <span id="demo"></span>
+            <script>
+                var slider = document.getElementById("myRange");
+                var output = document.getElementById("demo");
+                output.innerHTML = slider.value + " hour(s) and 0 minute(s)."; // Display the default slider value
 
-                    // Update the current slider value (each time you drag the slider handle)
-                    slider.oninput = function() {
-                        var hours = this.value;
-                        var rhours = Math.floor(hours);
-                        var minutes = (hours - rhours) * 60;
-                        var rminutes = Math.round(minutes);
-                        output.innerHTML = rhours + " hour(s) and " + rminutes + " minute(s).";
+                // Update the current slider value (each time you drag the slider handle)
+                slider.oninput = function() {
+                    var hours = this.value;
+                    var rhours = Math.floor(hours);
+                    var minutes = (hours - rhours) * 60;
+                    var rminutes = Math.round(minutes);
+                    output.innerHTML = rhours + " hour(s) and " + rminutes + " minute(s).";
+                }
+            </script>
+
+            <script>
+                function myFunction() {
+                    var select = document.getElementById("Choose");
+                    var chosen = select.options[select.selectedIndex].value;
+                    if (chosen == "0.25"){
+                        var x = document.getElementById("myRange").step = "0.25";
                     }
-                </script>
-
-                <script>
-                    function myFunction() {
-                        var select = document.getElementById("Choose");
-                        var chosen = select.options[select.selectedIndex].value;
-                        if (chosen == "0.25"){
-                            var x = document.getElementById("myRange").step = "0.25";
-                        }
-                        else if(chosen == "0.5"){
-                            var x = document.getElementById("myRange").step = "0.5";
-                        }
-                        else {
-                            var x = document.getElementById("myRange").step = "1";
-                        }
+                    else if(chosen == "0.5"){
+                        var x = document.getElementById("myRange").step = "0.5";
                     }
-                </script>
+                    else {
+                        var x = document.getElementById("myRange").step = "1";
+                    }
+                }
+            </script>
             <br>
             <br>
-            <button type = "button" id="launch">Submit</button>
+            <button type = "button" id="launch">"Create Event!"</button>
         </fieldset>
         <br>
         <div id="form1">
