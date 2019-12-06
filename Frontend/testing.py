@@ -49,11 +49,11 @@ class TestEventMethods(unittest.TestCase):
         self.assertEqual(attendeeHandler.attendeeEdit("pjh96@case.edu", timeArr[1:4], test), patrickList[1:4])
         # self.assertEqual(eventHandler.getAllMatching(test), 2)
         responses = eventHandler.getAllResponses(test)
-        # self.assertEqual(responses, {{"Zubair", timeArr}, {"Patrick", timeArr[1:4]}})
 
         return
 
     def test_user(self):
+        # Note: the update password functionality only works to test when we comment out the line updating session in 
         user1 = userHandler.createUser('zxm132@case.edu', 'Zubair', 'Mukhi', 'password')
         self.assertEqual(userHandler.createUser('zxm132@case.edu', 'Zubair', 'Mukhi', 'password'), False)
         self.assertEqual(userHandler.getUser('zxm132@case.edu')[0], ('Zubair', 'Mukhi', 'zxm132@case.edu'))
