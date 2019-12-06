@@ -235,7 +235,7 @@
                             var minutesOffset = ((row-offset)*inc)*1000*60*60 ; // minutes adjusted for DST
                             var dayOffset = (cell+1)*1000*60*60*24;
                             var shiftedDate = new Date(startDate.getTime() + minutesOffset + dayOffset);
-                            inHT = `<input type='checkbox' name='a', value=${shiftedDate.getDate()}-${shiftedDate.getHours()}-${('0' + shiftedDate.getMinutes()).slice(-2)}, ${cell}><br>${shiftedDate.getHours()}:${('0' + shiftedDate.getMinutes()).slice(-2)}`;
+                            inHT = `<input type='checkbox' name='a', value=${shiftedDate.getTime()}><br>${shiftedDate.getHours()}:${('0' + shiftedDate.getMinutes()).slice(-2)}`;
                             td.innerHTML = inHT;
                           }
                       }
