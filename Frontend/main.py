@@ -4,6 +4,7 @@ from app import eventHandler
 from app import userHandler
 from app import attendeeHandler
 
+
 def createEvent(name, duration, isRecurring):
     eventID = eventHandler.createEvent(name, duration, isRecurring, "pjh96@case.edu", 0.5)
     return eventID
@@ -47,5 +48,3 @@ def attendeeSubmit(attEmail, eventID, userName, timeList):
 
 def attendeeEdit(attEmail, eventID, timeList):
     return attendeeHandler.attendeeEdit(attEmail, eventID, timeList)
-
-
