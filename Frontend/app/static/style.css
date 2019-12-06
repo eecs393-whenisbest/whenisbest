@@ -1,0 +1,29 @@
+body {
+				font-family: 'Titillium Web';
+				text-align: center;
+				color: #0a304e;
+			}
+			.element{
+				width: 500px
+				margin 0 auto;
+			}
+			.center {
+				margin: 0;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				-ms-transform: translate(-50%, -50%);
+				transform: translate(-50%, -50%);
+			}
+            /* unvisited link */
+            a:link {
+            	color: #0a304e;
+            }
+            /* visited link */
+            a:visited {
+            	color: #626262;
+            }
+            /* mouse over link */
+            a:hover {
+           		color: black;
+            }
