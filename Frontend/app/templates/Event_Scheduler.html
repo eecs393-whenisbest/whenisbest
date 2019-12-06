@@ -91,7 +91,7 @@
     <fieldset>
         <legend> <a href="/" title="WhenIsBest Home"><img src="{{ url_for('static', filename='web_logo.png') }}" alt="WhenIsBest Logo" height = "52.5" width = "296"></a></legend>
         <h2>Let's schedule an event!</h2>
-        <form action="/schedule-event" method = "post"></form>
+        <form action="/schedule-event" method = "post">
             <b>Name of Event:</b>
             <br/>
             <input name="name" type="text" value="" class = "nameBox" id = "eventName"/>
@@ -146,13 +146,12 @@
                     }
                 }
             </script>
-        </form>
         <br>
         <br>
         <button type = "button" id="launch">Create Event!</button>
     </fieldset>
     <br>
-    <form id="form1">
+    <section id="form1">
         <fieldset>
             <b>Preferred Date Range:</b>
             <br>
@@ -168,7 +167,8 @@
             <br>
             <button type="button" id="table-1" >Submit</button>
         </fieldset>
-    </form>
+    </section>
+
 
     <script>
             var butt = document.getElementById('table-1');
@@ -243,7 +243,7 @@
             }});
         </script>
 
-    <form id="form2">
+    <section id="form2">
         <fieldset>
             <b>Recurrence Frequency:</b>
             <br>
@@ -267,15 +267,15 @@
             <br>
             <button type="button" id="table-2" onclick="makeTable()">Submit</button>
         </fieldset>
-    </form>
+    </section>
 
     <br>
 
     <fieldset id="createTable">
-            <form action='/schedule-event' method="post">
+            <!-- <form action='/schedule-event' method="post"> -->
             <div id="container"></div>
             <input type="submit" value="Submit">
-            </form>
+            <!-- </form> -->
     </fieldset>
 
 
