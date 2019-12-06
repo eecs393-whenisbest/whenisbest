@@ -23,8 +23,10 @@ def confirmPass(email, guess):
     salt = binascii.unhexlify(target[:64])
     currentHash = genHash(guess, salt)
     currentTry = binascii.hexlify(salt).decode() + binascii.hexlify(currentHash).decode()
-    routes.session['userID'] = email
-    return currentTry == target
+    try:
+        routes.session['userID'] = email
+    finally:
+        return currentTry == target
 
 
 def genHash(input, salt):

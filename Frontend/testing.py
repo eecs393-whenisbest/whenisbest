@@ -9,9 +9,9 @@ from datetime import datetime, timedelta
 class TestEventMethods(unittest.TestCase):
 
     def test_create(self):
-        test = main.createEvent('test', 15.0, 0)
-        test2 = main.createEvent('test2', 15.0, 1)
-        test3 = main.createEvent('test3', 15.0, 0)
+        test = main.createEvent('test', 15.0, 0, 0.5)
+        test2 = main.createEvent('test2', 15.0, 1, 0.25)
+        test3 = main.createEvent('test3', 15.0, 0, 1)
         self.assertEqual(main.getName(test), 'test')
         self.assertEqual(main.getDuration(test), 15.0)
         self.assertEqual(main.getRecurring(test), 0)
@@ -25,7 +25,7 @@ class TestEventMethods(unittest.TestCase):
         return
 
     def test_attendee(self):
-        test = main.createEvent('attTest', 8.0, 0)
+        test = main.createEvent('attTest', 8.0, 0, 1)
         # because python time is SO ACCURATE that it causes testing errors
         now = datetime.now().replace(microsecond=0)
         timeArr = ()

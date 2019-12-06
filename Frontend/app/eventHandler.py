@@ -1,7 +1,6 @@
 from app import sql
 import hashlib
 from datetime import datetime
-from datetime import date
 from app import emailer
 
 schedName = ""

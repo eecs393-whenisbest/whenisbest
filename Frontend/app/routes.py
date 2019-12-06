@@ -107,7 +107,9 @@ def landing(eventID):
         if eventHandler.getOwner(eventID)[0][0] == session['userID']:
             result = eventHandler.getAllMatching(eventID)
             session['eventID'] = eventID
-            return render_template('attendee_responses.html', result=result)
+            if result != []:
+                return render_template('attendee_responses.html', result=result)
+            return redirect(url_for('home'))
         else:
             return redirect(url_for('home'))
     else:

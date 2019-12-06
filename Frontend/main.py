@@ -3,10 +3,16 @@ from app import app
 from app import eventHandler
 from app import userHandler
 from app import attendeeHandler
+from datetime import datetime, timedelta
 
 
-def createEvent(name, duration, isRecurring):
-    eventID = eventHandler.createEvent(name, duration, isRecurring, "pjh96@case.edu", 0.5)
+def createEvent(name, duration, isRecurring, grain):
+    creator = "pjh96@case.edu"
+    now = datetime.now().replace(microsecond=0)
+    timeArr = ()
+    for i in range(0, 5):
+        timeArr = timeArr + ((now + timedelta(seconds=3600) * i),)
+    eventID = eventHandler.createEvent(name, duration, isRecurring, creator, grain, timeArr)
     return eventID
 
 
