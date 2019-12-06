@@ -222,12 +222,11 @@
                             var text = day[(startDate.getDay() + cell) % 7];
                             var finalText = `<b> ${text}<br>${myDate.getMonth() + 1}.${myDate.getDate()}</b>`;
                             td.innerHTML = finalText;
+                          }
+                          else{
                             var sum = startTime+(row*inc);
                             td.innerHTML = "<input type='checkbox'>"+ sum +" I have a bike<br>"
                           }
-                          else{
-                          td.outerHTML ;
-                        }
                       }
                       table.appendChild(tr);
                   }
