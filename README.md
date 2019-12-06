@@ -18,6 +18,8 @@ Upon completion, you will be emailed the link and be given the option to email t
 
 Once people have responded, you can then select the time with the most respondents and finalize the time of the event, which will send out an email to respondents to inform of confirmation.
 
+After that, you have the event at the scheduled time(s)!
+
 ## Python Installation
 The web application runs on Python 3.7.4 and the Flask package.
 
