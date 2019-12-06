@@ -94,7 +94,8 @@
             <h2>Let's schedule an event!</h2>
             <b>Name of Event:</b>
             <br>
-            <input type="text" name = "event-name" class = "nameBox" id = "eventName">
+            <input type="text" name = "event-name" class = "nameBox" id = "eventName"> 
+            <br>
             <div id="space"></div>
             <br>
             <b>Type of Event:</b>
@@ -148,7 +149,7 @@
             </script>
             <br>
             <br>
-            <button type = "button" id="launch">"Create Event!"</button>
+            <button type = "button" id="launch">Create Event!</button>
         </fieldset>
         <br>
         <div id="form1">
@@ -297,12 +298,7 @@
                                 $("#form2").show();
                             }
                             $("#launch").hide();
-                            document.getElementById('eventName').disabled = true;
-                            document.getElementById('eventType1').disabled = true;
-                            document.getElementById('eventType2').disabled = true;
-                            document.getElementById("myRange").disabled = true;
-                            document.getElementById("Choose").disabled = true;
-
+                            
                             // only one radio can be logically checked, don't check the rest
                             break;
                         }
