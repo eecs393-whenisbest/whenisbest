@@ -12,7 +12,7 @@
             color: #0a304e;
         }
         .element{
-            width: 500px
+            width: 500px;
             margin 0 auto;
         }
         .slider {
@@ -73,9 +73,10 @@
         }
 
         table, th, td {
-            width: auto;
+            max-width: 100%;
             border: 1px solid black;
             border-collapse: collapse;
+            text-align: center;
         }
 
         th, td {
@@ -173,6 +174,7 @@
     <script>
             var butt = document.getElementById('table-1');
             butt.addEventListener('click', function(){
+                var day = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
                 var table = document.createElement('table'), tr, td, row, cell;
                 var startDate = new Date(document.getElementById('onetimestart').value);
                 var endDate = new Date(document.getElementById('onetimeend').value);
@@ -215,7 +217,15 @@
                       for (cell = 0; cell < days + 1; cell++) {
                           td = document.createElement('td');
                           tr.appendChild(td);
-                          td.outerHTML = "<a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'> hello </a>"
+                          if(row == 0){
+                            var myDate = new Date(startDate.getTime() + (cell+1)*1000*60*60*24);
+                            var text = day[(startDate.getDay() + cell) % 7];
+                            var finalText = `<b> ${text}<br>${myDate.getMonth() + 1}.${myDate.getDate()}</b>`;
+                            td.innerHTML = finalText;
+                          }
+                          else{
+                          td.outerHTML ;
+                        }
                       }
                       table.appendChild(tr);
                   }
