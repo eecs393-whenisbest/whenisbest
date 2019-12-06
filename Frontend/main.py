@@ -48,3 +48,7 @@ def attendeeSubmit(attEmail, eventID, userName, timeList):
 
 def attendeeEdit(attEmail, eventID, timeList):
     return attendeeHandler.attendeeEdit(attEmail, eventID, timeList)
+
+def passGuess(email, guess)
+    return passHandler.confirmPass(email, guess)
+
