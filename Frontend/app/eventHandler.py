@@ -28,7 +28,7 @@ def createEvent(eName, duration, isRecurring, creator, grain, timeList):
     if (recurFlag == 1):
         for t in timeList:
             query = "insert into Recurring (eventID, day, timeSlot) values (%s, %s, %s)"
-            values = (eventID, 1, t.time())
+            values = (eventID, t.weekday() + 1, t.time())
             sql.createQuery(query, values)
     else:
         for t in timeList:
