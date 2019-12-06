@@ -14,7 +14,7 @@ eventID = ""
 now = datetime.now()  # to add randomness to hash
 
 
-def createEvent(eName, duration, isRecurring, creator, grain):
+def createEvent(eName, duration, isRecurring, creator, grain, timeList):
     now = datetime.now()
     schedName = eName
     dur = duration
@@ -26,13 +26,15 @@ def createEvent(eName, duration, isRecurring, creator, grain):
     values = (eventID, schedName, dur, recurFlag, shared, frequency, creator, now, grain)
     sql.createQuery(query, values)
     if (recurFlag == 1):
-        query = "insert into Recurring (eventID, day, timeSlot) values (%s, %s, %s)"
-        values = (eventID, 1, 0.25)
-        sql.createQuery(query, values)
+        for t in timeList:
+            query = "insert into Recurring (eventID, day, timeSlot) values (%s, %s, %s)"
+            values = (eventID, 1, t.time())
+            sql.createQuery(query, values)
     else:
-        query = "insert into OneTime (eventID, date, timeSlot) values (%s, %s, %s)"
-        values = (eventID, date.today(), 0.25)
-        sql.createQuery(query, values)
+        for t in timeList:
+            query = "insert into OneTime (eventID, date, timeSlot) values (%s, %s, %s)"
+            values = (eventID, t.date(), t.time())
+            sql.createQuery(query, values)
     return eventID
 
 

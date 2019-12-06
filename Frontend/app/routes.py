@@ -1,6 +1,7 @@
 from app import app
 from flask import render_template, request, redirect, url_for, jsonify, session
 from app import passHandler, userHandler, eventHandler, attendeeHandler
+from datetime import datetime
 
 app.secret_key = 'sliuufjsdpigfhjawjgouridfjnsdiulidf'
 
@@ -147,9 +148,30 @@ def lmi():
 
 @app.route('/schedule-event', methods=['POST'])
 def makeMyEvent():
-    for thing in request.form:
-        print(thing)
-    return redirect(url_for('home'))
+    eventName = request.form.get('event-name')
+    startDate = request.form.getlist('Start-Date')
+    endDate = request.form.getlist('End-Date')
+    startTime = request.form.getlist('Start-Time')
+    endTime = request.form.getlist('End-Time')
+    eventType = request.form.get('event-type')
+    increment = float(request.form.getlist('increments')[0])
+    runtime = float(request.form.get('myRange'))
+    offset = 1
+    if eventType == 'one-time':
+        offset = 0
+    timeList = []
+    if(len(request.form.getlist('a')) < 2):
+        times = request.form.get('a')
+        t = int(times) / 1000
+        timeList.append(datetime.fromtimestamp(t))
+    else:
+        times = request.form.getlist('a')
+        for t in times:
+            temp = int(t) / 1000
+            timeList.append(datetime.fromtimestamp(temp))
+    print(timeList, eventName, startDate[offset], endDate[offset], startTime[offset], endTime[offset], eventType, runtime)
+    # eventHandler.createEvent(eName, , session['userID'], increment, timeList)
+    return redirect(url_for('getMyEvents', userID=session['userID']))
 
 
 @app.route('/create-user', methods=['POST'])
