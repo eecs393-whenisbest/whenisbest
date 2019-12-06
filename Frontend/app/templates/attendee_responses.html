@@ -45,14 +45,14 @@
       <tr>
         <td></td>
       </tr>
-			{% if result | length > 1 %}
+		  {% if result | length > 1 %}
 	      {% for response in result %}
 	      <tr>
 	        <td><a href='/sendTimes/{{ response[0]}}' > Time: {{ response[0].strftime("%a, %b %d, %H:%M") }}, People Available: {{response[1]}} </a>
 	        </td>
 	      </tr>
 	      {%endfor%}
-			{% else %}
+		  {%else%}
 				<tr>
 					<td><b>Event Confirmed!</b> Time: {{ result[0][0].strftime("%a, %b %d, %H:%M") }}, People Available: {{result[0][1]}} </a>
 					</td>

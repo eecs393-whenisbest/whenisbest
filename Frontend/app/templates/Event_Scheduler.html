@@ -1,228 +1,269 @@
 <!DOCTYPE html>
 <html lang = "en">
-	<head>
-		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-		<link href='https://fonts.googleapis.com/css?family=Titillium Web' rel='stylesheet'>
-		<script src='https://www.google.com/recaptcha/api.js'></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <style>
-			body {
-				font-family: 'Titillium Web';
-				text-align: left;
-				color: #0a304e;
-			}
-			.element{
-				width: 500px
-				margin 0 auto;
-			}
-            .slider {
-                -webkit-appearance: none;
-                width: 100%;
-                height: 15px;
-                border-radius: 5px;
-                background: #626262;
-                outline: none;
-                opacity: 0.7;
-                -webkit-transition: .2s;
-                transition: opacity .2s;
-            }
+<head>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link href='https://fonts.googleapis.com/css?family=Titillium Web' rel='stylesheet'>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: 'Titillium Web';
+            text-align: left;
+            color: #0a304e;
+        }
+        .element{
+            width: 500px
+            margin 0 auto;
+        }
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 15px;
+            border-radius: 5px;
+            background: #626262;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
 
-            .slider::-webkit-slider-thumb {
-                -webkit-appearance: none;
-                appearance: none;
-                width: 25px;
-                height: 25px;
-                border-radius: 50%;
-                background: #0a304e;
-                cursor: pointer;
-            }
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #0a304e;
+            cursor: pointer;
+        }
 
-            .slider::-moz-range-thumb {
-                width: 25px;
-                height: 25px;
-                border-radius: 50%;
-                background: #0a304e;
-                cursor: pointer;
-            }
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #0a304e;
+            cursor: pointer;
+        }
 
-            .nameBox {
-                width: 100%;
-            }
+        .nameBox {
+            width: 100%;
+        }
 
-            /* unvisited link */
-            a:link {
-            	color: #0a304e;
-            }
+        /* unvisited link */
+        a:link {
+            color: #0a304e;
+        }
 
-            /* visited link */
-            a:visited {
-            	color: #626262;
-            }
+        /* visited link */
+        a:visited {
+            color: #626262;
+        }
 
-            /* mouse over link */
-            a:hover {
-           		color: black;
-            }
+        /* mouse over link */
+        a:hover {
+            color: black;
+        }
 
-            #form1, #form2 {
-                display: none;
-            }
-		</style>
-	</head>
-    <title>WhenIsBest: Schedule an Event!</title>
+        #form1, #form2 {
+            display: none;
+        }
 
-    <body>
-        <fieldset>
-					<a href="/" title="WhenIsBest Home">
-						<img src="/static/web_logo.png" alt="WhenIsBest Logo" height = "105" width = "592"></a>
-            <legend><h1>Let's schedule an event!</h1></legend>
-            <form action="/schedule-event" method = "post"></form>
-                <b>Name of Event:</b>
-                <br/>
-                <input name="name" type="text" value="" class = "nameBox" id = "eventName"/>
-                <div id="space"></div>
-                <br/>
-                <b>Type of Event:</b>
-                <br/>
-                <input name="event-type" type="radio" value="one-time" id = "eventType"/> One-Time <br/>
-                <input name="event-type" type="radio" value="recurring" id = "eventType"/> Recurring <br/>
-                <div id="result"></div>
-                <br/>
-                <b>Time Increments:</b>
-                <select name = "increments" id = "Choose" onclick="myFunction()">
-                    <option value="0.25">Every 15 Minutes</option>
-                    <option selected="selected" value="0.5">Every 30 Minutes</option>
-                    <option value="1">Every Hour</option>
-                </select>
-                <br/>
-                <br/>
+        #createTable {
+            display: none;
+        }
 
-                <b>Duration of Event:</b>
-                <input type="range" min="0" max="24" step="0.5" value="1" class="slider" id="myRange">
-                <br/>
-                Value: <span id="demo"></span>
-                <script>
-                    var slider = document.getElementById("myRange");
-                    var output = document.getElementById("demo");
-                    output.innerHTML = slider.value + " hour(s) and 0 minute(s)."; // Display the default slider value
+        table, th, td {
+            width: auto;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
 
-                    // Update the current slider value (each time you drag the slider handle)
-                    slider.oninput = function() {
-                        var hours = this.value;
-                        var rhours = Math.floor(hours);
-                        var minutes = (hours - rhours) * 60;
-                        var rminutes = Math.round(minutes);
-                        output.innerHTML = rhours + " hour(s) and " + rminutes + " minute(s).";
+        th, td {
+            padding: 15px;
+        }
+
+
+    </style>
+     <title>WhenIsBest: Schedule an Event!</title>
+</head>
+<body>
+    
+    <fieldset>
+        <legend> <a href="/" title="WhenIsBest Home"><img src="C:\Users\bypan\whenisbest\Frontend\app\static\web_logo.png" alt="WhenIsBest Logo" height = "52.5" width = "296"></a></legend>
+        <h2>Let's schedule an event!</h2>
+        <form action="/schedule-event" method = "post"></form>
+            <b>Name of Event:</b>
+            <br/>
+            <input name="name" type="text" value="" class = "nameBox" id = "eventName"/>
+            <div id="space"></div>
+            <br/>
+            <b>Type of Event:</b>
+            <br/>
+            <input name="event-type" type="radio" value="one-time" id = "eventType1"/> One-Time <br/>
+            <input name="event-type" type="radio" value="recurring" id = "eventType2"/> Recurring <br/>
+            <div id="result"></div>
+            <br/>
+            <b>Time Increments:</b>
+            <select name = "increments" id = "Choose" onclick="myFunction()">
+                <option value="0.25">Every 15 Minutes</option>
+                <option selected="selected" value="0.5">Every 30 Minutes</option>
+                <option value="1">Every Hour</option>
+            </select>
+            <br/>
+            <br/>
+
+            <b>Duration of Event:</b>
+            <input type="range" min="0" max="24" step="0.5" value="1" class="slider" id="myRange">
+            <br/>
+            Value: <span id="demo"></span>
+            <script>
+                var slider = document.getElementById("myRange");
+                var output = document.getElementById("demo");
+                output.innerHTML = slider.value + " hour(s) and 0 minute(s)."; // Display the default slider value
+
+                // Update the current slider value (each time you drag the slider handle)
+                slider.oninput = function() {
+                    var hours = this.value;
+                    var rhours = Math.floor(hours);
+                    var minutes = (hours - rhours) * 60;
+                    var rminutes = Math.round(minutes);
+                    output.innerHTML = rhours + " hour(s) and " + rminutes + " minute(s).";
+                }
+            </script>
+
+            <script>
+                function myFunction() {
+                    var select = document.getElementById("Choose");
+                    var chosen = select.options[select.selectedIndex].value;
+                    if (chosen == "0.25"){
+                        var x = document.getElementById("myRange").step = "0.25";
                     }
-                </script>
-
-                <script>
-                    function myFunction() {
-                        var select = document.getElementById("Choose");
-                        var chosen = select.options[select.selectedIndex].value;
-                        if (chosen == "0.25"){
-                            var x = document.getElementById("myRange").step = "0.25";
-                        }
-                        else if(chosen == "0.5"){
-                            var x = document.getElementById("myRange").step = "0.5";
-                        }
-                        else {
-                            var x = document.getElementById("myRange").step = "1";
-                        }
+                    else if(chosen == "0.5"){
+                        var x = document.getElementById("myRange").step = "0.5";
                     }
-                </script>
-            </form>
-            <br>
-            <br>
-            <button type = "button" id="launch">Create Event!</button>
-        </fieldset>
+                    else {
+                        var x = document.getElementById("myRange").step = "1";
+                    }
+                }
+            </script>
+        </form>
         <br>
-        <form id="form1">
-            <fieldset>
-                <b>Preferred Date Range</b>
-                <br>
-                <b>Start Date: </b><input type="date" name="Start-Date">
-                <b>End Date: </b><input type="date" name="End-Date">
-                <br>
-                <br>
-                <b>Preferred Time Range</b>
-                <br>
-                <b>Start Time: </b><input type="time" name="Start-Time">
-                <b>End Time: </b><input type="time" name="End-Time">
-                <br>
-                <br>
-                <button type="button" id="table-1" onclick="location.href='/oh-no'">Submit</button>
-            </fieldset>
-        </form>
+        <br>
+        <button type = "button" id="launch">Create Event!</button>
+    </fieldset>
+    <br>
+    <form id="form1">
+        <fieldset>
+            <b>Preferred Date Range:</b>
+            <br>
+            <b>Start Date: </b><input type="date" name="Start-Date">
+            <b>End Date: </b><input type="date" name="End-Date">
+            <br>
+            <br>
+            <b>Preferred Time Range:</b>
+            <br>
+            <b>Start Time: </b><input type="time" name="Start-Time">
+            <b>End Time: </b><input type="time" name="End-Time">
+            <br>
+            <br>
+            <button type="button" id="table-1" >Submit</button>
+        </fieldset>
+    </form>
 
-        <form id="form2">
-            <fieldset>
-                <b>Recurrence Frequency</b>
-                <br>
-                <select name = "increments" id = "Choose" onclick="myFunction()">
-                    <option value="1">Meeting Daily</option>
-                    <option selected="selected" value="7">Meeting Weekly</option>
-                    </select>
-                <br>
-                <br>
-                <b>Preferred Time Range</b>
-                <br>
-                <b>Start Time: </b><input type="time" name="Start-Time">
-                    <b>End Time: </b><input type="time" name="End-Time">
-                    <br>
-                    <br>
-                    <b>Preferred Date Range</b>
-                <br>
-                <b>Start Date: </b><input type="date" name="Start-Date">
-                <b>End Date: </b><input type="date" name="End-Date">
-                <br>
-                <br>
-                <button type="button" id="table-2" onclick="location.href='/oh-no'">Submit</button>
-            </fieldset>
-        </form>
-				<!-- <form id="form3">
-					<table id = "onceArray">
-					</table>
-				</form>
-				<form id = "form4">
-					<table id = "repeatingArray">
-					</table>
-				</form> -->
-
-        <script>
-            var space = document.getElementById('space');
-            var eventName = document.getElementById('eventName');
-            var launch = document.getElementById('launch');
-            var radios = document.getElementsByName('event-type');
-            var more = document.getElementById('more');
-
-            launch.addEventListener('click', function() {
-                if (eventName.value == null || eventName.value == '') {
-                    space.innerHTML = "<b>*Please specify the name of the event.</b>";
-                }
-                else{
-                    space.innerHTML = "";
-                    for (var i = 0, length = radios.length; i < length; i++) {
-                        if (radios[i].checked) {
-                            // do whatever you want with the checked radio
-                            result.innerHTML = "";
-                            if(radios[i].value == "one-time"){
-                                $("#form1").show();
-                                $("#form2").hide();
-                            }
-                            else{
-                                $("#form1").hide();
-                                $("#form2").show();
-                            }
-                            // only one radio can be logically checked, don't check the rest
-                            break;
-                        }
-                        else{
-                            result.innerHTML = "<b>*Please select the type of event.</b>";
-                        }
+    <script>
+            var butt = document.getElementById('table-1');
+            butt.addEventListener('click', function(){
+                $("#table-1").hide();
+                $("#createTable").show();
+                var table = document.createElement('table'), tr, td, row, cell;
+                
+                
+                for (row = 0; row < 10; row++) {
+                    tr = document.createElement('tr');
+                    for (cell = 0; cell < 22; cell++) {
+                        td = document.createElement('td');
+                        tr.appendChild(td);
                     }
+                    table.appendChild(tr);
                 }
+                document.getElementById('container').appendChild(table);
             });
         </script>
-    </body>
+
+    <form id="form2">
+        <fieldset>
+            <b>Recurrence Frequency:</b>
+            <br>
+            <select name = "increments" id = "Choose">
+                <option value="1">Meeting Daily</option>
+                <option selected="selected" value="7">Meeting Weekly</option>
+                </select>
+            <br>
+            <br>
+            <b>Preferred Time Range:</b>
+            <br>
+            <b>Start Time: </b><input type="time" name="Start-Time">
+            <b>End Time: </b><input type="time" name="End-Time">
+            <br>
+            <br>
+            <b>Preferred Date Range:</b>
+            <br>
+            <b>Start Date: </b><input type="date" name="Start-Date">
+            <b>End Date: </b><input type="date" name="End-Date">
+            <br>
+            <br>
+            <button type="button" id="table-2" onclick="makeTable()">Submit</button>
+        </fieldset>
+    </form>
+
+    <br>
+
+    <fieldset id="createTable">
+            <div id="container"></div>
+    </fieldset>
+ 
+
+    <script>
+        var space = document.getElementById('space');
+        var eventName = document.getElementById('eventName');
+        var launch = document.getElementById('launch');
+        var radios = document.getElementsByName('event-type');
+        var more = document.getElementById('more');
+
+        launch.addEventListener('click', function() {
+            if (eventName.value == null || eventName.value == '') {
+                space.innerHTML = "<b>*Please specify the name of the event.</b>";
+            }
+            else{
+                space.innerHTML = "";
+                for (var i = 0, length = radios.length; i < length; i++) {
+                    if (radios[i].checked) {
+                        // do whatever you want with the checked radio
+                        result.innerHTML = "";
+                        if(radios[i].value == "one-time"){
+                            $("#form1").show();
+                            $("#form2").hide();
+                        }
+                        else{
+                            $("#form1").hide();
+                            $("#form2").show();
+                        }
+                        $("#launch").hide();
+                        document.getElementById('eventName').disabled = true;
+                        document.getElementById('eventType1').disabled = true;
+                        document.getElementById('eventType2').disabled = true;
+                        document.getElementById("myRange").disabled = true;
+                        document.getElementById("Choose").disabled = true;
+
+                        // only one radio can be logically checked, don't check the rest
+                        break;
+                    }
+                    else{
+                        result.innerHTML = "<b>*Please select the type of event.</b>";
+                    }
+                }
+            }
+        });
+    </script>
+</body>
 </html>
