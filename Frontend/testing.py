@@ -73,8 +73,8 @@ class TestEventMethods(unittest.TestCase):
         self.assertEqual(User1.getUser('blp27@case.edu'),'blp27@case.edu')
         deleteUser('blp27.edu')
         self.assertFalse(User1.getUser('blp27.edu'))
-        
         return
+
 
     #def test_scheduler(self):
      #   self.assertEqual(test.attendeeSubmit(),'whenisbest.com/event/<eventID>/results')
