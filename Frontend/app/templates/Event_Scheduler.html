@@ -298,7 +298,12 @@
                                 $("#form2").show();
                             }
                             $("#launch").hide();
-                            
+                            document.getElementById('eventName').readonlu = true;
+                            document.getElementById('eventType1').readonly = true;
+                            document.getElementById('eventType2').readonly = true;
+                            document.getElementById("myRange").readonly = true;
+                            document.getElementById("Choose").readonly = true;
+
                             // only one radio can be logically checked, don't check the rest
                             break;
                         }
