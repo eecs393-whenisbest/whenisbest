@@ -1,12 +1,6 @@
 from app import sql
 
 
-def attendeeAccept(eventID, userName, userEmail):
-    query = "insert into Responses(eventID, userName, userEmail) values (%s, %s, %s)"
-    values = (eventID, userName, userEmail)
-    sql.createQuery(query, values)
-
-
 def getAttendeeName(userEmail, eventID):
     query = "select userName from Responses where userEmail = %s and eventID = %s"
     values = (userEmail, eventID)

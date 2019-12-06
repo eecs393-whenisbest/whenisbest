@@ -11,31 +11,27 @@ def createEvent(name, duration, isRecurring):
 
 
 def getName(eventID):
-    return eventHandler.getName(eventID)
+    return eventHandler.getName(eventID)[0][0]
 
 
 def getDuration(eventID):
-    return eventHandler.getDuration(eventID)
+    return eventHandler.getDuration(eventID)[0][0]
 
 
 def getRecurring(eventID):
-    return eventHandler.getRecurring(eventID)
+    return eventHandler.getRecurring(eventID)[0][0]
 
 
 def getCreator(eventID):
-    return eventHandler.getOwner(eventID)
+    return eventHandler.getOwner(eventID)[0][0]
 
 
 def getEventID(creator, schedName):
-    return eventHandler.getEventID(creator, schedName)
-
-
-def attendeeAccept(attName, attEmail, eventID):
-    return attendeeHandler.attendeeAccept(eventID, attName, attEmail)
+    return eventHandler.getEventID(creator, schedName)[0][0]
 
 
 def getAttendeeName(attEmail, eventID):
-    return attendeeHandler.getAttendeeName(attEmail, eventID)
+    return attendeeHandler.getAttendeeName(attEmail, eventID)[0][0]
 
 
 def attendeeAvailability(attEmail, eventID):
@@ -43,8 +39,8 @@ def attendeeAvailability(attEmail, eventID):
 
 
 def attendeeSubmit(attEmail, eventID, userName, timeList):
-    return attendeeHandler.attendeeSubmit(attEmail, eventID, userName, timeList)
+    return attendeeHandler.attendeeSubmit(attEmail, eventID, userName, timeList)[0][0]
 
 
 def attendeeEdit(attEmail, eventID, timeList):
-    return attendeeHandler.attendeeEdit(attEmail, eventID, timeList)
+    return attendeeHandler.attendeeEdit(attEmail, eventID, timeList)[0][0]
