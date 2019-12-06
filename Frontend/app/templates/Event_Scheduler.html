@@ -89,238 +89,237 @@
 </head>
 <body>
     <form action='/schedule-event' method="post">
-    <fieldset>
-        <legend> <a href="/" title="WhenIsBest Home"><img src="{{ url_for('static', filename='web_logo.png') }}" alt="WhenIsBest Logo" height = "52.5" width = "296"></a></legend>
-        <h2>Let's schedule an event!</h2>
-            <b>Name of Event:</b>
-            <br/>
-            <input type="text" name = "eventName" class = "nameBox" id = "eventName"/>
-            <div id="space"></div>
-            <br/>
-            <b>Type of Event:</b>
-            <br/>
-            <input name="event-type" type="radio" value="one-time" id = "eventType1"/> One-Time <br/>
-            <input name="event-type" type="radio" value="recurring" id = "eventType2"/> Recurring <br/>
-            <div id="result"></div>
-            <br/>
-            <b>Time Increments:</b>
-            <select name = "increments" id = "Choose" onclick="myFunction()">
-                <option value="0.25">Every 15 Minutes</option>
-                <option selected="selected" value="0.5">Every 30 Minutes</option>
-                <option value="1">Every Hour</option>
-            </select>
-            <br/>
-            <br/>
-
-            <b>Duration of Event:</b>
-            <input type="range" min="0" max="24" step="0.5" value="1" class="slider" id="myRange">
-            <br/>
-            Value: <span id="demo"></span>
-            <script>
-                var slider = document.getElementById("myRange");
-                var output = document.getElementById("demo");
-                output.innerHTML = slider.value + " hour(s) and 0 minute(s)."; // Display the default slider value
-
-                // Update the current slider value (each time you drag the slider handle)
-                slider.oninput = function() {
-                    var hours = this.value;
-                    var rhours = Math.floor(hours);
-                    var minutes = (hours - rhours) * 60;
-                    var rminutes = Math.round(minutes);
-                    output.innerHTML = rhours + " hour(s) and " + rminutes + " minute(s).";
-                }
-            </script>
-
-            <script>
-                function myFunction() {
-                    var select = document.getElementById("Choose");
-                    var chosen = select.options[select.selectedIndex].value;
-                    if (chosen == "0.25"){
-                        var x = document.getElementById("myRange").step = "0.25";
-                    }
-                    else if(chosen == "0.5"){
-                        var x = document.getElementById("myRange").step = "0.5";
-                    }
-                    else {
-                        var x = document.getElementById("myRange").step = "1";
-                    }
-                }
-            </script>
-        <br>
-        <br>
-        <button type = "button" id="launch">Create Event!</button>
-    </fieldset>
-    <br>
-    <div id="form1">
         <fieldset>
-            <b>Preferred Date Range:</b>
+            <legend> <a href="/" title="WhenIsBest Home"><img src="{{ url_for('static', filename='web_logo.png') }}" alt="WhenIsBest Logo" height = "52.5" width = "296"></a></legend>
+            <h2>Let's schedule an event!</h2>
+                <b>Name of Event:</b>
+                <br/>
+                <input type="text" name = "eventName" class = "nameBox" id = "eventName"/>
+                <div id="space"></div>
+                <br/>
+                <b>Type of Event:</b>
+                <br/>
+                <input name="event-type" type="radio" value="one-time" id = "eventType1"/> One-Time <br/>
+                <input name="event-type" type="radio" value="recurring" id = "eventType2"/> Recurring <br/>
+                <div id="result"></div>
+                <br/>
+                <b>Time Increments:</b>
+                <select name = "increments" id = "Choose" onclick="myFunction()">
+                    <option value="0.25">Every 15 Minutes</option>
+                    <option selected="selected" value="0.5">Every 30 Minutes</option>
+                    <option value="1">Every Hour</option>
+                </select>
+                <br/>
+                <br/>
+
+                <b>Duration of Event:</b>
+                <input type="range" min="0" max="24" step="0.5" value="1" class="slider" id="myRange">
+                <br/>
+                Value: <span id="demo"></span>
+                <script>
+                    var slider = document.getElementById("myRange");
+                    var output = document.getElementById("demo");
+                    output.innerHTML = slider.value + " hour(s) and 0 minute(s)."; // Display the default slider value
+
+                    // Update the current slider value (each time you drag the slider handle)
+                    slider.oninput = function() {
+                        var hours = this.value;
+                        var rhours = Math.floor(hours);
+                        var minutes = (hours - rhours) * 60;
+                        var rminutes = Math.round(minutes);
+                        output.innerHTML = rhours + " hour(s) and " + rminutes + " minute(s).";
+                    }
+                </script>
+
+                <script>
+                    function myFunction() {
+                        var select = document.getElementById("Choose");
+                        var chosen = select.options[select.selectedIndex].value;
+                        if (chosen == "0.25"){
+                            var x = document.getElementById("myRange").step = "0.25";
+                        }
+                        else if(chosen == "0.5"){
+                            var x = document.getElementById("myRange").step = "0.5";
+                        }
+                        else {
+                            var x = document.getElementById("myRange").step = "1";
+                        }
+                    }
+                </script>
             <br>
-            <b>Start Date: </b><input type="date" name="Start-Date", id="onetimestart">
-            <b>End Date: </b><input type="date" name="End-Date", id="onetimeend">
             <br>
-            <br>
-            <b>Preferred Time Range:</b>
-            <br>
-            <b>Start Time: </b><input type="time" name="Start-Time", id="otstarthour">
-            <b>End Time: </b><input type="time" name="End-Time", id="otendhour">
-            <br>
-            <br>
-            <button type="button" id="table-1" >Submit</button>
+            <button type = "button" id="launch">Create Event!</button>
         </fieldset>
-    </div>
+        <br>
+        <div id="form1">
+            <fieldset>
+                <b>Preferred Date Range:</b>
+                <br>
+                <b>Start Date: </b><input type="date" name="Start-Date", id="onetimestart">
+                <b>End Date: </b><input type="date" name="End-Date", id="onetimeend">
+                <br>
+                <br>
+                <b>Preferred Time Range:</b>
+                <br>
+                <b>Start Time: </b><input type="time" name="Start-Time", id="otstarthour">
+                <b>End Time: </b><input type="time" name="End-Time", id="otendhour">
+                <br>
+                <br>
+                <button type="button" id="table-1" >Submit</button>
+            </fieldset>
+        </div>
 
 
-    <script>
-            var butt = document.getElementById('table-1');
-            butt.addEventListener('click', function(){
-                var day = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-                var table = document.createElement('table'), tr, td, row, cell;
-                var startDate = new Date(document.getElementById('onetimestart').value);
-                var endDate = new Date(document.getElementById('onetimeend').value);
-                var startTime = document.getElementById('otstarthour').value;
-                var endTime = document.getElementById('otendhour').value;
-                var inc = document.getElementById('Choose').value;
-                var normalizedStart = Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
-                var normalizedEnd = Date.UTC(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
-                var days =  Math.floor((normalizedEnd-normalizedStart) / (1000*24*60*60));
-                var timeStart = new Date("01/01/2019 " + startTime).getHours();
-                var timeEnd = new Date("01/01/2019 " + endTime).getHours();
-                var totalHours = timeEnd-timeStart;
-                var rowCount;
-                var offset = 0;
-                var buffer = 0;
-                if(inc == 0.25){
-                  rowCount = totalHours*4;
-                  offset = 49;
-                  buffer = 4; //corrections for time subunits
-                }
-                else if(inc == 0.5){
-                  rowCount = totalHours*2;
-                  offset = 25;
-                  buffer = 2; // corrections for subunits of time
+        <script>
+                var butt = document.getElementById('table-1');
+                butt.addEventListener('click', function(){
+                    var day = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+                    var table = document.createElement('table'), tr, td, row, cell;
+                    var startDate = new Date(document.getElementById('onetimestart').value);
+                    var endDate = new Date(document.getElementById('onetimeend').value);
+                    var startTime = document.getElementById('otstarthour').value;
+                    var endTime = document.getElementById('otendhour').value;
+                    var inc = document.getElementById('Choose').value;
+                    var normalizedStart = Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+                    var normalizedEnd = Date.UTC(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
+                    var days =  Math.floor((normalizedEnd-normalizedStart) / (1000*24*60*60));
+                    var timeStart = new Date("01/01/2019 " + startTime).getHours();
+                    var timeEnd = new Date("01/01/2019 " + endTime).getHours();
+                    var totalHours = timeEnd-timeStart;
+                    var rowCount;
+                    var offset = 0;
+                    var buffer = 0;
+                    if(inc == 0.25){
+                        rowCount = totalHours*4;
+                        offset = 49;
+                        buffer = 4; //corrections for time subunits
+                    }
+                    else if(inc == 0.5){
+                        rowCount = totalHours*2;
+                        offset = 25;
+                        buffer = 2; // corrections for subunits of time
+                    }
+                    else{
+                        rowCount = totalHours;
+                        offset = 13;
+                        buffer = 1;
+                    }
+                    if(totalHours < 0.25){
+                        alert("Please select a valid time range!");
+                        $("#table-1").show();
+                        $("#createTable").hide();
+                    }
+                    else if(days < 0){
+                        alert("Please select a valid day range!");
+                        $("#table-1").show();
+                        $("#createTable").hide();
+                    }
+                    else{
+                        $("#table-1").hide();
+                        $("#createTable").show();
+                        tr = document.createElement('tr');
+                        for (row = 0; row < rowCount + buffer; row++) {
+                            tr = document.createElement('tr');
+                            for (cell = 0; cell < days + 1; cell++) {
+                                td = document.createElement('td');
+                                tr.appendChild(td);
+                                var myDate = new Date(startDate.getTime() + (cell+1)*1000*60*60*24);
+                                if(row == 0){
+                                var text = day[(startDate.getDay() + cell) % 7];
+                                var finalText = `<b> ${text}<br>${myDate.getMonth() + 1}.${myDate.getDate()}</b>`;
+                                td.innerHTML = finalText;
+                                }
+                                else{
+                                var minutesOffset = ((row-offset)*inc)*1000*60*60 ; // minutes adjusted for DST
+                                var dayOffset = (cell+1)*1000*60*60*24;
+                                var shiftedDate = new Date(startDate.getTime() + minutesOffset + dayOffset);
+                                inHT = `<input type='checkbox' name='a', value=${shiftedDate.getTime()}><br>${shiftedDate.getHours()}:${('0' + shiftedDate.getMinutes()).slice(-2)}`;
+                                td.innerHTML = inHT;
+                                }
+                            }
+                            table.appendChild(tr);
+                        }
+                        document.getElementById('container').appendChild(table);
+                }});
+            </script>
+
+        <div id="form2">
+            <fieldset>
+                <b>Recurrence Frequency:</b>
+                <br>
+                <select name = "increments" id = "Choose">
+                    <option value="1">Meeting Daily</option>
+                    <option selected="selected" value="7">Meeting Weekly</option>
+                    </select>
+                <br>
+                <br>
+                <b>Preferred Time Range:</b>
+                <br>
+                <b>Start Time: </b><input type="time" name="Start-Time">
+                <b>End Time: </b><input type="time" name="End-Time">
+                <br>
+                <br>
+                <b>Preferred Date Range:</b>
+                <br>
+                <b>Start Date: </b><input type="date" name="Start-Date">
+                <b>End Date: </b><input type="date" name="End-Date">
+                <br>
+                <br>
+                <button type="button" id="table-2" onclick="makeTable()">Submit</button>
+            </fieldset>
+        </div>
+
+        <br>
+
+        <script>
+            var space = document.getElementById('space');
+            var eventName = document.getElementById('eventName');
+            var launch = document.getElementById('launch');
+            var radios = document.getElementsByName('event-type');
+            var more = document.getElementById('more');
+
+            launch.addEventListener('click', function() {
+                if (eventName.value == null || eventName.value == '') {
+                    space.innerHTML = "<b>*Please specify the name of the event.</b>";
                 }
                 else{
-                  rowCount = totalHours;
-                  offset = 13;
-                  buffer = 1;
+                    space.innerHTML = "";
+                    for (var i = 0, length = radios.length; i < length; i++) {
+                        if (radios[i].checked) {
+                            // do whatever you want with the checked radio
+                            result.innerHTML = "";
+                            if(radios[i].value == "one-time"){
+                                $("#form1").show();
+                                $("#form2").hide();
+                            }
+                            else{
+                                $("#form1").hide();
+                                $("#form2").show();
+                            }
+                            $("#launch").hide();
+                            document.getElementById('eventName').disabled = true;
+                            document.getElementById('eventType1').disabled = true;
+                            document.getElementById('eventType2').disabled = true;
+                            document.getElementById("myRange").disabled = true;
+                            document.getElementById("Choose").disabled = true;
+
+                            // only one radio can be logically checked, don't check the rest
+                            break;
+                        }
+                        else{
+                            result.innerHTML = "<b>*Please select the type of event.</b>";
+                        }
+                    }
                 }
-                if(totalHours < 0.25){
-                  alert("Please select a valid time range!");
-                  $("#table-1").show();
-                  $("#createTable").hide();
-                }
-                else if(days < 0){
-                    alert("Please select a valid day range!");
-                    $("#table-1").show();
-                    $("#createTable").hide();
-                }
-                else{
-                  $("#table-1").hide();
-                  $("#createTable").show();
-                  tr = document.createElement('tr');
-                  for (row = 0; row < rowCount + buffer; row++) {
-                      tr = document.createElement('tr');
-                      for (cell = 0; cell < days + 1; cell++) {
-                          td = document.createElement('td');
-                          tr.appendChild(td);
-                          var myDate = new Date(startDate.getTime() + (cell+1)*1000*60*60*24);
-                          if(row == 0){
-                            var text = day[(startDate.getDay() + cell) % 7];
-                            var finalText = `<b> ${text}<br>${myDate.getMonth() + 1}.${myDate.getDate()}</b>`;
-                            td.innerHTML = finalText;
-                          }
-                          else{
-                            var minutesOffset = ((row-offset)*inc)*1000*60*60 ; // minutes adjusted for DST
-                            var dayOffset = (cell+1)*1000*60*60*24;
-                            var shiftedDate = new Date(startDate.getTime() + minutesOffset + dayOffset);
-                            inHT = `<input type='checkbox' name='a', value=${shiftedDate.getTime()}><br>${shiftedDate.getHours()}:${('0' + shiftedDate.getMinutes()).slice(-2)}`;
-                            td.innerHTML = inHT;
-                          }
-                      }
-                      table.appendChild(tr);
-                  }
-                  document.getElementById('container').appendChild(table);
-            }});
+            });
         </script>
 
-    <div id="form2">
-        <fieldset>
-            <b>Recurrence Frequency:</b>
-            <br>
-            <select name = "increments" id = "Choose">
-                <option value="1">Meeting Daily</option>
-                <option selected="selected" value="7">Meeting Weekly</option>
-                </select>
-            <br>
-            <br>
-            <b>Preferred Time Range:</b>
-            <br>
-            <b>Start Time: </b><input type="time" name="Start-Time">
-            <b>End Time: </b><input type="time" name="End-Time">
-            <br>
-            <br>
-            <b>Preferred Date Range:</b>
-            <br>
-            <b>Start Date: </b><input type="date" name="Start-Date">
-            <b>End Date: </b><input type="date" name="End-Date">
-            <br>
-            <br>
-            <button type="button" id="table-2" onclick="makeTable()">Submit</button>
-        </fieldset>
-    </div>
-
-    <br>
-
-    <fieldset id="createTable">
+        <fieldset id="createTable">
             <!-- <form action='/schedule-event' method="post"> -->
             <div id="container"></div>
             <input type="submit" value="Submit">
             <!-- </form> -->
-    </fieldset>
-
-
-    <script>
-        var space = document.getElementById('space');
-        var eventName = document.getElementById('eventName');
-        var launch = document.getElementById('launch');
-        var radios = document.getElementsByName('event-type');
-        var more = document.getElementById('more');
-
-        launch.addEventListener('click', function() {
-            if (eventName.value == null || eventName.value == '') {
-                space.innerHTML = "<b>*Please specify the name of the event.</b>";
-            }
-            else{
-                space.innerHTML = "";
-                for (var i = 0, length = radios.length; i < length; i++) {
-                    if (radios[i].checked) {
-                        // do whatever you want with the checked radio
-                        result.innerHTML = "";
-                        if(radios[i].value == "one-time"){
-                            $("#form1").show();
-                            $("#form2").hide();
-                        }
-                        else{
-                            $("#form1").hide();
-                            $("#form2").show();
-                        }
-                        $("#launch").hide();
-                        document.getElementById('eventName').disabled = true;
-                        document.getElementById('eventType1').disabled = true;
-                        document.getElementById('eventType2').disabled = true;
-                        document.getElementById("myRange").disabled = true;
-                        document.getElementById("Choose").disabled = true;
-
-                        // only one radio can be logically checked, don't check the rest
-                        break;
-                    }
-                    else{
-                        result.innerHTML = "<b>*Please select the type of event.</b>";
-                    }
-                }
-            }
-        });
-    </script>
+        </fieldset>
     </form>
 </body>
 </html>
