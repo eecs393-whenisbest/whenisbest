@@ -162,8 +162,8 @@
             <br>
             <b>Preferred Time Range:</b>
             <br>
-            <b>Start Time: </b><input type="time" name="Start-Time">
-            <b>End Time: </b><input type="time" name="End-Time">
+            <b>Start Time: </b><input type="time" name="Start-Time", id="otstarthour">
+            <b>End Time: </b><input type="time" name="End-Time", id="otendhour">
             <br>
             <br>
             <button type="button" id="table-1" >Submit</button>
@@ -173,24 +173,53 @@
     <script>
             var butt = document.getElementById('table-1');
             butt.addEventListener('click', function(){
-                $("#table-1").hide();
-                $("#createTable").show();
                 var table = document.createElement('table'), tr, td, row, cell;
-                var oStart = new Date(document.getElementById('onetimestart').value);
-                var oEnd = new Date(document.getElementById('onetimeend').value);
-                var nStart = Date.UTC(oStart.getFullYear(), oStart.getMonth(), oStart.getDate());
-                var nEnd = Date.UTC(oEnd.getFullYear(), oEnd.getMonth(), oEnd.getDate());
-                days =  Math.floor((nEnd-nStart) / (1000*24*60*60));
-                for (row = 0; row < 10; row++) {
-                    tr = document.createElement('tr');
-                    for (cell = 0; cell < days+1; cell++) {
-                        td = document.createElement('td');
-                        tr.appendChild(td);
-                    }
-                    table.appendChild(tr);
+                var startDate = new Date(document.getElementById('onetimestart').value);
+                var endDate = new Date(document.getElementById('onetimeend').value);
+                var startTime = document.getElementById('otstarthour').value;
+                var endTime = document.getElementById('otendhour').value;
+                var inc = document.getElementById('Choose').value;
+                var normalizedStart = Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+                var normalizedEnd = Date.UTC(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
+                var days =  Math.floor((normalizedEnd-normalizedStart) / (1000*24*60*60));
+                var timeStart = new Date("01/01/2019 " + startTime).getHours();
+                var timeEnd = new Date("01/01/2019 " + endTime).getHours();
+                var totalHours = timeEnd-timeStart;
+                console.log(totalHours)
+                var rowCount;
+                if(inc == 0.25){
+                  rowCount = totalHours*4;
                 }
-                document.getElementById('container').appendChild(table);
-            });
+                else if(inc == 0.5){
+                  rowCount = totalHours*2;
+                }
+                else{
+                  rowCount = totalHours;
+                }
+                if(totalHours < 0.25){
+                  alert("Please select a valid time range!");
+                  $("#table-1").show();
+                  $("#createTable").hide();
+                }
+                else if(days < 1){
+                    alert("Please select a valid day range!");
+                    $("#table-1").show();
+                    $("#createTable").hide();
+                }
+                else{
+                  $("#table-1").hide();
+                  $("#createTable").show();
+                  tr = document.createElement('tr');
+                  for (row = 0; row < rowCount; row++) {
+                      tr = document.createElement('tr');
+                      for (cell = 0; cell < days; cell++) {
+                          td = document.createElement('td');
+                          tr.appendChild(td);
+                      }
+                      table.appendChild(tr);
+                  }
+                  document.getElementById('container').appendChild(table);
+            }});
         </script>
 
     <form id="form2">
