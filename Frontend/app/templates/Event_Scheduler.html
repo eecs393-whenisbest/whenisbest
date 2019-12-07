@@ -83,7 +83,13 @@
             padding: 15px;
         }
 
+        .table-container {
+            text-align: center;
+        }
 
+        .box{
+            display: inline-block;
+        }
     </style>
      <title>WhenIsBest: Schedule an Event!</title>
 </head>
@@ -352,7 +358,7 @@
                   $("#createTable").hide();
               }
               else{
-                  $("#table-1").hide();
+                  $("#table-2").hide();
                   $("#createTable").show();
                   tr = document.createElement('tr');
                   for (row = 0; row < rowCount + 1 ; row++) {
@@ -426,13 +432,14 @@
         </script>
 
         <br>
-
-        <fieldset id="createTable">
-            <!-- <form action='/schedule-event' method="post"> -->
-            <div id="container"></div>
-            <input type="submit" value="Submit">
-            <!-- </form> -->
-        </fieldset>
+        <div id="createTable" class = "table-container">
+        <!-- <form action='/schedule-event' method="post"> -->
+        <div id="container"class = "box">
+        </div>
+        <br>
+        <input type="submit" value="Create This Event!">
+        <!-- </form> -->
+        </div>
     </form>
 </body>
 </html>
