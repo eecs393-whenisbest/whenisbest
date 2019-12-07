@@ -109,12 +109,24 @@ def landing(eventID):
             session['eventID'] = eventID
             if result != []:
                 return render_template('attendee_responses.html', result=result)
-            return redirect(url_for('home'))
+            return redirect(url_for('emailLoader', eventID=eventID))
         else:
             return redirect(url_for('home'))
     else:
         session['eventID'] = eventID
         return render_template('Responder.html')
+
+
+@app.route('/email/<eventID>')
+def emailLoader(eventID):
+    if 'userID' in session:
+        if eventHandler.getOwner(eventID)[0][0] == session['userID']:
+            session['eventID'] = eventID
+            return render_template('Event_Invite.html')
+        else:
+            return(redirect(url_for('home')))
+    else:
+        return redirect(url_for('home'))
 
 
 @app.route('/sendTimes/<time>')
@@ -173,6 +185,16 @@ def makeMyEvent():
             timeList.append(datetime.fromtimestamp(temp))
         eventHandler.createEvent(eventName, runtime, offset, session['userID'], increment, timeList)
     return redirect(url_for('getMyEvents', userID=session['userID']))
+
+
+@app.route('/emailme', methods=['POST'])
+def sendInvite():
+    eventID = session['eventID']
+    resp = request.form.get('Recipients')
+    list = resp.split(",")
+    eventHandler.shareEvent(eventID, list)
+    return redirect(url_for('home'))
+
 
 
 @app.route('/create-user', methods=['POST'])
