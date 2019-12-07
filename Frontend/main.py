@@ -1,4 +1,5 @@
 #!/usr/bin/python
+from app import app
 from app import eventHandler
 from app import attendeeHandler
 from datetime import datetime, timedelta
