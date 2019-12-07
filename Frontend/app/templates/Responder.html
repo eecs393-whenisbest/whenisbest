@@ -1,1 +1,56 @@
-{{ results }}
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link href='https://fonts.googleapis.com/css?family=Titillium Web' rel='stylesheet'>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: 'Titillium Web';
+            text-align: left;
+            color: #0a304e;
+        }
+        .element{
+            width: 500px;
+            margin: 0 auto;
+        }
+        .nameBox {
+            width: 100%;
+        }
+
+        /* unvisited link */
+        a:link {
+            color: #0a304e;
+        }
+
+        /* visited link */
+        a:visited {
+            color: #626262;
+        }
+
+        /* mouse over link */
+        a:hover {
+            color: black;
+        }
+    </style>
+    <title>WhenIsBest: Respond!</title>
+</head>
+<body>
+    <form action='*FILL IN*' method="post">
+        <fieldset>
+            <legend> <a href="/" title="WhenIsBest Home"><img src="{{ url_for('static', filename='web_logo.png') }}" alt="WhenIsBest Logo" height = "52.5" width = "296"></a></legend>
+            <h2>Responding to an Event? Let's make it so!</h2>
+            <b>Enter Name:</b>
+            <br>
+            <input type="text" name = "event-name" class = "nameBox" id = "eventName">
+            <b>Enter Name of Event:</b>
+            <br>
+            <input type="text" name = "event-name" class = "nameBox" id = "eventName">
+        </fieldset>
+    </form>>
+    <input type="submit" value="Let's Submit!">
+</body>
+</html>
+
+
