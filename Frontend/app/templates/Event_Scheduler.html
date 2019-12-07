@@ -194,9 +194,8 @@
         <script>
             var butt = document.getElementById('table-1');
             var butt_2 = document.getElementById('table-2');
-
+            var day = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
             butt.addEventListener('click', function(){
-                var day = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
                 var table = document.createElement('table'), tr, td, row, cell;
                 var startDate = new Date(document.getElementById('onetimestart').value);
                 var endDate = new Date(document.getElementById('onetimeend').value);
@@ -270,9 +269,10 @@
                 var select = document.getElementById("Choose-2");
                 var chosen = select.options[select.selectedIndex].value;
                 var table = document.createElement('table'), tr, td, row, cell;
+                var startTime = document.getElementById('Start').value;
+                var endTime = document.getElementById('End').value;
                 if(chosen == 1){
-                    var startTime = document.getElementById('Start').value;
-                    var startDate = new Date("01/01/2019 " + startTime);                    var endTime = document.getElementById('End').value;
+                    var startDate = new Date("01/01/2019 " + startTime);
                     var inc = document.getElementById('Choose').value;
                     var timeStart = new Date("01/01/2019 " + startTime).getHours();
                     var timeEnd = new Date("01/01/2019 " + endTime).getHours();
@@ -323,8 +323,61 @@
             }
 
             else{
-                alert("PEE");
-            }
+              var startDate = new Date("01/01/2019 " + startTime);
+              var inc = document.getElementById('Choose').value;
+              var timeStart = new Date("01/01/2019 " + startTime).getHours();
+              var timeEnd = new Date("01/01/2019 " + endTime).getHours();
+              var totalHours = timeEnd-timeStart;
+              var rowCount;
+              var offset = 0;
+              var buffer = 0;
+              if(inc == 0.25){
+                  rowCount = totalHours*4;
+                  offset = 49;
+                  buffer = 4; //corrections for time subunits
+              }
+              else if(inc == 0.5){
+                  rowCount = totalHours*2;
+                  offset = 25;
+                  buffer = 2; // corrections for subunits of time
+              }
+              else{
+                  rowCount = totalHours;
+                  offset = 13;
+                  buffer = 1;
+              }
+              if(totalHours < 0.25){
+                  alert("Please select a valid time range!");
+                  $("#table-1").show();
+                  $("#createTable").hide();
+              }
+              else{
+                  $("#table-1").hide();
+                  $("#createTable").show();
+                  tr = document.createElement('tr');
+                  for (row = 0; row < rowCount + 1 ; row++) {
+                      tr = document.createElement('tr');
+                      for (cell = 0; cell < 7; cell++) {
+                          td = document.createElement('td');
+                          tr.appendChild(td);
+                          if(row == 0){
+                            inHT = `<b> ${day[row]} </b>`
+                            td.innerHTML = inHT;
+                          }
+                          else{
+                          var myDate = new Date(startDate.getTime() + (cell+1)*1000*60*60*24);
+                              var minutesOffset = (row)*inc*1000*60*60 ; // minutes adjusted for DST
+                              var dayOffset = (cell+1)*1000*60*60*24;
+                              var shiftedDate = new Date(startDate.getTime() + minutesOffset + dayOffset);
+                              inHT = `<input type='checkbox' name='a', value=${shiftedDate.getTime()}><br>${shiftedDate.getHours()}:${('0' + shiftedDate.getMinutes()).slice(-2)}`;
+                              td.innerHTML = inHT;
+                            }
+                      }
+                      table.appendChild(tr);
+                  }
+                  document.getElementById('container').appendChild(table);
+                }
+              }
             });
          </script>
 

@@ -160,6 +160,16 @@ def lmi():
         return redirect(url_for('loginPage'))
 
 
+@app.route('/emailme', methods=['POST'])
+def sendInvite():
+    eventID = session['eventID']
+    resp = request.form.get('Recipients')
+    resp = resp.replace(" ", "")
+    list = resp.split(",")
+    eventHandler.shareEvent(eventID, list)
+    return redirect(url_for('home'))
+
+
 @app.route('/schedule-event', methods=['POST'])
 def makeMyEvent():
     eventName = request.form.get('event-name')
@@ -185,16 +195,6 @@ def makeMyEvent():
             timeList.append(datetime.fromtimestamp(temp))
         eventHandler.createEvent(eventName, runtime, offset, session['userID'], increment, timeList)
     return redirect(url_for('getMyEvents', userID=session['userID']))
-
-
-@app.route('/emailme', methods=['POST'])
-def sendInvite():
-    eventID = session['eventID']
-    resp = request.form.get('Recipients')
-    list = resp.split(",")
-    eventHandler.shareEvent(eventID, list)
-    return redirect(url_for('home'))
-
 
 
 @app.route('/create-user', methods=['POST'])
