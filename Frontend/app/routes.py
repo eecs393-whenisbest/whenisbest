@@ -114,7 +114,7 @@ def landing(eventID):
             return redirect(url_for('home'))
     else:
         session['eventID'] = eventID
-        return redirect(url_for('fnfe'))
+        return render_template('Responder.html', result=eventHandler.getTimes(eventID))
         # render_template()'Responder.html', eventID=eventID)
 
 
