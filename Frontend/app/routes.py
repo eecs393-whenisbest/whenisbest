@@ -114,7 +114,8 @@ def landing(eventID):
             return redirect(url_for('home'))
     else:
         session['eventID'] = eventID
-        return render_template('Responder.html', result=eventHandler.getTimes(eventID))
+        return render_template('Responder.html', eventName=eventHandler.getName(eventID)[0][0], eventID=eventID)
+        # result=eventHandler.getTimes(eventID))
         # render_template()'Responder.html', eventID=eventID)
 
 
@@ -144,7 +145,7 @@ def sendTimes(time):
 def attendeeResponses(eventID, attEmail):
     session['eventID'] = eventID
     if eventID == session['eventID']:
-        return render_template('my_response.html', result=attendeeHandler.attendeeAvailability(attEmail, eventID))
+        return render_template('Responder.html', result=attendeeHandler.attendeeAvailability(attEmail, eventID))
     else:
         return redirect(url_for('home'))
 
@@ -214,13 +215,23 @@ def createUser():
 # PARAMETRIC POST #
 @app.route('/respond/<eventID>', methods=['POST'])
 def attendeeAvailable(eventID):
-    email = request.forms['email']
+    email = request.form['my-email']
     session['eventID'] = eventID
-    name = request.forms['name']
-    timeList = request.forms['timeList']
+    name = request.form['my-name']
+    timeList = request.form['timeList']
     session['attEmail'] = email
+    timeList = []
+    if(len(request.form.getlist('timeList')) < 2):
+        times = request.form.get('timeList')
+        t = int(times) / 1000
+        timeList.append(datetime.fromtimestamp(t))
+    else:
+        times = request.form.getlist('timeList')
+        for t in times:
+            temp = int(t) / 1000
+            timeList.append(datetime.fromtimestamp(temp))
     attendeeHandler.attendeeSubmit(email, eventID, name, timeList)
-    return redirect(url_for('attendeeResponses'))
+    return redirect(url_for('home'))
 
 
 def jsonifySingle(e):
