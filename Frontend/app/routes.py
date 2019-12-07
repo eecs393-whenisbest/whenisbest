@@ -92,7 +92,7 @@ def getMyEvents(userID):
         result = eventHandler.getAllEvents(userID)
         return render_template('events_list.html', result=result)
     else:
-        return redirect(url_for('home'))
+        return redirect('/oh-no')
 
 
 @app.route('/<userID>/schedule')
@@ -114,7 +114,8 @@ def landing(eventID):
             return redirect(url_for('home'))
     else:
         session['eventID'] = eventID
-        return render_template('Responder.html')
+        return redirect(url_for('fnfe'))
+        # render_template()'Responder.html', eventID=eventID)
 
 
 @app.route('/email/<eventID>')

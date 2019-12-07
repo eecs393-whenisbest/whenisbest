@@ -361,12 +361,12 @@
                           td = document.createElement('td');
                           tr.appendChild(td);
                           if(row == 0){
-                            inHT = `<b> ${day[row]} </b>`
+                            inHT = `<b> ${day[cell]} </b>`
                             td.innerHTML = inHT;
                           }
                           else{
                           var myDate = new Date(startDate.getTime() + (cell+1)*1000*60*60*24);
-                              var minutesOffset = (row)*inc*1000*60*60 ; // minutes adjusted for DST
+                              var minutesOffset = (row-1)*inc*1000*60*60 ; // minutes adjusted for DST
                               var dayOffset = (cell+1)*1000*60*60*24;
                               var shiftedDate = new Date(startDate.getTime() + minutesOffset + dayOffset);
                               inHT = `<input type='checkbox' name='a', value=${shiftedDate.getTime()}><br>${shiftedDate.getHours()}:${('0' + shiftedDate.getMinutes()).slice(-2)}`;
