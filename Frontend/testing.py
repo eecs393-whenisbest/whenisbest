@@ -31,15 +31,15 @@ class TestEventMethods(unittest.TestCase):
         timeArr = ()
         for i in range(0, 5):
             timeArr = timeArr + ((now + timedelta(seconds=3600) * i),)
-        attendeeHandler.attendeeSubmit("zxm132@case.edu", test, "Zubair", timeArr)
-        attendeeHandler.attendeeSubmit("pjh96@case.edu", test, "Patrick", timeArr)
+        attendeeHandler.attendeeEdit("zxm132@case.edu", test, "Zubair", timeArr)
+        attendeeHandler.attendeeEdit("pjh96@case.edu", test, "Patrick", timeArr)
         zubairList = ()
         patrickList = ()
         for t in timeArr:
             zubairList = zubairList + (('zxm132@case.edu', t),)
             patrickList = patrickList + (('pjh96@case.edu', t),)
         self.assertEqual(attendeeHandler.attendeeAvailability('zxm132@case.edu', test), zubairList)
-        self.assertEqual(attendeeHandler.attendeeEdit("pjh96@case.edu", timeArr[1:4], test), patrickList[1:4])
+        self.assertEqual(attendeeHandler.attendeeEdit("pjh96@case.edu", test, "Brian", timeArr[1:4]), patrickList[1:4])
         # self.assertEqual(eventHandler.getAllMatching(test), 2)
         responses = eventHandler.getAllResponses(test)
 
