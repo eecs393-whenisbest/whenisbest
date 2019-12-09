@@ -226,7 +226,7 @@ def attendeeAvailable():
         t2 = datetime.strptime(t, "%Y-%m-%d+%H:%M:%S")
         timeList.append(t2)
     print(t2)
-    attendeeHandler.attendeeSubmit(email, eventID, name, timeList)
+    attendeeHandler.attendeeEdit(email, eventID, name, timeList)
     return redirect(url_for('home'))
 
 

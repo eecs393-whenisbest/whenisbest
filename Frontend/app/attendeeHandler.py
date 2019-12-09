@@ -13,16 +13,15 @@ def attendeeAvailability(userEmail, eventID):
     return sql.getQueryResults(query, values)
 
 
-def attendeeEdit(userEmail, timeList, eventID):
+def attendeeEdit(userEmail, userName, timeList, eventID):
     # step 1: fetch auxiliary values
-    uName = getAttendeeName(userEmail, eventID)[0][0]
     # step 2: remove existing entries
     query = "delete from Responses where userEmail = %s and eventID = %s"
     values = (userEmail, eventID)
     sql.createQuery(query, values)
     # step 3: add new entries from array of times
     # TODO: Implement for each loop
-    return attendeeSubmit(userEmail, eventID, uName, timeList)
+    return attendeeSubmit(userEmail, eventID, userName, timeList)
 
 
 def attendeeSubmit(userEmail, eventID, userName, timeList):
