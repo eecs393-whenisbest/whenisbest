@@ -13,7 +13,7 @@ def attendeeAvailability(userEmail, eventID):
     return sql.getQueryResults(query, values)
 
 
-def attendeeEdit(userEmail, userName, timeList, eventID):
+def attendeeEdit(userEmail, eventID, userName, timeList):
     # step 1: fetch auxiliary values
     # step 2: remove existing entries
     query = "delete from Responses where userEmail = %s and eventID = %s"

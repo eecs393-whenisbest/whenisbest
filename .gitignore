@@ -6,4 +6,4 @@ virtualenv
 
 *.swp
 Frontend/app/mailjet.py
-~$
+~$*
