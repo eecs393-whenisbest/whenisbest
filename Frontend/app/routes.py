@@ -141,11 +141,11 @@ def sendTimes(time):
         return redirect(url_for('home'))
 
 
-@app.route('/respond/<eventID>/<attEmail>')
-def attendeeResponses(eventID, attEmail):
+@app.route('/respond/<eventID>')
+def attendeeResponses(eventID):
     session['eventID'] = eventID
     if eventID == session['eventID']:
-        return render_template('Responder.html', result=attendeeHandler.attendeeAvailability(attEmail, eventID))
+        return render_template('Responder.html', result=eventHandler.getTimes(eventID), eventName=eventHandler.getName(eventID)[0][0], eventID=eventID)
     else:
         return redirect(url_for('home'))
 
@@ -213,23 +213,19 @@ def createUser():
 
 
 # PARAMETRIC POST #
-@app.route('/respond/<eventID>', methods=['POST'])
-def attendeeAvailable(eventID):
+@app.route('/results', methods=['POST'])
+def attendeeAvailable():
+    eventID = request.form['eventID']
     email = request.form['my-email']
     session['eventID'] = eventID
     name = request.form['my-name']
-    timeList = request.form['timeList']
     session['attEmail'] = email
+    times = request.form.getlist('responses')
     timeList = []
-    if(len(request.form.getlist('timeList')) < 2):
-        times = request.form.get('timeList')
-        t = int(times) / 1000
-        timeList.append(datetime.fromtimestamp(t))
-    else:
-        times = request.form.getlist('timeList')
-        for t in times:
-            temp = int(t) / 1000
-            timeList.append(datetime.fromtimestamp(temp))
+    for t in times:
+        t2 = datetime.strptime(t, "%Y-%m-%d+%H:%M:%S")
+        timeList.append(t2)
+    print(t2)
     attendeeHandler.attendeeSubmit(email, eventID, name, timeList)
     return redirect(url_for('home'))
 

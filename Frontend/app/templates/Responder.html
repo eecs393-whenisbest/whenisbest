@@ -35,61 +35,11 @@
         }
     </style>
     <title>WhenIsBest: Respond!</title>
-    <script>
-      function makeTable(timeList, recurring){
-      var day = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-      var table = document.createElement('table'), tr, td, row, cell;
-      var increment = {{ inc }};
-      var rowCount;
-      var offset = 0;
-      var buffer = 1;
-      if(inc == 0.25){
-          rowCount = totalHours*4;
-          offset = 49;
-          buffer = 4; //corrections for time subunits
-      }
-      else if(inc == 0.5){
-          rowCount = totalHours*2;
-          offset = 25;
-          buffer = 2; // corrections for subunits of time
-      }
-      else{
-          rowCount = totalHours;
-          offset = 13;
-          buffer = 1;
-      }
-      tr = document.createElement('tr');
-      for (row = 0; row < rowCount + buffer; row++) {
-          tr = document.createElement('tr');
-          for (cell = 0; cell < days + 1; cell++) {
-              td = document.createElement('td');
-              tr.appendChild(td);
-              var myDate = new Date(startDate.getTime() + (cell+1)*1000*60*60*24);
-              if(row == 0){
-                  var text = day[(startDate.getDay() + cell) % 7];
-                  var finalText = `<b> ${text}<br>${myDate.getMonth() + 1}.${myDate.getDate()}</b>`;
-                  td.innerHTML = finalText;
-              }
-              else{
-                  var minutesOffset = ((row-offset)*inc)*1000*60*60; // minutes adjusted for DST
-                  var dayOffset = (cell+1)*1000*60*60*24;
-                  var shiftedDate = new Date(startDate.getTime() + minutesOffset + dayOffset);
-                  inHT = `<input type='checkbox' name='a', value=${shiftedDate.getTime()}><br>${shiftedDate.getHours()}:${('0' + shiftedDate.getMinutes()).slice(-2)}`;
-                  td.innerHTML = inHT;
-              }
-          }
-          table.appendChild(tr);
-      }
-      if(recurring == 1){
-        
-      }
-      document.getElementById('container').appendChild(table);
-    }
-    </script>
 </head>
 <body>
-    <form action='/respond/{{ eventID }}' method="post">
+    <form action='/results' method="post">
         <fieldset>
+            <input type='hidden' name='eventID' value={{eventID}}>
             <legend> <a href="/" title="WhenIsBest Home"><img src="{{ url_for('static', filename='web_logo.png') }}" alt="WhenIsBest Logo" height = "52.5" width = "296"></a></legend>
             <h2>Responding to an Event? Let's make it so!</h2>
             <br>
@@ -99,7 +49,14 @@
             <input type="text" name = "my-name" class = "nameBox" id = "eventName">
             <b>Enter Email:</b>
             <input type="email" name = "my-email" class = "nameBox" id = "eventName">
-            <div id='container'></div>
+            {% for response in result %}
+            <tr>
+              <td>
+                <input type='checkbox' name='responses' value='{{ response[1] }}+{{ response[0] }}'> Date: {{ response[1] }} Time: {{ response[0]}}
+                <br>
+              </td>
+            </tr>
+            {%endfor%}
             <input type="submit" value="Let's Submit!">
         </fieldset>
     </form>

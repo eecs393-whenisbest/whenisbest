@@ -137,12 +137,11 @@ def getAllResponses(eventID):
 
 
 def getTimes(eventID):
-    r = getRecurring(eventID)[0]
+    r = getRecurring(eventID)[0][0]
     if(r == 1):
         query = "select Recurring.timeSlot, Recurring.day, Event.eventGranularity, Event.eventName from Recurring natural join Event where eventID = %s"
         values = (eventID, )
-        return sql.getQueryResults(query, values)
     else:
-        query = "select OneTime.timeSlot, OneTime.date, Event.eventGranularity, Event.eventName from OneTime natural join Event where eventID = %s"
+        query = "select OneTime.timeSlot, oneTime.date, Event.eventGranularity, Event.eventName from OneTime natural join Event where eventID = %s"
         values = (eventID, )
-        return sql.getQueryResults(query, values)
+    return sql.getQueryResults(query, values)
