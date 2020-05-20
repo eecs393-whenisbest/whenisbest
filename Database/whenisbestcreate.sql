@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `whenisbest`.`Users` (
   `userID` VARCHAR(320) NOT NULL,
   `FName` VARCHAR(60) NULL,
   `LName` VARCHAR(60) NULL,
-  `Pass` VARCHAR(32) NULL,
+  `Pass` CHAR(128) NULL,
   PRIMARY KEY (`userID`))
 ENGINE = InnoDB;
 

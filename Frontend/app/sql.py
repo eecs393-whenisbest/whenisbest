@@ -3,7 +3,7 @@ import pymysql as mysql
 db_user = "root"
 db_password = "Shannara"
 db_name = "whenisbest"
-db_host = "127.0.0.1"
+db_host = "localhost"
 db = mysql.connect(user=db_user, password=db_password, host=db_host, db=db_name)
 
 
